@@ -331,7 +331,7 @@ class Reader(threading.Thread):
         #sheet_name_dict = get_sheet_name_key(self.fileconfig)
         # file_to_read = open(file__read, "r", encoding="UTF-8")
         #file_to_out = open(self.fileout, "a", encoding="UTF-8")
-        with open(self.file_name, 'r', encoding="UTF-8") as file_to_read:
+        with open(self.file_name, 'rb') as file_to_read:
             '''
                     该if块主要判断分块后的文件块的首位置是不是行首，
                     是行首的话，不做处理
@@ -352,12 +352,15 @@ class Reader(threading.Thread):
             log_debug(self.end_pos)
             log(Tag, "end line--------------")
             #self.end_pos = 49430528
+            line_num=0
             while (self.start_pos <= self.end_pos):
+                line_num+=1
+                #print('行数',line_num)
                 lines = file_to_read.readline()
-                line = lines.strip()
+                line = lines.decode('utf-8').strip()
                 #log_debug(line)
                 #if "WifiService" in line:
-                #log_debug(line)
+                log_debug(line)
                 if not len(line) or line.startswith('#'):
                     continue
                 if not line:
@@ -477,6 +480,6 @@ __file__config = os.path.join(__file_in_base_1, "Config.xlsx")
 
 if __name__ == "__main__":
     list_all_files()
-    dirlist = ["aplogcatkernel.txt", "aplogcat-main-1.txt","log_1.txt"]
+    dirlist = ["aplogcatkernel.txt", "aplogcat-main-1.txt","log.txt"]
     mutex = threading.Lock()
     fileread(dirlist, file_txt_name(), __file__config)
