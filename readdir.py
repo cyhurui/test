@@ -41,12 +41,14 @@ def match(list1, list2):  # check whether requirment file already exit
 
 def changes_file_name(old_file_path, new_file_name):  # 修改文件的名字
     # print(old_file_path)
-    dirname, filename = os.path.split(old_file_path)
+    #dirname, filename = os.path.split(old_file_path)
     # print(dirname)
     # print(filename)
-    new_file_name = os.path.join(dirname, new_file_name)
+    #new_file_name = os.path.join(dirname, new_file_name)
     if (check_file_exist(new_file_name)):
         print('new_file_name already exist')
+        os.remove(new_file_name)
+        os.rename(old_file_path, new_file_name)
     else:
         os.rename(old_file_path, new_file_name)
     return new_file_name

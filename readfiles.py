@@ -6,7 +6,7 @@ from copy import deepcopy
 from typing import List, Any, Dict
 import threading
 
-from mergefile import intercept_file_name, merge_log
+from mergefile import intercept_file_name, merge_log, SortedFile, checkFileSize
 from readdir import list_all_files, check_excel_file, changes_file_name, create, check_file_exist
 from readdir import file_txt_name
 from readdir import match
@@ -22,7 +22,8 @@ arg = ''
 readinlist = []
 merge_file_list = []
 DBG = False
-debug_DBG =True
+debug_DBG = False
+
 Tag = "readfile"
 
 exitFlag = 0
@@ -34,13 +35,13 @@ threadID = 1
 def log(tag, logstr):
     if (DBG):
         print(str(datetime.now()) + "  " + tag + ":" + str(logstr))
-        #print()
+        # print()
     pass
 
 def log_debug(logstr):
     if debug_DBG:
-       print(str(datetime.now()) +":   " + str(logstr))
-       print()
+        print(str(datetime.now()) + ":   " + str(logstr))
+        print()
     pass
 
 def write_file(param, f_output, f_input):
@@ -52,7 +53,7 @@ def write_file(param, f_output, f_input):
     else:
         log(Tag, param)
         log(Tag, f_output)
-        f_output.write(param+"\n")
+        f_output.write(param + "\n")
     pass
 
 
@@ -144,14 +145,16 @@ def fileread(dirlist, txtlist, file_config):  # 对比从config中读到的文�
         return
     sheet_name = get_all_sheet_name(file_config)
     sheet_name_dict = get_sheet_name_key(file_config)
-    #print("hurui1")
-    #print(sheet_name_dict)
+    # print("hurui1")
+    # print(sheet_name_dict)
+    merge_file_list.append(file_out_temp)
     for listtemp in samelist:
         # readfile = os.path.basename(listtemp)
         readfile = os.path.join(__file_in_base, os.path.basename(listtemp))
         log(Tag, "readfile:" + os.path.basename(readfile))
         log(Tag, "samelist:" + listtemp)
         __file__out = create(__file_out_base, intercept_file_name(listtemp))
+        merge_file_list.append(__file__out)
         file_to_out = open(__file__out, "a+", encoding="UTF-8")
         log(Tag, "---------------")
         # readlogdebug(readfile, __file__out, file_config)
@@ -176,21 +179,42 @@ def fileread(dirlist, txtlist, file_config):  # 对比从config中读到的文�
 
         for i in range(thread_num):
             t[i].join()
+            log_debug("thread_numjoin")
+            log_debug(t[i])
         # 等待所有线程完成
         log_debug("thread_num 2")
         file_to_out.close()
-        log(Tag, "start finish")
 
-    '''
-        if len(merge_file_list) > 2:
-        i = 0
-        while (len(merge_file_list) > i + 1):
-            # merge_log(merge_file_list[i],merge_file_list[i+1],"test_temp.txt",True)
-            i = i + 1
+    """
+    对多线程生成的文件做一个排序，为后续合并文件做准备
+    """
+    for sfile in merge_file_list:
+        if sfile == file_out_temp:
+            continue
+        if checkFileSize(sfile) is False:
+            merge_file_list.remove(sfile)
+            continue
+        SortedFile(sfile, sfile)
+        pass
+    """
+    合并临时文件为最终文件
+    """
+    if len(merge_file_list) >= 2:
+        while (1):
+            if len(merge_file_list) < 2:
+                break
+                pass
+            elif len(merge_file_list) == 2:
+                merge_log(merge_file_list[0], merge_file_list[1], file_out_final, False)
+                merge_file_list.remove(merge_file_list[1])
+                pass
+            else:
+                merge_log(merge_file_list[0], merge_file_list[1], file_out_final, True)
+                merge_file_list.remove(merge_file_list[1])
+                pass
             pass
         pass
     pass
-    '''
 
 
 def read(mthreadID, dirlist):
@@ -316,7 +340,7 @@ def get_sheet_name_key(file_config):
 
 
 class Reader(threading.Thread):
-    def __init__(self, file__read, file_out, sheet_name,sheet_name_dict, start_pos, end_pos,thread_num):
+    def __init__(self, file__read, file_out, sheet_name, sheet_name_dict, start_pos, end_pos, thread_num):
         super(Reader, self).__init__()
         self.file_name = file__read
         self.fileout = file_out
@@ -327,22 +351,24 @@ class Reader(threading.Thread):
         self.thread_num = thread_num
 
     def run(self):
-        #sheet_name = get_all_sheet_name(self.fileconfig)
-        #sheet_name_dict = get_sheet_name_key(self.fileconfig)
+        # sheet_name = get_all_sheet_name(self.fileconfig)
+        # sheet_name_dict = get_sheet_name_key(self.fileconfig)
         # file_to_read = open(file__read, "r", encoding="UTF-8")
-        #file_to_out = open(self.fileout, "a", encoding="UTF-8")
+        # file_to_out = open(self.fileout, "a", encoding="UTF-8")
         with open(self.file_name, 'rb') as file_to_read:
             '''
                     该if块主要判断分块后的文件块的首位置是不是行首，
                     是行首的话，不做处理
                     否则，将文件块的首位置定位到下一行的行首
             '''
+            # print("self.start_pos")
+            # print(self.start_pos)
             if self.start_pos != 0:
-                file_to_read.seek(self.start_pos - 1)
+                file_to_read.seek(int(self.start_pos) - 1)
                 if file_to_read.read(1) != '\n':
                     lines = file_to_read.readline()
                     self.start_pos = file_to_read.tell()
-            file_to_read.seek(self.start_pos)
+            file_to_read.seek(int(self.start_pos))
             '''
             对该文件块进行处理
             '''
@@ -351,16 +377,16 @@ class Reader(threading.Thread):
             log_debug(self.start_pos)
             log_debug(self.end_pos)
             log(Tag, "end line--------------")
-            #self.end_pos = 49430528
-            line_num=0
-            while (self.start_pos <= self.end_pos):
-                line_num+=1
-                #print('行数',line_num)
+            # self.end_pos = 49430528
+            while (1):
+                if self.start_pos >= self.end_pos:
+                    break
+                # print('行数',line_num)
                 lines = file_to_read.readline()
                 line = lines.decode('utf-8').strip()
-                #log_debug(line)
-                #if "WifiService" in line:
-                log_debug(line)
+                # log_debug(line)
+                # if "WifiService" in line:
+                # log_debug(line)
                 if not len(line) or line.startswith('#'):
                     continue
                 if not line:
@@ -378,16 +404,16 @@ class Reader(threading.Thread):
                         continue
                     log(Tag, "sheet_name_temp-------------")
                     log(Tag, sheet_name_temp)
-                    #print(sheet_name_temp)
+                    # print(sheet_name_temp)
                     # threadLock.acquire()
                     config = self.sheet_name_dict[sheet_name_temp][0]
-                    #print(config)
+                    # print(config)
                     keyword_index = self.sheet_name_dict[sheet_name_temp][1]
-                    #print(keyword_index)
+                    # print(keyword_index)
                     level_index = self.sheet_name_dict[sheet_name_temp][2]
-                    #print(level_index)
+                    # print(level_index)
                     # threadLock.release()
-                    #print(keyword_index)
+                    # print(keyword_index)
                     # log(Tag, "read key")
                     for key in config:
                         if keyword_index > len(config[key]):
@@ -396,47 +422,41 @@ class Reader(threading.Thread):
                         keyword = config[key][keyword_index]
                         level = config[key][level_index]
                         lines_level = line.split()
-                        log(Tag,len(lines_level))
+                        log(Tag, len(lines_level))
                         if len(lines_level) < 5:
                             continue
                         log(Tag, "keyword---------1------")
                         log(Tag, level + lines_level[4])
-                        #log_debug(line)
+                        # log_debug(line)
                         if level not in lines_level[4]:
-                            #log_debug("continue")
+                            # log_debug("continue")
                             continue
-                        #log_debug(line)
+                        # log_debug(line)
                         if keyword in line:
-                                log_debug("self.fileout:")
-                            #if "result" in self.fileout:  # 输出只是临时性文件，所以只负责存储有关键字信息
-                                mutex.acquire()
-                                write_file(line, self.fileout, file_to_read)
-                                jump_flag = True
-                                mutex.release()
-                                break
-                                # decode_Logic_config(line, config, key, tag_temp, sheet_name_temp)
-                            #else:
-                                # 开始根据关键字来检查和提取关键性信息，并输出到output文件中#
-                                # decode_Logic_config(line, config, key, tag_temp, sheet_name_temp)
-                                #pass
+                            # log_debug("self.fileout:")
+                            # if "result" in self.fileout:  # 输出只是临时性文件，所以只负责存储有关键字信息
+                            mutex.acquire()
+                            write_file(line, self.fileout, file_to_read)
+                            jump_flag = True
+                            mutex.release()
+                            break
+                            # decode_Logic_config(line, config, key, tag_temp, sheet_name_temp)
+                        # else:
+                        # 开始根据关键字来检查和提取关键性信息，并输出到output文件中#
+                        # decode_Logic_config(line, config, key, tag_temp, sheet_name_temp)
+                        # pass
                     else:
                         pass
-                print("----------------------")
-                print(self.start_pos)
-                print(self.end_pos)
                 self.start_pos = file_to_read.tell()
-                if self.start_pos> 1766946:
-                    print(line)
-                print(self.start_pos)
-
-
+                if self.start_pos >= self.end_pos:
+                    log_debug(self.start_pos)
+            log_debug("while break self")
+            log_debug(self.thread_num)
 
 
 '''
 对文件进行分块，文件块的数量和线程数量一致
 '''
-
-
 class Partition(object):
     def __init__(self, file_name, thread_num):
         self.file_name = file_name
@@ -446,7 +466,7 @@ class Partition(object):
         fd = open(self.file_name, 'r')
         fd.seek(0, 2)
         pos_list = []
-        file_size= fd.tell()
+        file_size = fd.tell()
         log_debug("file_size:")
         log_debug(file_size)
         block_size = file_size / self.block_num
@@ -473,6 +493,8 @@ __file_out_base = os.path.join(os.getcwd(), "result")
 
 __file_in_base_1 = os.path.join(os.getcwd(), "config")
 __file__config = os.path.join(__file_in_base_1, "Config.xlsx")
+file_out_temp = os.path.join(__file_out_base, "test_temp.txt")
+file_out_final = os.path.join(__file_out_base, "final_file.txt")
 
 # filename = __file__read
 # filename_output = __file__out
@@ -480,6 +502,7 @@ __file__config = os.path.join(__file_in_base_1, "Config.xlsx")
 
 if __name__ == "__main__":
     list_all_files()
-    dirlist = ["aplogcatkernel.txt", "aplogcat-main-1.txt","log.txt"]
+    dirlist = ["aplogcat-events.txt", "aplogcat-kernel.txt", "aplogcat-radio.txt", "aplogcat-main.txt",
+               "aplogcat-system.txt"]
     mutex = threading.Lock()
     fileread(dirlist, file_txt_name(), __file__config)
