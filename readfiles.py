@@ -1,20 +1,15 @@
 import os
 import re
-import sys
-from concurrent.futures import thread
-from copy import deepcopy
 from typing import List, Any, Dict
 import threading
 
 from mergefile import intercept_file_name, merge_log, SortedFile, checkFileSize
-from readdir import list_all_files, check_excel_file, changes_file_name, create, check_file_exist
+from readdir import list_all_files, check_excel_file, create
 from readdir import file_txt_name
 from readdir import match
-from readconfig import read_excel, get_all_sheet_name, get_all_config, get_tag, find_tag
-from readconfig import excel_cols
+from readconfig import get_all_sheet_name, find_tag, filter_valid_sheet, get_sheet_list_value
 
-import xlrd
-from datetime import date, datetime
+from datetime import datetime
 
 dict = {}
 pos: List[Any] = []
@@ -22,7 +17,7 @@ arg = ''
 readinlist = []
 merge_file_list = []
 DBG = False
-debug_DBG = False
+debug_DBG =False
 
 Tag = "readfile"
 
@@ -56,8 +51,126 @@ def write_file(param, f_output, f_input):
         f_output.write(param + "\n")
     pass
 
+def decode_Logic_config(fliepath, sheet_name_dict):
+    with open(fliepath, 'rb') as file_to_read:
+        # while True:
+        while (1):
+            lines = file_to_read.readline()
+            line = lines.decode('utf-8').strip()
+            if not len(line) or line.startswith('#'):
+                continue
+            if not line:
+                log(Tag, "finish")
+                break
+            jump_flag = False
+            #flag = False
+            for sheet_name_temp in sheet_name_dict:
+                if (jump_flag):
+                    break
+                if "Logic Unit" in sheet_name_temp:  # 逻辑单元不参与
+                    continue
+                if "Sheet" in sheet_name_temp:  # 逻辑单元不参与
+                    continue
+                log(Tag, "sheet_name_temp-------------")
+                log(Tag, sheet_name_temp)
+                # print(sheet_name_temp)
+                # threadLock.acquire()
+                """
+                for mlist in sheet_white_list: #根据Parse-P或者Parse-Q来决定
+                    if mlist in sheet_name_temp:
+                        flag = True
+                        break
+                    else:
+                        continue
+
+                if flag is False:
+                    continue
+                flag = Flase
+
+                """
+                config = sheet_name_dict[sheet_name_temp][0]  # 取TAG 值
+                #print(config)
+                tag_temp = sheet_name_dict[sheet_name_temp][1]  # KEYWORD 值
+                #print(tag_temp)
+                #level_index = sheet_name_dict[sheet_name_temp][2]  # 取LEVEL
+                index  = get_sheet_list_value(sheet_name_temp,tag_temp)
+                #print(index)
+                keyword_index = index[sheet_name_temp]["KEYWORD"]
+                level_index = index[sheet_name_temp]["LEVEL"]
+                if keyword_index < 0:
+                    continue
+                for key in config:
+                    if keyword_index > len(config[key]):
+                        print("err")
+                        continue
+                    keyword = config[key][keyword_index]
+                    level = config[key][level_index]
+                    lines_level = line.split()
+                    if len(lines_level) < 5:  # 保证格式是时间+进程号+log等级，格式不同的，直接不处理
+                        continue
+                    if len(level) >= 1:  # config中是有log的 level等级的
+                        if level not in lines_level[4]:  # 这个逻辑需要添加log的等级，可以加快扫描速度
+                            # print("continue")
+                            continue
+                    # log_debug(line))
+                    if keyword in line:
+                        log_debug("self.fileout:")
+                        logic_value =[]
+                        """
+                        logic_dict: format:
+                        {'TAG': 'wifi_on_2', 'LEVEL': 'D', 'KEYWORD': 'client mode active', 'MANDATORY': 1.0, 'VALUE_FLAG': 0.0, 
+                        'VAL1': '', 'VAL2': '', 'VAL3': '', 'LOGIC UNIT': 'L2 (KEYWORD)', 'OUTPUT1': 'Turned on WiFi', 'OUTPUT2': 'Turn on WiFi failed'}
+                        """
+                        logic_dict = {}
+                        for value_temp in index[sheet_name_temp]:
+                            logic_dict[value_temp] = config[key][index[sheet_name_temp][value_temp]]
+                        #write_file(line, fileout, file_to_read)
+                        jump_flag = True
+                        break
+                        # decode_Logic_config(line, config, key, tag_temp, sheet_name_temp)
+                    # else:
+                    # 开始根据关键字来检查和提取关键性信息，并输出到output文件中#
+                    # decode_Logic_config(line, config, key, tag_temp, sheet_name_temp)
+                    # pass
+    pass
+
+def decode_val(line,value):#str 暂时只能用逗号分开，加其他的符号容易引起误会
+    if value.isspace():
+        print("continue")
+        return None
+    if ",#" not in value:
+        print("please use ',#' to split string in excel(value col)")
+        return None
+    config_value = value.split(",#")
+    end_index = re.search("-->",line).span()
+    if len(config_value[0])<=0 and len(config_value[1])<=0 :
+        return None
+        pass
+    elif len(config_value[0]) > 0 and len(config_value[1]) <= 0 :
+        start_index = re.search(config_value[0].strip(), line).span()
+        print(start_index)
+        return line[start_index[1] + 1:end_index[0]].strip()
+        pass
+    elif len(config_value[0]) > 0 and len(config_value[1]) > 0 :
+        start_index = re.search(config_value[0].strip(), line).span()
+        end_index = re.search(config_value[1].strip(), line).span()
+        if start_index > end_index:
+           return line[start_index[1] + 1:end_index[0]].strip()
+        else:
+            print("")
+        pass
+    elif len(config_value[0]) <= 0 and len(config_value[1]) > 0:
+        end_index = re.search(config_value[1].strip(), line).span()
+        return line[0:end_index[0]].strip()
+    else:
+        print("this config is error, please check excel")
+        return None
+        pass
+
+
 
 # 在这个判断中，config中必须包含MANDATORY这个key，如果value_flag字段在config中没有，说明没有val值和逻辑单元
+"""
 def decode_Logic_config(str_line, config, key, tag_temp, sheet_name_temp):
     list_temp = tag_temp[sheet_name_temp]
     value_str = []
@@ -94,10 +207,10 @@ def decode_Logic_config(str_line, config, key, tag_temp, sheet_name_temp):
     for key_temp in val_dic:
         val_str = val_dic[key_temp]
         val_str_list = list(filter(not_empty, re.split("\(|\)|,", val_str)))
-        #print(val_str_list)
-        #print(key_temp)
-        #print(val_str_list)
-        #print(str_line)
+        # print(val_str_list)
+        # print(key_temp)
+        # print(val_str_list)
+        # print(str_line)
         try:
             if len(val_str_list) == 1:
                 # try:
@@ -106,7 +219,7 @@ def decode_Logic_config(str_line, config, key, tag_temp, sheet_name_temp):
                 # print(str_line.index(val_str_list[0]))
                 key_value[key_temp] = str_line[
                                       int(str_line.index(val_str_list[0])) + int(len(val_str_list[0])):].strip()
-                #print(key_value[key_temp])
+                # print(key_value[key_temp])
             # except ValueError:
             #    continue
             elif len(val_str_list) == 2:
@@ -115,20 +228,20 @@ def decode_Logic_config(str_line, config, key, tag_temp, sheet_name_temp):
                 # print(key_temp)
                 # print(val_str_list[0]+"-"+val_str_list[1])
                 # print(str_line)
-                #print(str_line.index(val_str_list[0]))
-                #print(val_str_list[1])
+                # print(str_line.index(val_str_list[0]))
+                # print(val_str_list[1])
                 key_value[key_temp] = str_line[
                                       int(str_line.index(val_str_list[0])) + int(len(val_str_list[0])): int(
                                           str_line.index(val_str_list[1]))].strip()
-                #print(key_value[key_temp])
+                # print(key_value[key_temp])
             else:
-                #print("val is none:" + str(len(val_str_list)))
+                # print("val is none:" + str(len(val_str_list)))
                 pass
         except ValueError:
             continue
 
         pass
-
+"""
 
 def not_empty(s):
     return s and s.strip()
@@ -144,7 +257,7 @@ def fileread(dirlist, txtlist, file_config):  # 对比从config中读到的文�
         log(Tag, "config file is not exists")
         return
     sheet_name = get_all_sheet_name(file_config)
-    sheet_name_dict = get_sheet_name_key(file_config)
+    sheet_name_dict = filter_valid_sheet(file_config,False)
     # print("hurui1")
     # print(sheet_name_dict)
     merge_file_list.append(file_out_temp)
@@ -166,8 +279,8 @@ def fileread(dirlist, txtlist, file_config):  # 对比从config中读到的文�
         pos = p.part()
         # 生成线程
         for i in range(thread_num):
-            t.append(Reader(readfile, file_to_out, sheet_name,sheet_name_dict, *pos[i],i))
-            #t.append(Reader(readfile, file_to_out, file_config, fd.tell()))
+            t.append(Reader(readfile, file_to_out, sheet_name, sheet_name_dict, *pos[i], i))
+            # t.append(Reader(readfile, file_to_out, file_config, fd.tell()))
         # 开启线程
         log_debug("thread_num")
         for i in range(thread_num):
@@ -215,6 +328,10 @@ def fileread(dirlist, txtlist, file_config):  # 对比从config中读到的文�
             pass
         pass
     pass
+    sheet_name_dict = filter_valid_sheet(file_config, True)#dict{list{dict{list},}}
+    decode_Logic_config(merge_file_list[0],sheet_name_dict)
+
+
 
 
 def read(mthreadID, dirlist):
@@ -225,6 +342,7 @@ def read(mthreadID, dirlist):
     pass
 
 
+"""
 def readlogdebug(file__read, file_out, file_config):
     # 遍历所有的log文件，和所有的config，把符合keyword的行全部过滤出来
     log(Tag, "***---------")
@@ -237,7 +355,7 @@ def readlogdebug(file__read, file_out, file_config):
         return
     sheet_name = get_all_sheet_name(file_config)
     sheet_name_dict = get_sheet_name_key(file_config)
-    print(sheet_name)
+    #print(sheet_name)
     # file_to_read = open(file__read, "r", encoding="UTF-8")
     file_to_out = open(file_out, "a", encoding="UTF-8")
     try:
@@ -309,34 +427,7 @@ def readlogdebug(file__read, file_out, file_config):
     # merge_file_list.append(file_out)
     # a = changes_file_name(file_out, "test1.txt")
     # print(a)###
-
-
-def get_sheet_name_key(file_config):
-    # sheet list=[config(dict),keyword_index,level_index]
-    # sheet_name_dict={sheetnameA-->listA;sheetnameB--> listB........}
-    sheet_name = get_all_sheet_name(file_config)
-    sheet_name_list = []
-    sheet_name_dict = {}
-    print(sheet_name)
-    for sheet_name_temp in sheet_name:
-        sheet_name_list.clear()
-        print(sheet_name_temp)
-        if "Logic Unit" in sheet_name_temp:  # 逻辑单元不参与
-            continue
-        if "Sheet" in sheet_name_temp:  # 逻辑单元不参与
-            continue
-        log(Tag, "get_sheet_name_key")
-        log(Tag, sheet_name_temp)
-        config = get_all_config(file_config, sheet_name_temp)
-        #print(config)
-        tag_temp = get_tag(file_config, sheet_name_temp)
-        keyword_index = find_tag(tag_temp[sheet_name_temp], "KEYWORD")
-        level_index = find_tag(tag_temp[sheet_name_temp], "LEVEL")
-        sheet_name_list.append(config)
-        sheet_name_list.append(keyword_index)
-        sheet_name_list.append(level_index)
-        sheet_name_dict[sheet_name_temp] = deepcopy(sheet_name_list)
-    return sheet_name_dict
+"""
 
 
 class Reader(threading.Thread):
@@ -395,7 +486,8 @@ class Reader(threading.Thread):
                 # yield lines
                 log(Tag, "start to read sheetname")
                 jump_flag = False
-                for sheet_name_temp in self.sheet_name:
+                flag = False
+                for sheet_name_temp in self.sheet_name_dict:
                     if (jump_flag):
                         break
                     if "Logic Unit" in sheet_name_temp:  # 逻辑单元不参与
@@ -406,12 +498,35 @@ class Reader(threading.Thread):
                     log(Tag, sheet_name_temp)
                     # print(sheet_name_temp)
                     # threadLock.acquire()
-                    config = self.sheet_name_dict[sheet_name_temp][0]
+                    """
+                    for mlist in sheet_white_list: #根据Parse-P或者Parse-Q来决定
+                        if mlist in sheet_name_temp:
+                            flag = True
+                            break
+                        else:
+                            continue
+
+                    if flag is False:
+                        continue
+                    flag = Flase
+
+                    """
+                    config = self.sheet_name_dict[sheet_name_temp][0]  # 取TAG 值
                     # print(config)
-                    keyword_index = self.sheet_name_dict[sheet_name_temp][1]
+                    keyword_index = self.sheet_name_dict[sheet_name_temp][1]  # KEYWORD 值
                     # print(keyword_index)
-                    level_index = self.sheet_name_dict[sheet_name_temp][2]
+                    level_index = self.sheet_name_dict[sheet_name_temp][2]  # 取LEVEL
+                    if keyword_index < 0:
+                        # print(keyword_index)
+                        # print(config)
+                        # print("keyword_index is wrong")
+                        # print(sheet_name_temp)
+                        continue
+                    # print("--------11-------")
+                    # print(config)
+                    # print(keyword_index)
                     # print(level_index)
+                    # print("--------222-------")
                     # threadLock.release()
                     # print(keyword_index)
                     # log(Tag, "read key")
@@ -423,17 +538,22 @@ class Reader(threading.Thread):
                         level = config[key][level_index]
                         lines_level = line.split()
                         log(Tag, len(lines_level))
-                        if len(lines_level) < 5:
+                        # print("----------------")
+                        # print(level)
+                        # print(lines_level[4])
+                        if len(lines_level) < 5:  # 保证格式是时间+进程号+log等级，格式不同的，直接不处理
                             continue
                         log(Tag, "keyword---------1------")
                         log(Tag, level + lines_level[4])
                         # log_debug(line)
-                        if level not in lines_level[4]:
-                            # log_debug("continue")
-                            continue
-                        # log_debug(line)
+
+                        if len(level) >= 1:  # config中是有log的 level等级的
+                            if level not in lines_level[4]:  # 这个逻辑需要添加log的等级，可以加快扫描速度
+                                # print("continue")
+                                continue
+                        # log_debug(line))
                         if keyword in line:
-                            # log_debug("self.fileout:")
+                            log_debug("self.fileout:")
                             # if "result" in self.fileout:  # 输出只是临时性文件，所以只负责存储有关键字信息
                             mutex.acquire()
                             write_file(line, self.fileout, file_to_read)
@@ -457,6 +577,8 @@ class Reader(threading.Thread):
 '''
 对文件进行分块，文件块的数量和线程数量一致
 '''
+
+
 class Partition(object):
     def __init__(self, file_name, thread_num):
         self.file_name = file_name
@@ -506,3 +628,5 @@ if __name__ == "__main__":
                "aplogcat-system.txt"]
     mutex = threading.Lock()
     fileread(dirlist, file_txt_name(), __file__config)
+    #sheet_name_dict = filter_valid_sheet(__file__config, True)#dict{list{dict{list},}}
+    #decode_Logic_config(file_out_final,sheet_name_dict)
