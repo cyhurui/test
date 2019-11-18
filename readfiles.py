@@ -609,6 +609,14 @@ class Partition(object):
         return pos_list
 
 
+__file_in_base = os.path.join(os.getcwd(), "log")
+__file_out_base = os.path.join(os.getcwd(), "result")
+# __file__read = os.path.join(__file_in_base,"main.txt")
+
+__file_in_base_1 = os.path.join(os.getcwd(), "config")
+__file__config = os.path.join(__file_in_base_1, "Config.xlsx")
+file_out_temp = os.path.join(__file_out_base, "test_temp.txt")
+file_out_final = os.path.join(__file_out_base, "final_file.txt")
 
 # filename = __file__read
 # filename_output = __file__out
