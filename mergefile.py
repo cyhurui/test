@@ -74,15 +74,21 @@ def merge_log(__file_read_1, __file_read_2, __file_out, mdelete):  # 按照时�
                 break
             elif (lines_list_2 == -1):
                 #print(str_addition(lines_1,"-->" +intercept_file_name(__file_read_1)))
-                file_out.write(str_addition(lines_1,"-->"+intercept_file_name(__file_read_1)))
+                if "test_temp" in intercept_file_name(__file_read_1):
+                    file_out.write(str_addition(lines_1))
+                else:
+                    file_out.write(str_addition(lines_1, "-->" + intercept_file_name(__file_read_1)))
                 #file_out.write(lines_1)
-                lines_list_1 = -1
+                #lines_list_1 = -1
                 lines_list_1 = None
             elif lines_list_1 == -1:
                 #print(str_addition(lines_2,'-->'+intercept_file_name(__file_read_2)))
-                file_out.write(str_addition(lines_2,'-->'+intercept_file_name(__file_read_2)))
+                if "test_temp" in intercept_file_name(__file_read_2):
+                    file_out.write(str_addition(lines_2))
+                else:
+                    file_out.write(str_addition(lines_2, '-->' + intercept_file_name(__file_read_2)))
                 #file_out.write(lines_2)
-                lines_list_2 = -1
+                #lines_list_2 = -1
                 lines_list_2 = None
 
             lines_1_date = outputdate(lines_list_1)
@@ -91,7 +97,11 @@ def merge_log(__file_read_1, __file_read_2, __file_out, mdelete):  # 按照时�
             if (lines_1_date == -1 or lines_1_date == -2):
                 if isinstance(lines_1, str):
                     #print(str_addition(lines_1, '-->'+intercept_file_name(__file_read_1)))
-                    file_out.write(str_addition(lines_1, '-->'+intercept_file_name(__file_read_1)))
+                    # print(str_addition(lines_1,"-->" +intercept_file_name(__file_read_1)))
+                    if "test_temp" in intercept_file_name(__file_read_1):
+                        file_out.write(str_addition(lines_1))
+                    else:
+                        file_out.write(str_addition(lines_1, "-->" + intercept_file_name(__file_read_1)))
                     #file_out.write(lines_1)
                     lines_list_1 = None
                     log_debug("lines_1_date is -1 or -2")
@@ -101,19 +111,28 @@ def merge_log(__file_read_1, __file_read_2, __file_out, mdelete):  # 按照时�
                 if isinstance(lines_1, str):
                     log_debug("lines_2_date is -1 or lines_list_1 is -1)")
                     #print(str_addition(lines_2, '-->'+intercept_file_name(__file_read_2)))
-                    file_out.write(str_addition(lines_2, '-->'+intercept_file_name(__file_read_2)))
+                    if "test_temp" in intercept_file_name(__file_read_2):
+                        file_out.write(str_addition(lines_2))
+                    else:
+                        file_out.write(str_addition(lines_2, '-->' + intercept_file_name(__file_read_2)))
                     #file_out.write(lines_2)
                     lines_list_2 = None
                     log_debug("lines_2_date is -1 or -2")
                 continue
             if (compare(lines_1_date, lines_2_date)):
                 #print(str_addition(lines_1,'-->'+ intercept_file_name(__file_read_1)))
-                file_out.write(str_addition(lines_1,"-->" + intercept_file_name(__file_read_1)))
+                if "test_temp" in intercept_file_name(__file_read_1):
+                    file_out.write(str_addition(lines_1))
+                else:
+                    file_out.write(str_addition(lines_1, "-->" + intercept_file_name(__file_read_1)))
                 #file_out.write(lines_1)
                 lines_list_1 = None
             else:
                 #print(str_addition(lines_2,'-->'+intercept_file_name(__file_read_2)))
-                file_out.write(str_addition(lines_2,'-->'+intercept_file_name(__file_read_2)))
+                if "test_temp" in intercept_file_name(__file_read_2):
+                    file_out.write(str_addition(lines_2))
+                else:
+                    file_out.write(str_addition(lines_2, '-->' + intercept_file_name(__file_read_2)))
                 #file_out.write(lines_2)
                 lines_list_2 = None
     file_read_1.close()

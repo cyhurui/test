@@ -16,5 +16,4 @@ if __name__ == "__main__":
     list_all_files()
     dirlist = ["aplogcat-events.txt", "aplogcat-kernel.txt", "aplogcat-radio.txt", "aplogcat-main.txt",
                "aplogcat-system.txt"]
-    mutex = threading.Lock()
     fileread(dirlist, file_txt_name(), __file__config)

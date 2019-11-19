@@ -3,7 +3,8 @@ import re
 from typing import List, Any, Dict
 import threading
 
-from mergefile import intercept_file_name, merge_log, SortedFile, checkFileSize
+from logicunit import logicdispatch
+from mergefile import intercept_file_name, merge_log, SortedFile, checkFileSize, outputdate
 from readdir import list_all_files, check_excel_file, create
 from readdir import file_txt_name
 from readdir import match
@@ -16,8 +17,8 @@ pos: List[Any] = []
 arg = ''
 readinlist = []
 merge_file_list = []
-DBG = False
-debug_DBG =False
+DBG =True
+debug_DBG = True
 
 Tag = "readfile"
 
@@ -57,11 +58,12 @@ def decode_Logic_config(fliepath, sheet_name_dict):
         while (1):
             lines = file_to_read.readline()
             line = lines.decode('utf-8').strip()
-            if not len(line) or line.startswith('#'):
-                continue
+            print(line)
             if not line:
                 log(Tag, "finish")
                 break
+            if not len(line) or line.startswith('#'):
+                continue
             jump_flag = False
             #flag = False
             for sheet_name_temp in sheet_name_dict:
@@ -125,10 +127,13 @@ def decode_Logic_config(fliepath, sheet_name_dict):
                         for value_temp in index[sheet_name_temp]:
                             logic_dict[value_temp] = config[key][index[sheet_name_temp][value_temp]]
                         #write_file(line, fileout, file_to_read)
+                        line_date = outputdate(line)
+                        logicdispatch(logic_dict,line_date,line)
                         jump_flag = True
                         break
                         # decode_Logic_config(line, config, key, tag_temp, sheet_name_temp)
-                    # else:
+                    else:
+                         continue
                     # 开始根据关键字来检查和提取关键性信息，并输出到output文件中#
                     # decode_Logic_config(line, config, key, tag_temp, sheet_name_temp)
                     # pass
@@ -617,9 +622,9 @@ __file_in_base_1 = os.path.join(os.getcwd(), "config")
 __file__config = os.path.join(__file_in_base_1, "Config.xlsx")
 file_out_temp = os.path.join(__file_out_base, "test_temp.txt")
 file_out_final = os.path.join(__file_out_base, "final_file.txt")
-
+mutex = threading.Lock()
 # filename = __file__read
 # filename_output = __file__out
 # read_excel(__file__config)
-    #sheet_name_dict = filter_valid_sheet(__file__config, True)#dict{list{dict{list},}}
-    #decode_Logic_config(file_out_final,sheet_name_dict)
+sheet_name_dict = filter_valid_sheet(__file__config, True)#dict{list{dict{list},}}
+decode_Logic_config(file_out_final,sheet_name_dict)
