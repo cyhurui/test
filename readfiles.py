@@ -127,8 +127,7 @@ def decode_Logic_config(fliepath, sheet_name_dict):
                         for value_temp in index[sheet_name_temp]:
                             logic_dict[value_temp] = config[key][index[sheet_name_temp][value_temp]]
                         #write_file(line, fileout, file_to_read)
-                        line_date = outputdate(line)
-                        logicdispatch(logic_dict,line_date,line)
+                        logicdispatch(logic_dict,line)
                         jump_flag = True
                         break
                         # decode_Logic_config(line, config, key, tag_temp, sheet_name_temp)

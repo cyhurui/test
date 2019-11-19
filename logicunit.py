@@ -3,6 +3,8 @@
 import os, time, sys, re
 
 # return status code
+from mergefile import outputdate
+
 fail = -1
 success = 0
 
@@ -22,7 +24,7 @@ def getargs(arglist):
 """
 
  # arglist should be logicunit, keyword, para1, output1，output2，val1，val2...
-def logicdispatch(logic_dict):
+def logicdispatch(logic_dict,line):
 
     """
     def logicdispatch(arglist):
@@ -45,7 +47,7 @@ def logicdispatch(logic_dict):
     #print(logicunit)
     L = logicunit[:2]
     #print(L)
-
+    line_date = outputdate(line)
     global output1
     output1 = logic_dict['OUTPUT1']
     global output2
