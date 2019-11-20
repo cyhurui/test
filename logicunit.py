@@ -1,74 +1,58 @@
 #!/usr/bin/python
 
 import os, time, sys, re
-
-# return status code
 from mergefile import outputdate
-
-fail = -1
-success = 0
 
 output1 = ""
 output2 = ""
 
-"""
-def getargs(arglist):
-    global local_list
-    local_list = arglist
-    #print("local_list in getargs: ", local_list)
-    global output1
-    output1 = local_list[3]
-    global output2
-    output2 = local_list[4]
-    pass
-"""
-
- # arglist should be logicunit, keyword, para1, output1，output2，val1，val2...
-def logicdispatch(logic_dict,line):
+def logicdispatch(logic_dict, line):
 
     """
-    def logicdispatch(arglist):
-    # get args. only gets the args that
-    getargs(arglist)
-    logicunit = local_list[0]
-    #print("logicunit in logicdispatch: ", logicunit)
-    keyword = local_list[1]
-    #print("keyword in logicdispatch: ", keyword)
-    para1 = local_list[2]
-
-    # ignorecase if needed
-    # lu = logicunit.upper()
-
     logic_dict: format:
-    {'TAG': 'wifi_on_2', 'LEVEL': 'D', 'KEYWORD': 'client mode active', 'MANDATORY': 1.0, 'VALUE_FLAG': 0.0,
+    {'TAG': 'wifi_on_2', 'LEVEL': 'D', 'KEYWORD': 'client mode active', 'MANDATORY': 11099, 'VALUE_FLAG': 0.0,
     'VAL1': '', 'VAL2': '', 'VAL3': '', 'LOGIC UNIT': 'L2 (KEYWORD)', 'OUTPUT1': 'Turned on WiFi', 'OUTPUT2': 'Turn on WiFi failed'}
     """
-    logicunit = logic_dict['LOGIC UNIT']
-    #print(logicunit)
-    L = logicunit[:2]
-    #print(L)
-    line_date = outputdate(line)
+    # obtain the output string firstly
     global output1
     output1 = logic_dict['OUTPUT1']
     global output2
     output2 = logic_dict['OUTPUT2']
 
+    # parse the logic unit, e.g: 'L1 (VAL1,true)', 'L2(KEYWORD)'
+    lu = logic_dict['LOGIC UNIT'] # like 'L1 (VAL1,true)'
+    #print(lu)
+
+    # get the logic: L1, L2...
+    logic = lu[:2]
+    #print(logic)
+
+    # module, submodule, process, subprocess
+    # For example: 11201
+    # module: wifi(1) (1: wifi; 2: BT; 3: LBS; 4: NFC)
+    # submodule: sta(1) (1: station; 2: softap; 3: p2p)
+    # process: connect(2) (0: wifi on; 1: wifi off; 2: wifi connect; 3: wifi disconnect; 4: wifi scan)
+    # subprocess: (01), (00 ~ 99, 99 means the subprocess is end, other values mean it is working)
+
     # switch logic unit
     # todo: parameters valid check
-    if L == "L1":
+    if logic == "L1":
+        #logic1(VAL1, true/false)
         val1 = logic_dict['VAL1']
-        print("val1", val1)
-        return logic1(val1)
-    elif L == "L2":
+        para = lu.split(",", 1) # para now is 'true)' or 'false)'
+        para1 = para.rstrip("）") # delete the ')' on the right
+        #print("val1", val1, "para1: ", para1)
+        return logic1(val1, para1)
+    elif logic == "L2":
         print("start L2")
         keyword = logic_dict['KEYWORD']
         print("keyword: ", keyword)
         return logic2(keyword)
-    elif L == "L3":
+    elif logic == "L3":
         #print("start L3")
         keyword = logic_dict['KEYWORD']
-        return logic3(keyword)
-    elif L == "L4":
+        return logic3(keyword, line)
+    elif logic == "L4":
         print("start L4")
         keyword = logic_dict['KEYWORD']
         #todo: how to define para1?
@@ -79,38 +63,39 @@ def logicdispatch(logic_dict,line):
     # todo: clear the args list?
     pass
 
-def logic1(val):
+def logic1(val, para):
     #print("running L1")
-    if val == "true":
-        print(output1 + " is true")
-        return success
-    elif val == "false":
-        print(output2)
-        return success
+    if val == para:
+        print(output1) # output to the file
+        return True
     else:
-        print("val is not expected: ", val1)
-        return fail
+        print(output2) # output to the file
+        return False
     pass
 
 
 def logic2(keyword):
     #print("running L2")
     if keyword:
-        print(output1)
+        print(output1) # output to the files
     else:
-        print(output2)
-    return 0
+        print(output2)  # output to the file
+    return True
     #pass
 
 
-def logic3(keyword):
+def logic3(keyword, line):
     #print("running L3")
     if keyword:
-        print(output1) #error log
-        return -1  # need stop the logic flow
+        line_date = outputdate(line)
+        print(output1) # error log, output to the files
+        print (line_date) # and print the line
+        print (line)
+        #todo: stop the current logic flow
+        return False  # need stop the current logic flow
     else:
         print(output2)
-        return 0
+        return True
     pass
 
 
