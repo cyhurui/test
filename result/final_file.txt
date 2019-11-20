@@ -1,0 +1,32 @@
+10-24 14:11:38.529  1975  1975 I WifiService: setWifiEnabled package=android uid=1000 enable=true -->2019-11-13-17-19aplogcat-main -->test_temp
+10-24 14:11:38.529  1975  1975 I WifiService: setWifiEnabled package=android uid=1000 enable=true -->2019-11-13-17-19aplogcat-main -->test_temp
+10-24 14:11:39.987  1975  2450 D WifiStateMachinePrime: client mode active -->2019-11-13-17-19aplogcat-main -->test_temp
+10-24 14:11:39.987  1975  2450 D WifiStateMachinePrime: client mode active -->2019-11-13-17-19aplogcat-main -->test_temp
+10-24 20:10:34.030  1975  2450 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-13-17-19aplogcat-main -->test_temp
+10-24 20:10:34.030  1975  2450 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-13-17-19aplogcat-main -->test_temp
+10-25 18:04:42.214  1962  1962 I WifiService: setWifiEnabled package=android uid=1000 enable=true -->2019-11-13-17-19aplogcat-main -->test_temp
+10-25 18:04:42.214  1962  1962 I WifiService: setWifiEnabled package=android uid=1000 enable=true -->2019-11-13-17-19aplogcat-main -->test_temp
+10-25 18:04:43.748  1962  2487 D WifiStateMachinePrime: client mode active -->2019-11-13-17-19aplogcat-main -->test_temp
+10-25 18:04:43.748  1962  2487 D WifiStateMachinePrime: client mode active -->2019-11-13-17-19aplogcat-main -->test_temp
+10-25 21:19:15.901  1962  2487 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-13-17-19aplogcat-main -->test_temp
+10-25 21:19:15.901  1962  2487 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:42:24.925  1955  1955 I WifiService: setWifiEnabled package=android uid=1000 enable=true -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:42:24.925  1955  1955 I WifiService: setWifiEnabled package=android uid=1000 enable=true -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:42:26.336  1955  2478 D WifiStateMachinePrime: client mode active -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:42:26.336  1955  2478 D WifiStateMachinePrime: client mode active -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:42:51.373  1955  3486 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=false -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:42:51.373  1955  3486 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=false -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:42:51.887  1955  2478 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:42:51.887  1955  2478 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:42:52.603  1955  3486 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=true -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:42:52.603  1955  3486 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=true -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:42:52.909  1955  2478 D WifiStateMachinePrime: client mode active -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:42:52.909  1955  2478 D WifiStateMachinePrime: client mode active -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:43:17.903  1955  3651 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=false -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:43:17.903  1955  3651 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=false -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:43:18.286  1955  2478 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:43:18.286  1955  2478 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:43:19.452  1955  2634 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=true -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:43:19.452  1955  2634 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=true -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:43:19.772  1955  2478 D WifiStateMachinePrime: client mode active -->2019-11-13-17-19aplogcat-main -->test_temp
+10-30 17:43:19.772  1955  2478 D WifiStateMachinePrime: client mode active -->2019-11-13-17-19aplogcat-main -->test_temp
