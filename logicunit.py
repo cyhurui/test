@@ -239,3 +239,17 @@ def logic4(keyword, n):
         print(output2)
 
     pass
+
+def reset_dict(key):
+    global logic_dict
+    print(logic_dict)
+    logic_dict[key].clear()
+    print("after reset: ", logic_dict)
+    return True
+
+def delete_dict(key):
+    global logic_dict
+    print("key: ", key)
+    del logic_dict[key]
+    print("after delete: ", logic_dict)
+    return True
