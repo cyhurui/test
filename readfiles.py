@@ -8,7 +8,7 @@ from mergefile import intercept_file_name, merge_log, SortedFile, checkFileSize,
 from readdir import list_all_files, check_excel_file, create
 from readdir import file_txt_name
 from readdir import match
-from readconfig import get_all_sheet_name, find_tag, filter_valid_sheet, get_sheet_list_value
+from readconfig import get_all_sheet_name, find_tag, filter_valid_sheet, get_sheet_list_value, get_complete_process_dict
 
 from datetime import datetime
 
@@ -95,6 +95,7 @@ def decode_Logic_config(fliepath, sheet_name_dict):
                 #print(tag_temp)
                 #level_index = sheet_name_dict[sheet_name_temp][2]  # 取LEVEL
                 index  = get_sheet_list_value(sheet_name_temp,tag_temp)
+
                 #print(index)
                 keyword_index = index[sheet_name_temp]["KEYWORD"]
                 level_index = index[sheet_name_temp]["LEVEL"]
@@ -124,6 +125,7 @@ def decode_Logic_config(fliepath, sheet_name_dict):
                         """
                         logic_dict = {}
                         for value_temp in index[sheet_name_temp]:
+                            #print(value_temp)
                             logic_dict[value_temp] = config[key][index[sheet_name_temp][value_temp]]
                         #write_file(line, fileout, file_to_read)
                         logicdispatch(logic_dict,line)
@@ -332,6 +334,7 @@ def fileread(dirlist, txtlist, file_config):  # 对比从config中读到的文�
         pass
     pass
     sheet_name_dict = filter_valid_sheet(file_config, True)#dict{list{dict{list},}}
+    get_complete_process_dict(sheet_name_dict)
     decode_Logic_config(merge_file_list[0],sheet_name_dict)
 
 
@@ -344,93 +347,6 @@ def read(mthreadID, dirlist):
     print("nihao ")
     pass
 
-
-"""
-def readlogdebug(file__read, file_out, file_config):
-    # 遍历所有的log文件，和所有的config，把符合keyword的行全部过滤出来
-    log(Tag, "***---------")
-    # log(Tag, file__read)
-    # log(Tag, mthreadID)
-    # print(file__read)
-    trunk_size = 2 * 1024 * 1024
-    if not check_excel_file(file_config):
-        log(Tag, "config file is not exists")
-        return
-    sheet_name = get_all_sheet_name(file_config)
-    sheet_name_dict = get_sheet_name_key(file_config)
-    #print(sheet_name)
-    # file_to_read = open(file__read, "r", encoding="UTF-8")
-    file_to_out = open(file_out, "a", encoding="UTF-8")
-    try:
-        with open(file__read, 'r', encoding="UTF-8") as file_to_read:
-            # while True:
-            log(Tag, "strat read line")
-            for lines in file_to_read.readlines(trunk_size):
-                lines = lines.strip()
-                if not lines:
-                    log(Tag, "finish")
-                    # yield lines
-                    break
-                # yield lines
-                log(Tag, "start to read sheetname")
-                for sheet_name_temp in sheet_name:
-                    if "Logic Unit" in sheet_name_temp:  # 逻辑单元不参与
-                        continue
-                    if "Sheet" in sheet_name_temp:  # 逻辑单元不参与
-                        continue
-                    log(Tag, "sheet_name_temp-------------")
-                    log(Tag, sheet_name_temp)
-                    # threadLock.acquire()
-                    config = sheet_name_dict[sheet_name_temp][0]
-                    keyword_index = sheet_name_dict[sheet_name_temp][1]
-                    level_index = sheet_name_dict[sheet_name_temp][2]
-                    # threadLock.release()
-                    # print(keyword_index)
-                    # log(Tag, "read key")
-                    for key in config:
-                        if keyword_index > len(config[key]):
-                            print("err")
-                            continue
-                        keyword = config[key][keyword_index]
-                        level = config[key][level_index]
-                        lines_level = lines.split()
-                        log(Tag,len(lines_level))
-                        if len(lines_level) < 5:
-                            continue
-                        log(Tag, "keyword---------1------")
-                        log(Tag, level + lines_level[4])
-                        if level not in lines_level[4]:
-                            continue
-                        # if "setWifiEnabled" in keyword:
-                        #   break
-                        log(Tag, "keyword-------2--------")
-                        log(Tag, keyword)
-                        if keyword in lines:
-                            log(Tag, "file_out:" + file_out)
-                            if "result" in file_out:  # 输出只是临时性文件，所以只负责存储有关键字信息
-                                # threadLock.acquire()
-                                write_file(lines, file_to_out, file_to_read)
-                                # threadLock.release()
-                                # decode_Logic_config(lines, config, key, tag_temp, sheet_name_temp)
-                            else:
-                                # 开始根据关键字来检查和提取关键性信息，并输出到output文件中#
-                                # decode_Logic_config(lines, config, key, tag_temp, sheet_name_temp)
-                                pass
-                            pass
-                        else:
-                            continue
-    finally:
-        log(Tag, "file_to_out close")
-        file_to_out.close()
-        # config.clear()
-        keyword_index = 0
-        file_to_read.close()
-    pass
-    ###if (check_file_exist(file_out)):
-    # merge_file_list.append(file_out)
-    # a = changes_file_name(file_out, "test1.txt")
-    # print(a)###
-"""
 
 
 class Reader(threading.Thread):
@@ -625,4 +541,5 @@ mutex = threading.Lock()
 # filename_output = __file__out
 # read_excel(__file__config)
 sheet_name_dict = filter_valid_sheet(__file__config, True)#dict{list{dict{list},}}
-decode_Logic_config(file_out_final,sheet_name_dict)
+#get_complete_process_dict(sheet_name_dict)
+#decode_Logic_config(file_out_final,sheet_name_dict)
