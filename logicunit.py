@@ -56,9 +56,11 @@ def add_process_dict(process_val):
         logic_list.append(key_list[1])
         logic_dict[key_list[0]] = deepcopy(logic_list)
     else:
-        logic_list = logic_dict[key_list[0]]
+        #print(str(logic_dict[key_list[1]]))
+        logic_list = deepcopy(logic_dict[key_list[0]])
         logic_list.append(key_list[1])
         logic_dict[key_list[0]] = deepcopy(logic_list)
+    return logic_dict
     pass
 
 def get_process_dict_key(process_val):
@@ -67,7 +69,7 @@ def get_process_dict_key(process_val):
     key_list.append(int(int(process_val)%100))
     return key_list
 
-str = ["11000","11010","11020","11030","11040","11050","11099",]
+str = ["11000","11010","11020","11030","11040","11050",]
 for i in str:
     print(add_process_dict(i))
 
