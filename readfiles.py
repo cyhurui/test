@@ -13,7 +13,6 @@ from readconfig import get_all_sheet_name, find_tag, filter_valid_sheet, get_she
 from datetime import datetime
 
 dict = {}
-pos: List[Any] = []
 arg = ''
 readinlist = []
 merge_file_list = []
