@@ -38,40 +38,43 @@ def logicdispatch_debug(logic_dict, line):
         add_process_dict(process_val)
         pass
     else:
-        log_e(tag,"")
+        log_e(tag, "")
         pass
     pass
 
+
 def add_process_dict(process_val):
     global logic_dict
-    logic_list =[]
-    key_list=get_process_dict_key(process_val)
-    log_v(tag,"add_process_dict:")
-    log_v(tag,key_list)
-    if key_list[1] == 99:# Need to clear dict
-        log_e(tag,"process code is 99, it mean the process finish and will start new process")
+    logic_list = []
+    key_list = get_process_dict_key(process_val)
+    log_v(tag, "add_process_dict:")
+    log_v(tag, key_list)
+    if key_list[1] == 99:  # Need to clear dict
+        if reset_dict(key_list[0]):
+            log_e(tag, "process code is 99, it mean the process finish and will start new process")
         return
         pass
     if key_list[0] not in logic_dict:
         logic_list.append(key_list[1])
         logic_dict[key_list[0]] = deepcopy(logic_list)
     else:
-        #print(str(logic_dict[key_list[1]]))
+        # print(str(logic_dict[key_list[1]]))
         logic_list = deepcopy(logic_dict[key_list[0]])
         logic_list.append(key_list[1])
         logic_dict[key_list[0]] = deepcopy(logic_list)
     return logic_dict
     pass
 
+
 def get_process_dict_key(process_val):
-    key_list=[]
-    key_list.append(int(int(process_val)/100))
-    key_list.append(int(int(process_val)%100))
+    key_list = []
+    key_list.append(int(int(process_val) / 100))
+    key_list.append(int(int(process_val) % 100))
     return key_list
 
-str = ["11000","11010","11020","11030","11040","11050",]
-for i in str:
-    print(add_process_dict(i))
+
+
+
 
 def unit_check(logic_all):
     # module, submodule, process, subprocess
@@ -97,7 +100,7 @@ def unit_check(logic_all):
     elif logic_unit == "L3":
         # print("start L3")
         keyword = logic_dict['KEYWORD']
-        return logic3(keyword,"debug")
+        return logic3(keyword, "debug")
     elif logic_unit == "L4":
         print("start L4")
         keyword = logic_dict['KEYWORD']
@@ -122,7 +125,7 @@ def decode_val_logic(lu):  # ['L1(VAL1', 'true)'] or
         pass
     else:
         log_e("please re-defined logic:")
-        log_e(tag,logic)
+        log_e(tag, logic)
     return list
 
 
@@ -205,7 +208,7 @@ def logic2(keyword):
     # pass
 
 
-def logic3(keyword,line):
+def logic3(keyword, line):
     # print("running L3")
     if keyword:
         line_date = outputdate(line)
@@ -242,6 +245,7 @@ def logic4(keyword, n):
 
     pass
 
+
 def reset_dict(key):
     global logic_dict
     print(logic_dict)
@@ -249,9 +253,15 @@ def reset_dict(key):
     print("after reset: ", logic_dict)
     return True
 
+
 def delete_dict(key):
     global logic_dict
     print("key: ", key)
     del logic_dict[key]
     print("after delete: ", logic_dict)
     return True
+
+
+str = ["11000", "11010", "11020", "11030", "11040", "11099", ]
+for i in str:
+    print(add_process_dict(i))
