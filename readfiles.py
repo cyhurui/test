@@ -543,3 +543,6 @@ mutex = threading.Lock()
 sheet_name_dict = filter_valid_sheet(__file__config, True)#dict{list{dict{list},}}
 #get_complete_process_dict(sheet_name_dict)
 #decode_Logic_config(file_out_final,sheet_name_dict)
+temp_dict = {"10010": 12, "10002": 32, "10000": 45}
+temp_dict = sorted(temp_dict.items(), key=lambda d: d[0])
+print(temp_dict)

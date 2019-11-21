@@ -6,7 +6,7 @@ from datetime import datetime
 import xlrd
 
 #sheet_list = ["WiFi on-off_P","WiFi connect-disconnect_P"]  # 定义哪些模块config需要被扫描
-
+from logicunit import get_process_dict_key
 
 sheet_version = ["Parse-P"]
 sheet_white_list = []
@@ -249,6 +249,8 @@ dict[key:output2] ---> key: int; output2:str
 
 def get_complete_process_dict(sheet_name_dict):
     complete_process_dict = {}
+    temp_list =[]
+    temp_dict = {}
     for sheet_name_temp in sheet_name_dict:
         if "Logic Unit" in sheet_name_temp:  # 逻辑单元不参与
             continue
@@ -261,9 +263,19 @@ def get_complete_process_dict(sheet_name_dict):
         output2_index = index[sheet_name_temp]["OUTPUT2"]
         for key in config:
             process_value = config[key][process_index]
+            key_list = get_process_dict_key(process_value)
             output2_value = config[key][output2_index]
-            complete_process_dict[process_value] = output2_value
+            complete_process_dict[key_list] = output2_value
             pass
+
+        for key in config:
+            process_value = config[key][process_index]
+            key_list = get_process_dict_key(process_value)
+            output2_value = config[key][output2_index]
+            temp_dict[key_list[1]] =output2_value
+            pass
+        temp_dict = sorted(temp_dict.items(), key=lambda d:d[0])
+        complete_process_dict[key_list[0]] = deepcopy(temp_dict)
     return complete_process_dict
 
     # list_temp = re.split(r'\breason=\b.\blocally_generated\b',line)
