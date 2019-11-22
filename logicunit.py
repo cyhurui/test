@@ -264,8 +264,55 @@ def delete_dict(key):
     print("after delete: ", logic_dict)
     return True
 
-
 str = ["11000", "11010", "11020", "11030", "11040", ]
 for i in str:
     print(add_process_dict(i))
 print(get_process_dict())
+
+# all logs are handled done, clear the process_dict
+def clear_process_dict():
+    global process_dict
+
+    for key in process_dict:
+        val_list = process_dict[key]
+        print("val_list: ", val_list)
+
+        the_last_process = val_list[-1]
+        print("The last process is: ", the_last_process)
+        print("The key is: ", key)
+
+        if the_last_process == 99:
+            print("The process is completed, skip")
+            continue
+        else:
+            # complete_dict format:
+            # {'110': {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4', ... '99': 'output99'},
+            #  '111': {'01': 'output11', '02': 'output21', '03': 'output31', '04': 'output41', ..., '99': 'output99'}}
+            complete_dict = get_complete_dict()
+
+            # e.g: key = '110', subprocess = {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4'
+            # subprocess = {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4'}
+            subprocess = complete_dict[key]
+            print("The subprocess is: ", subprocess)
+
+            # find the next key of 'the_last_process'
+            if len(subprocess) and the_last_process in subprocess:
+                # change the subprocess to list
+                key_list = list(subprocess.keys())
+                print("key_list: ", key_list)
+                # the index of 'the_last_process'
+                index = key_list.index(the_last_process)
+                print("The last process index: ", index)
+
+                # the next key of of 'the_last_process'
+                next_key = key_list[index + 1]
+                if next_key in subprocess:
+                    next_output2 = subprocess[next_key]
+                    print("next_output2: ", next_output2)  # write to the files
+            else:
+                print("Cannot find the last process in complete_dict")
+
+    process_dict.clear()
+
+    print("after clear_process_dict: ", process_dict)
+    pass
