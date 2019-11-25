@@ -5,6 +5,7 @@ from copy import deepcopy
 
 from debugoutput import log_v, log_e
 from mergefile import outputdate
+from parseresultoutput import open_parse_result_file, write_to_parse_result_file, close_parse_result_file
 
 output1 = ""
 output2 = ""
@@ -32,14 +33,16 @@ def logicdispatch(logic_dict, line):
     output1 = logic_dict['OUTPUT1']
     global output2
     output2 = logic_dict['OUTPUT2']
+
+    # open the parse result file to output
+    open_parse_result_file()
+
     # parse the logic unit, e.g: 'L1 (VAL1,true)', 'L2(KEYWORD)'
     lu = logic_dict['LOGIC UNIT']  # like 'L1 (VAL1,true)'
-    # print(lu)
-    # get the logic: L1, L2...
-    # print(logic)
+
     logic_all = decode_val_logic(lu)  # ["L1","Val1",true]
     process_val = logic_dict["PROCESS"]
-    if unit_check(logic_all,logic_dict):
+    if unit_check(logic_all, logic_dict):
         add_process_dict(process_val)
         pass
     else:
@@ -134,12 +137,13 @@ def decode_val_logic(lu):  # ['L1(VAL1', 'true)'] or
     return list
 
 def logic1(val, para):
-    # print("running L1")
     if val == para:
-        print(output1)  # output to the file
+        print(output1)
+        write_to_parse_result_file(output1)
         return True
     else:
-        print(output2)  # output to the file
+        print(output2)
+        write_to_parse_result_file(output2)
         return False
     pass
 
@@ -147,9 +151,11 @@ def logic1(val, para):
 def logic2(keyword):
     # print("running L2")
     if keyword:
-        print(output1)  # output to the files
+        print(output1)
+        write_to_parse_result_file(output1)
     else:
-        print(output2)  # output to the file
+        print(output2)
+        write_to_parse_result_file(output2)
     return True
     # pass
 
@@ -159,12 +165,15 @@ def logic3(keyword, line):
     if keyword:
         line_date = outputdate(line)
         print(output1)  # error log, output to the files
+        write_to_parse_result_file(output1)
         print(line_date)  # and print the line
         # print (line)
+        write_to_parse_result_file(line)
         # todo: stop the current logic flow
         return False  # need stop the current logic flow
     else:
         print(output2)
+        write_to_parse_result_file(output2)
         return True
     pass
 
@@ -181,6 +190,7 @@ def logic4(keyword, n):
         i = i + 1
         if i >= n:
             print(output1)
+            write_to_parse_result_file(output1)
             i = 0
             return
         # else:
@@ -188,7 +198,7 @@ def logic4(keyword, n):
         # todo: check whether this logic is reasnonalbe
     else:
         print(output2)
-
+        write_to_parse_result_file(output2)
     pass
 
 
@@ -262,10 +272,12 @@ def clear_process_dict():
                 if next_key in subprocess:
                     next_output2 = subprocess[next_key]
                     print("next_output2: ", next_output2)  # write to the files
+                    write_to_parse_result_file(next_output2)
             else:
                 print("Cannot find the last process in complete_dict")
 
     process_sub_dict.clear()
+    close_parse_result_file()
 
     print("after clear_process_dict: ", process_sub_dict)
     pass
