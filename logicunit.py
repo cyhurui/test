@@ -34,9 +34,6 @@ def logicdispatch(logic_dict, line):
     output2 = logic_dict['OUTPUT2']
     # parse the logic unit, e.g: 'L1 (VAL1,true)', 'L2(KEYWORD)'
     lu = logic_dict['LOGIC UNIT']  # like 'L1 (VAL1,true)'
-    # print(lu)
-    # get the logic: L1, L2...
-    # print(logic)
     logic_all = decode_val_logic(lu)  # ["L1","Val1",true]
     process_val = logic_dict["PROCESS"]
     if unit_check(logic_all,logic_dict):
@@ -94,8 +91,11 @@ def unit_check(logic_all,logic_dict):
     logic_unit = logic_all[0]
     if logic_unit == "L1":
         # logic1(VAL1, true/false)
+        print(logic_dict)
         val = logic_dict[logic_all[1]]
         # print("val1", val1, "para1: ", para1)
+        print(val)
+        print(logic_all)
         return logic1(val, logic_all[2])
     elif logic_unit == "L2":
         log_v(tag,"start L2")
@@ -134,12 +134,12 @@ def decode_val_logic(lu):  # ['L1(VAL1', 'true)'] or
     return list
 
 def logic1(val, para):
-    # print("running L1")
+    print("running L1")
     if val == para:
-        print(output1)  # output to the file
+        log_e("output1",output1)  # output to the file
         return True
     else:
-        print(output2)  # output to the file
+        log_e("output2",output2)  # output to the file
         return False
     pass
 
@@ -147,9 +147,9 @@ def logic1(val, para):
 def logic2(keyword):
     # print("running L2")
     if keyword:
-        print(output1)  # output to the files
+        log_e("output1",output1)  # output to the files
     else:
-        print(output2)  # output to the file
+        log_e("output2",output2)  # output to the file
     return True
     # pass
 
@@ -158,13 +158,13 @@ def logic3(keyword, line):
     # print("running L3")
     if keyword:
         line_date = outputdate(line)
-        print(output1)  # error log, output to the files
+        log_e("output1",output1)  # error log, output to the files
         print(line_date)  # and print the line
         # print (line)
         # todo: stop the current logic flow
         return False  # need stop the current logic flow
     else:
-        print(output2)
+        log_e("output2",output2)
         return True
     pass
 
@@ -180,31 +180,32 @@ def logic4(keyword, n):
     if keyword:
         i = i + 1
         if i >= n:
-            print(output1)
+            log_e("output1",output1)
             i = 0
             return
         # else:
         #   continue
         # todo: check whether this logic is reasnonalbe
     else:
-        print(output2)
+        log_e("output2",output2)
 
     pass
 
 
 def reset_dict(key):
     global process_sub_dict
-    print(process_sub_dict)
-    process_sub_dict[key].clear()
-    print("after reset: ", process_sub_dict)
+    if key in process_sub_dict.keys():
+        process_sub_dict[key].clear()
+    log_v("after reset: ", process_sub_dict)
     return True
 
 
 def delete_dict(key):
     global process_sub_dict
-    print("key: ", key)
-    del process_sub_dict[key]
-    print("after delete: ", process_sub_dict)
+    log_v("key: ", key)
+    if key in process_sub_dict.keys():
+        del process_sub_dict[key]
+    log_v("after delete: ", process_sub_dict)
     return True
 
 #str = ["11000", "11010", "11020", "11030", "11040", ]
@@ -228,14 +229,14 @@ def clear_process_dict():
 
     for key in process_sub_dict:
         val_list = process_sub_dict[key]
-        print("val_list: ", val_list)
+        log_v("val_list: ", val_list)
 
         the_last_process = val_list[-1]
-        print("The last process is: ", the_last_process)
-        print("The key is: ", key)
+        log_v("The last process is: ", the_last_process)
+        log_v("The key is: ", key)
 
         if the_last_process == 99:
-            print("The process is completed, skip")
+            log_e(tag,"The process is completed, skip")
             continue
         else:
             # complete_dict format:
@@ -246,26 +247,26 @@ def clear_process_dict():
             # e.g: key = '110', subprocess = {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4'
             # subprocess = {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4'}
             subprocess = complete_dict[key]
-            print("The subprocess is: ", subprocess)
+            log_v("The subprocess is: ", subprocess)
 
             # find the next key of 'the_last_process'
             if len(subprocess) and the_last_process in subprocess:
                 # change the subprocess to list
                 key_list = list(subprocess.keys())
-                print("key_list: ", key_list)
+                log_v("key_list: ", key_list)
                 # the index of 'the_last_process'
                 index = key_list.index(the_last_process)
-                print("The last process index: ", index)
+                log_v("The last process index: ", index)
 
                 # the next key of of 'the_last_process'
                 next_key = key_list[index + 1]
                 if next_key in subprocess:
                     next_output2 = subprocess[next_key]
-                    print("next_output2: ", next_output2)  # write to the files
+                    log_v("next_output2: ", next_output2)  # write to the files
             else:
-                print("Cannot find the last process in complete_dict")
+                log_v(tag,"Cannot find the last process in complete_dict")
 
     process_sub_dict.clear()
 
-    print("after clear_process_dict: ", process_sub_dict)
+    log_v("after clear_process_dict: ", process_sub_dict)
     pass
