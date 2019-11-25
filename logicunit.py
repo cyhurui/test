@@ -124,7 +124,7 @@ def decode_val_logic(lu):  # ['L1(VAL1', 'true)'] or
     if len(logic) == 2:  # ['L1(VAL1', 'true)']
         list.append(logic[0][:2])
         list.append(logic[0][3:7])
-        list.append(logic[1])
+        list.append(logic[1].split(")")[0])
     elif len(logic) == 1:
         list.append(logic[0][:2])
         pass

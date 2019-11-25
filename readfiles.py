@@ -136,7 +136,16 @@ def decode_Logic_config(fliepath, sheet_name_dict):
                         logic_dict = {}
                         for value_temp in index[sheet_name_temp]:
                             # print(value_temp)
-                            logic_dict[value_temp] = config[key][index[sheet_name_temp][value_temp]]
+                            if "VALUE_FLAG" in value_temp:
+                                logic_dict[value_temp] = config[key][index[sheet_name_temp][value_temp]]
+                                continue
+                            elif "VAL" in value_temp:
+                                print(config[key][index[sheet_name_temp][value_temp]])
+                                logic_dict[value_temp]=decode_val(line,config[key][index[sheet_name_temp][value_temp]])
+                                print(logic_dict[value_temp])
+                                print("-------------")
+                            else:
+                                logic_dict[value_temp] = config[key][index[sheet_name_temp][value_temp]]
                         # write_file(line, fileout, file_to_read)
                         logicdispatch(logic_dict, line)
                         jump_flag = True
@@ -165,13 +174,13 @@ def decode_val(line, value):  # str 暂时只能用逗号分开，加其他的�
     elif len(config_value[0]) > 0 and len(config_value[1]) <= 0:
         start_index = re.search(config_value[0].strip(), line).span()
         print(start_index)
-        return line[start_index[1] + 1:end_index[0]].strip()
+        return line[start_index[1]:end_index[0]].strip()
         pass
     elif len(config_value[0]) > 0 and len(config_value[1]) > 0:
         start_index = re.search(config_value[0].strip(), line).span()
         end_index = re.search(config_value[1].strip(), line).span()
         if start_index > end_index:
-            return line[start_index[1] + 1:end_index[0]].strip()
+            return line[start_index[1]:end_index[0]].strip()
         else:
             print("")
         pass
@@ -564,3 +573,7 @@ decode_Logic_config(file_out_final,sheet_name_dict)
 # temp_dict = {"10010": 12, "10002": 32, "10000": 45}
 # temp_dict = sorted(temp_dict.items(), key=lambda d: d[0])
 # print(temp_dict)
+
+str = "uid=1000 enable=true -->2019-11-25-18-11aplogcat-main"
+val = "enable=,#"
+print(decode_val(str,val))
