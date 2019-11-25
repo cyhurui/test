@@ -9,11 +9,15 @@ from mergefile import outputdate
 output1 = ""
 output2 = ""
 
-# logic_dict: {process:logic_list},ex:{110:[00,01,02,03,04,.....]}
-logic_dict = {}
+# process_sub_dict: {process:logic_list},ex:{110:[00,01,02,03,04,.....]}
+process_sub_dict = {}
 # logic_list: [00,01.02.03,04......],process number
 logic_list = []
 tag = "logicunit"
+
+# complete_dict format:
+# {'110': {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4', ... '99': 'output99'},
+#  '111': {'01': 'output11', '02': 'output21', '03': 'output31', '04': 'output41', ..., '99': 'output99'}}
 complete_dict = {}
 
 
@@ -35,7 +39,7 @@ def logicdispatch_debug(logic_dict, line):
     # print(logic)
     logic_all = decode_val_logic(lu)  # ["L1","Val1",true]
     process_val = logic_dict["PROCESS"]
-    if unit_check(logic_all):
+    if unit_check(logic_all,logic_dict):
         add_process_dict(process_val)
         pass
     else:
@@ -45,7 +49,7 @@ def logicdispatch_debug(logic_dict, line):
 
 
 def add_process_dict(process_val):
-    global logic_dict
+    global process_sub_dict
     logic_list = []
     key_list = get_process_dict_key(process_val)
     log_v(tag, "add_process_dict:")
@@ -55,18 +59,18 @@ def add_process_dict(process_val):
             log_e(tag, "process code is 99, it mean the process finish and will start new process")
         return
         pass
-    if key_list[0] not in logic_dict:
+    if key_list[0] not in process_sub_dict:
         logic_list.append(key_list[1])
-        logic_dict[key_list[0]] = deepcopy(logic_list)
+        process_sub_dict[key_list[0]] = deepcopy(logic_list)
     else:
-        # print(str(logic_dict[key_list[1]]))
-        logic_list = deepcopy(logic_dict[key_list[0]])
+        # print(str(process_sub_dict[key_list[1]]))
+        logic_list = deepcopy(process_sub_dict[key_list[0]])
         logic_list.append(key_list[1])
-        logic_dict[key_list[0]] = deepcopy(logic_list)
+        process_sub_dict[key_list[0]] = deepcopy(logic_list)
     pass
 
 def get_process_dict():
-    return logic_dict
+    return process_sub_dict
     pass
 
 
@@ -77,10 +81,7 @@ def get_process_dict_key(process_val):
     return key_list
 
 
-
-
-
-def unit_check(logic_all):
+def unit_check(logic_all,logic_dict):
     # module, submodule, process, subprocess
     # For example: 11201
     # module: wifi(1) (1: wifi; 2: BT; 3: LBS; 4: NFC)
@@ -131,65 +132,6 @@ def decode_val_logic(lu):  # ['L1(VAL1', 'true)'] or
         log_e("please re-defined logic:")
         log_e(tag, logic)
     return list
-
-
-def logicdispatch(logic_dict, line):
-    """
-    logic_dict: format:
-    {'TAG': 'wifi_on_2', 'LEVEL': 'D', 'KEYWORD': 'client mode active', 'MANDATORY': 11099, 'VALUE_FLAG': 0.0,
-    'VAL1': '', 'VAL2': '', 'VAL3': '', 'LOGIC UNIT': 'L2 (KEYWORD)', 'OUTPUT1': 'Turned on WiFi', 'OUTPUT2': 'Turn on WiFi failed'}
-    """
-    # obtain the output string firstly
-    global output1
-    output1 = logic_dict['OUTPUT1']
-    global output2
-    output2 = logic_dict['OUTPUT2']
-
-    # parse the logic unit, e.g: 'L1 (VAL1,true)', 'L2(KEYWORD)'
-    lu = logic_dict['LOGIC UNIT']  # like 'L1 (VAL1,true)'
-    # print(lu)
-
-    # get the logic: L1, L2...
-    logic = lu[:2]
-    # print(logic)
-
-    # module, submodule, process, subprocess
-    # For example: 11201
-    # module: wifi(1) (1: wifi; 2: BT; 3: LBS; 4: NFC)
-    # submodule: sta(1) (1: station; 2: softap; 3: p2p)
-    # process: connect(2) (0: wifi on; 1: wifi off; 2: wifi connect; 3: wifi disconnect; 4: wifi scan)
-    # subprocess: (01), (00 ~ 99, 99 means the subprocess is end, other values mean it is working)
-
-    # switch logic unit
-    # todo: parameters valid check
-    if logic == "L1":
-        # logic1(VAL1, true/false)
-        val1 = logic_dict['VAL1']
-        para = lu.split(",", 1)  # para now is 'true)' or 'false)'
-        para1 = para.rstrip("）")  # delete the ')' on the right
-        # print("val1", val1, "para1: ", para1)
-        return logic1(val1, para1)
-    elif logic == "L2":
-        print("start L2")
-        keyword = logic_dict['KEYWORD']
-        print("keyword: ", keyword)
-        return logic2(keyword)
-    elif logic == "L3":
-        # print("start L3")
-        keyword = logic_dict['KEYWORD']
-        return logic3(keyword, line)
-    elif logic == "L4":
-        print("start L4")
-        keyword = logic_dict['KEYWORD']
-        # todo: how to define para1?
-        return logic4(keyword, "debug")
-    else:
-        # print("logic unit is wrong: ", L)
-        # return fail
-        pass
-    # todo: clear the args list?
-    pass
-
 
 def logic1(val, para):
     # print("running L1")
@@ -251,18 +193,18 @@ def logic4(keyword, n):
 
 
 def reset_dict(key):
-    global logic_dict
-    print(logic_dict)
-    logic_dict[key].clear()
-    print("after reset: ", logic_dict)
+    global process_sub_dict
+    print(process_sub_dict)
+    process_sub_dict[key].clear()
+    print("after reset: ", process_sub_dict)
     return True
 
 
 def delete_dict(key):
-    global logic_dict
+    global process_sub_dict
     print("key: ", key)
-    del logic_dict[key]
-    print("after delete: ", logic_dict)
+    del process_sub_dict[key]
+    print("after delete: ", process_sub_dict)
     return True
 
 #str = ["11000", "11010", "11020", "11030", "11040", ]
@@ -275,17 +217,17 @@ def set_complete_process_dict(process_dict):
     complete_dict = deepcopy(process_dict)
     pass
 
-def get_process_dict():
+def get_complete_process_dict():
     return complete_dict
     pass
 
 
 # all logs are handled done, clear the process_dict
 def clear_process_dict():
-    global process_dict
+    global process_sub_dict
 
-    for key in process_dict:
-        val_list = process_dict[key]
+    for key in process_sub_dict:
+        val_list = process_sub_dict[key]
         print("val_list: ", val_list)
 
         the_last_process = val_list[-1]
@@ -299,7 +241,7 @@ def clear_process_dict():
             # complete_dict format:
             # {'110': {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4', ... '99': 'output99'},
             #  '111': {'01': 'output11', '02': 'output21', '03': 'output31', '04': 'output41', ..., '99': 'output99'}}
-            complete_dict = get_process_dict()
+            complete_dict = get_complete_process_dict()
 
             # e.g: key = '110', subprocess = {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4'
             # subprocess = {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4'}
@@ -323,7 +265,7 @@ def clear_process_dict():
             else:
                 print("Cannot find the last process in complete_dict")
 
-    process_dict.clear()
+    process_sub_dict.clear()
 
-    print("after clear_process_dict: ", process_dict)
+    print("after clear_process_dict: ", process_sub_dict)
     pass
