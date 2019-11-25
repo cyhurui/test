@@ -5,7 +5,8 @@ import time
 from datetime import date, datetime
 
 DBG = False
-debug_DBG = False
+debug_DBG =True
+tag = "readfiles"
 
 # lines_list_1 =[]
 # lines_list_2 =[]
@@ -26,7 +27,7 @@ def log_debug(logstr):
 
 
 def merge_log(__file_read_1, __file_read_2, __file_out, mdelete):  # 按照时间顺序合并成最终的log文件,log 文件名为最后一个文件名，并且可以删除合并的原始文件
-    print("merge log: file1:" + __file_read_1 + "--file2:" + __file_read_2 + "---outfile:" + __file_out)
+    log_debug("merge log: file1:" + __file_read_1 + "--file2:" + __file_read_2 + "---outfile:" + __file_out)
     if check_file_exist(__file_out) is not True:
         file_out = open(__file_out, 'w')
         file_out.close()
@@ -49,12 +50,12 @@ def merge_log(__file_read_1, __file_read_2, __file_out, mdelete):  # 按照时�
         while True:
             if lines_list_1 is None:
                 lines_1 = file_read_1.readline()  # 整行读取数据
-                log_debug(lines_1)
+                log(tag,lines_1)
                 lines_list_1 = lines_1
 
             if lines_list_2 is None:
                 lines_2 = file_read_2.readline()
-                log_debug(lines_2)
+                log(tag,lines_2)
                 lines_list_2 = lines_2
                 # print("main.txt ；"+lines_list_2)
             if not lines_1:
@@ -104,12 +105,12 @@ def merge_log(__file_read_1, __file_read_2, __file_out, mdelete):  # 按照时�
                         file_out.write(str_addition(lines_1, "-->" + intercept_file_name(__file_read_1)))
                     #file_out.write(lines_1)
                     lines_list_1 = None
-                    log_debug("lines_1_date is -1 or -2")
+                    log(tag,"lines_1_date is -1 or -2")
                 continue
 
             if (lines_2_date == -1 or lines_2_date == -2):
                 if isinstance(lines_1, str):
-                    log_debug("lines_2_date is -1 or lines_list_1 is -1)")
+                    log(tag,"lines_2_date is -1 or lines_list_1 is -1)")
                     #print(str_addition(lines_2, '-->'+intercept_file_name(__file_read_2)))
                     if "test_temp" in intercept_file_name(__file_read_2):
                         file_out.write(lines_2)
@@ -117,7 +118,7 @@ def merge_log(__file_read_1, __file_read_2, __file_out, mdelete):  # 按照时�
                         file_out.write(str_addition(lines_2, '-->' + intercept_file_name(__file_read_2)))
                     #file_out.write(lines_2)
                     lines_list_2 = None
-                    log_debug("lines_2_date is -1 or -2")
+                    log(tag,"lines_2_date is -1 or -2")
                 continue
             if (compare(lines_1_date, lines_2_date)):
                 #print(str_addition(lines_1,'-->'+ intercept_file_name(__file_read_1)))

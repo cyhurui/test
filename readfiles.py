@@ -5,7 +5,7 @@ import threading
 
 from logicunit import logicdispatch, set_complete_process_dict, get_process_dict, clear_process_dict
 from mergefile import intercept_file_name, merge_log, SortedFile, checkFileSize, outputdate
-from readdir import list_all_files, check_excel_file, create
+from readdir import list_all_files, check_excel_file, create, check_file_exist
 from readdir import file_txt_name
 from readdir import match
 from readconfig import get_all_sheet_name, find_tag, filter_valid_sheet, get_sheet_list_value, get_complete_process_dict
@@ -55,6 +55,12 @@ def write_file(param, f_output, f_input):
 
 
 def decode_Logic_config(fliepath, sheet_name_dict):
+    if check_file_exist(fliepath) is not True:
+        file_out = open(fliepath, 'w')
+        file_out.close()
+        log_debug("final_file.txt is non-exit")
+        return
+        pass
     with open(fliepath, 'rb') as file_to_read:
         # while True:
         while (1):
@@ -554,7 +560,7 @@ print(get_process_dict())
 # dict[0] = dict1
 # print(dict)
 
-# decode_Logic_config(file_out_final,sheet_name_dict)
+#decode_Logic_config(file_out_final,sheet_name_dict)
 # temp_dict = {"10010": 12, "10002": 32, "10000": 45}
 # temp_dict = sorted(temp_dict.items(), key=lambda d: d[0])
 # print(temp_dict)
