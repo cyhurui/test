@@ -66,7 +66,6 @@ def decode_Logic_config(fliepath, sheet_name_dict):
         while (1):
             lines = file_to_read.readline()
             line = lines.decode('utf-8').strip()
-            print(line)
             if not line:
                 clear_process_dict()
                 log(Tag, "finish")

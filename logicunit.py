@@ -98,9 +98,9 @@ def unit_check(logic_all,logic_dict):
         # print("val1", val1, "para1: ", para1)
         return logic1(val, logic_all[2])
     elif logic_unit == "L2":
-        print("start L2")
+        log_v(tag,"start L2")
         keyword = logic_dict['KEYWORD']
-        print("keyword: ", keyword)
+        log_v(tag,keyword)
         return logic2(keyword)
     elif logic_unit == "L3":
         # print("start L3")

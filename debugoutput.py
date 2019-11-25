@@ -1,6 +1,6 @@
 from datetime import datetime
 
-debug_v = True
+debug_v = False
 debug_i = True
 debug_d = True
 debug_e = True
