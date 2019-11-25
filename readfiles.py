@@ -16,8 +16,8 @@ dict = {}
 arg = ''
 readinlist = []
 merge_file_list = []
-DBG =True
-debug_DBG = True
+DBG = False
+debug_DBG = False
 
 Tag = "readfile"
 
@@ -33,11 +33,13 @@ def log(tag, logstr):
         # print()
     pass
 
+
 def log_debug(logstr):
     if debug_DBG:
         print(str(datetime.now()) + ":   " + str(logstr))
         print()
     pass
+
 
 def write_file(param, f_output, f_input):
     log(Tag, "*********")
@@ -50,6 +52,7 @@ def write_file(param, f_output, f_input):
         log(Tag, f_output)
         f_output.write(param + "\n")
     pass
+
 
 def decode_Logic_config(fliepath, sheet_name_dict):
     with open(fliepath, 'rb') as file_to_read:
@@ -65,7 +68,7 @@ def decode_Logic_config(fliepath, sheet_name_dict):
             if not len(line) or line.startswith('#'):
                 continue
             jump_flag = False
-            #flag = False
+            # flag = False
             for sheet_name_temp in sheet_name_dict:
                 if (jump_flag):
                     break
@@ -91,13 +94,13 @@ def decode_Logic_config(fliepath, sheet_name_dict):
 
                 """
                 config = sheet_name_dict[sheet_name_temp][0]  # 取TAG 值
-                #print(config)
+                # print(config)
                 tag_temp = sheet_name_dict[sheet_name_temp][1]  # KEYWORD 值
-                #print(tag_temp)
-                #level_index = sheet_name_dict[sheet_name_temp][2]  # 取LEVEL
-                index  = get_sheet_list_value(sheet_name_temp,tag_temp)
+                # print(tag_temp)
+                # level_index = sheet_name_dict[sheet_name_temp][2]  # 取LEVEL
+                index = get_sheet_list_value(sheet_name_temp, tag_temp)
 
-                #print(index)
+                # print(index)
                 keyword_index = index[sheet_name_temp]["KEYWORD"]
                 level_index = index[sheet_name_temp]["LEVEL"]
                 if keyword_index < 0:
@@ -118,7 +121,7 @@ def decode_Logic_config(fliepath, sheet_name_dict):
                     # log_debug(line))
                     if keyword in line:
                         log_debug("self.fileout:")
-                        logic_value =[]
+                        logic_value = []
                         """
                         logic_dict: format:
                         {'TAG': 'wifi_on_2', 'LEVEL': 'D', 'KEYWORD': 'client mode active', 'MANDATORY': 1.0, 'VALUE_FLAG': 0.0, 
@@ -126,21 +129,22 @@ def decode_Logic_config(fliepath, sheet_name_dict):
                         """
                         logic_dict = {}
                         for value_temp in index[sheet_name_temp]:
-                            #print(value_temp)
+                            # print(value_temp)
                             logic_dict[value_temp] = config[key][index[sheet_name_temp][value_temp]]
-                        #write_file(line, fileout, file_to_read)
-                        logicdispatch(logic_dict,line)
+                        # write_file(line, fileout, file_to_read)
+                        logicdispatch(logic_dict, line)
                         jump_flag = True
                         break
                         # decode_Logic_config(line, config, key, tag_temp, sheet_name_temp)
                     else:
-                         continue
+                        continue
                     # 开始根据关键字来检查和提取关键性信息，并输出到output文件中#
                     # decode_Logic_config(line, config, key, tag_temp, sheet_name_temp)
                     # pass
     pass
 
-def decode_val(line,value):#str 暂时只能用逗号分开，加其他的符号容易引起误会
+
+def decode_val(line, value):  # str 暂时只能用逗号分开，加其他的符号容易引起误会
     if value.isspace():
         print("continue")
         return None
@@ -148,20 +152,20 @@ def decode_val(line,value):#str 暂时只能用逗号分开，加其他的符号
         print("please use ',#' to split string in excel(value col)")
         return None
     config_value = value.split(",#")
-    end_index = re.search("-->",line).span()
-    if len(config_value[0])<=0 and len(config_value[1])<=0 :
+    end_index = re.search("-->", line).span()
+    if len(config_value[0]) <= 0 and len(config_value[1]) <= 0:
         return None
         pass
-    elif len(config_value[0]) > 0 and len(config_value[1]) <= 0 :
+    elif len(config_value[0]) > 0 and len(config_value[1]) <= 0:
         start_index = re.search(config_value[0].strip(), line).span()
         print(start_index)
         return line[start_index[1] + 1:end_index[0]].strip()
         pass
-    elif len(config_value[0]) > 0 and len(config_value[1]) > 0 :
+    elif len(config_value[0]) > 0 and len(config_value[1]) > 0:
         start_index = re.search(config_value[0].strip(), line).span()
         end_index = re.search(config_value[1].strip(), line).span()
         if start_index > end_index:
-           return line[start_index[1] + 1:end_index[0]].strip()
+            return line[start_index[1] + 1:end_index[0]].strip()
         else:
             print("")
         pass
@@ -172,7 +176,6 @@ def decode_val(line,value):#str 暂时只能用逗号分开，加其他的符号
         print("this config is error, please check excel")
         return None
         pass
-
 
 
 # 在这个判断中，config中必须包含MANDATORY这个key，如果value_flag字段在config中没有，说明没有val值和逻辑单元
@@ -249,6 +252,7 @@ def decode_Logic_config(str_line, config, key, tag_temp, sheet_name_temp):
         pass
 """
 
+
 def not_empty(s):
     return s and s.strip()
 
@@ -263,7 +267,7 @@ def fileread(dirlist, txtlist, file_config):  # 对比从config中读到的文�
         log(Tag, "config file is not exists")
         return
     sheet_name = get_all_sheet_name(file_config)
-    sheet_name_dict = filter_valid_sheet(file_config,False)
+    sheet_name_dict = filter_valid_sheet(file_config, False)
     # print("hurui1")
     # print(sheet_name_dict)
     merge_file_list.append(file_out_temp)
@@ -334,10 +338,11 @@ def fileread(dirlist, txtlist, file_config):  # 对比从config中读到的文�
             pass
         pass
     pass
-    sheet_name_dict = filter_valid_sheet(file_config, True)#dict{list{dict{list},}}
+    print(merge_file_list)
+    sheet_name_dict = filter_valid_sheet(file_config, True)  # dict{list{dict{list},}}
     set_complete_process_dict(get_complete_process_dict(sheet_name_dict))
-    decode_Logic_config(merge_file_list[0],sheet_name_dict)
-
+    #decode_Logic_config(merge_file_list[0], sheet_name_dict)
+    decode_Logic_config(file_out_final, sheet_name_dict)
 
 
 
@@ -347,7 +352,6 @@ def read(mthreadID, dirlist):
     log(Tag, mthreadID)
     print("nihao ")
     pass
-
 
 
 class Reader(threading.Thread):
@@ -541,16 +545,16 @@ mutex = threading.Lock()
 # filename = __file__read
 # filename_output = __file__out
 # read_excel(__file__config)
-sheet_name_dict = filter_valid_sheet(__file__config, True)#dict{list{dict{list},}}
+sheet_name_dict = filter_valid_sheet(__file__config, True)  # dict{list{dict{list},}}
 set_complete_process_dict(get_complete_process_dict(sheet_name_dict))
 print(get_process_dict())
 
-#dict = {}
-#dict1={1:"1",2:"2"}
-#dict[0] = dict1
-#print(dict)
+# dict = {}
+# dict1={1:"1",2:"2"}
+# dict[0] = dict1
+# print(dict)
 
-#decode_Logic_config(file_out_final,sheet_name_dict)
-#temp_dict = {"10010": 12, "10002": 32, "10000": 45}
-#temp_dict = sorted(temp_dict.items(), key=lambda d: d[0])
-#print(temp_dict)
+# decode_Logic_config(file_out_final,sheet_name_dict)
+# temp_dict = {"10010": 12, "10002": 32, "10000": 45}
+# temp_dict = sorted(temp_dict.items(), key=lambda d: d[0])
+# print(temp_dict)
