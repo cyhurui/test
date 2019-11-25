@@ -140,10 +140,7 @@ def decode_Logic_config(fliepath, sheet_name_dict):
                                 logic_dict[value_temp] = config[key][index[sheet_name_temp][value_temp]]
                                 continue
                             elif "VAL" in value_temp:
-                                print(config[key][index[sheet_name_temp][value_temp]])
                                 logic_dict[value_temp]=decode_val(line,config[key][index[sheet_name_temp][value_temp]])
-                                print(logic_dict[value_temp])
-                                print("-------------")
                             else:
                                 logic_dict[value_temp] = config[key][index[sheet_name_temp][value_temp]]
                         # write_file(line, fileout, file_to_read)
@@ -164,7 +161,8 @@ def decode_val(line, value):  # str 暂时只能用逗号分开，加其他的�
         print("continue")
         return None
     if ",#" not in value:
-        print("please use ',#' to split string in excel(value col)")
+        if len(value) > 1:
+            print("please use ',#' to split string in excel(value col)")
         return None
     config_value = value.split(",#")
     end_index = re.search("-->", line).span()
