@@ -21,7 +21,7 @@ tag = "logicunit"
 complete_dict = {}
 
 
-def logicdispatch_debug(logic_dict, line):
+def logicdispatch(logic_dict, line):
     """
         logic_dict: format:
         {'TAG': 'wifi_on_2', 'LEVEL': 'D', 'KEYWORD': 'client mode active', 'MANDATORY': 11099, 'VALUE_FLAG': 0.0,
