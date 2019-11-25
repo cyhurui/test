@@ -3,7 +3,7 @@ import re
 from typing import List, Any, Dict
 import threading
 
-from logicunit import logicdispatch
+from logicunit import logicdispatch, set_complete_process_dict, get_process_dict
 from mergefile import intercept_file_name, merge_log, SortedFile, checkFileSize, outputdate
 from readdir import list_all_files, check_excel_file, create
 from readdir import file_txt_name
@@ -334,7 +334,7 @@ def fileread(dirlist, txtlist, file_config):  # 对比从config中读到的文�
         pass
     pass
     sheet_name_dict = filter_valid_sheet(file_config, True)#dict{list{dict{list},}}
-    get_complete_process_dict(sheet_name_dict)
+    set_complete_process_dict(get_complete_process_dict(sheet_name_dict))
     decode_Logic_config(merge_file_list[0],sheet_name_dict)
 
 
@@ -541,8 +541,15 @@ mutex = threading.Lock()
 # filename_output = __file__out
 # read_excel(__file__config)
 sheet_name_dict = filter_valid_sheet(__file__config, True)#dict{list{dict{list},}}
-#get_complete_process_dict(sheet_name_dict)
+set_complete_process_dict(get_complete_process_dict(sheet_name_dict))
+print(get_process_dict())
+
+#dict = {}
+#dict1={1:"1",2:"2"}
+#dict[0] = dict1
+#print(dict)
+
 #decode_Logic_config(file_out_final,sheet_name_dict)
-temp_dict = {"10010": 12, "10002": 32, "10000": 45}
-temp_dict = sorted(temp_dict.items(), key=lambda d: d[0])
-print(temp_dict)
+#temp_dict = {"10010": 12, "10002": 32, "10000": 45}
+#temp_dict = sorted(temp_dict.items(), key=lambda d: d[0])
+#print(temp_dict)

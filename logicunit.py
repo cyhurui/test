@@ -14,6 +14,7 @@ logic_dict = {}
 # logic_list: [00,01.02.03,04......],process number
 logic_list = []
 tag = "logicunit"
+complete_dict = {}
 
 
 def logicdispatch_debug(logic_dict, line):
@@ -264,10 +265,20 @@ def delete_dict(key):
     print("after delete: ", logic_dict)
     return True
 
-str = ["11000", "11010", "11020", "11030", "11040", ]
-for i in str:
-    print(add_process_dict(i))
-print(get_process_dict())
+#str = ["11000", "11010", "11020", "11030", "11040", ]
+#for i in str:
+#    print(add_process_dict(i))
+#print(get_process_dict())
+
+def set_complete_process_dict(process_dict):
+    global complete_dict
+    complete_dict = deepcopy(process_dict)
+    pass
+
+def get_process_dict():
+    return complete_dict
+    pass
+
 
 # all logs are handled done, clear the process_dict
 def clear_process_dict():
@@ -288,7 +299,7 @@ def clear_process_dict():
             # complete_dict format:
             # {'110': {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4', ... '99': 'output99'},
             #  '111': {'01': 'output11', '02': 'output21', '03': 'output31', '04': 'output41', ..., '99': 'output99'}}
-            complete_dict = get_complete_dict()
+            complete_dict = get_process_dict()
 
             # e.g: key = '110', subprocess = {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4'
             # subprocess = {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4'}
