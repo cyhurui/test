@@ -3,7 +3,7 @@ import re
 from typing import List, Any, Dict
 import threading
 
-from logicunit import logicdispatch, set_complete_process_dict, get_process_dict
+from logicunit import logicdispatch, set_complete_process_dict, get_process_dict, clear_process_dict
 from mergefile import intercept_file_name, merge_log, SortedFile, checkFileSize, outputdate
 from readdir import list_all_files, check_excel_file, create
 from readdir import file_txt_name
@@ -59,6 +59,7 @@ def decode_Logic_config(fliepath, sheet_name_dict):
             line = lines.decode('utf-8').strip()
             print(line)
             if not line:
+                clear_process_dict()
                 log(Tag, "finish")
                 break
             if not len(line) or line.startswith('#'):
