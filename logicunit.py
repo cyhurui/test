@@ -51,6 +51,7 @@ def add_process_dict(process_val):
     key_list = get_process_dict_key(process_val)
     log_v(tag, "add_process_dict:")
     log_v(tag, key_list)
+    log_v(tag,process_sub_dict)
     if key_list[1] == 99:  # Need to clear dict
         if reset_dict(key_list[0]):
             log_e(tag, "process code is 99, it mean the process finish and will start new process")

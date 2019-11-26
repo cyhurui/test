@@ -18,7 +18,9 @@ def showlist(mlist):
     for mlist_temp in mlist:
        print(mlist_temp)
 
-
+"""
 mlist = ["a","b","c","d","e","f"]
 showlist(mlist)
 print(selectbyUser())
+"""
+

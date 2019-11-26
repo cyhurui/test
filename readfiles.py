@@ -1,14 +1,12 @@
 import os
 import re
-from typing import List, Any, Dict
 import threading
 
-from logicunit import logicdispatch, set_complete_process_dict, get_process_dict, clear_process_dict
-from mergefile import intercept_file_name, merge_log, SortedFile, checkFileSize, outputdate
-from readdir import list_all_files, check_excel_file, create, check_file_exist
-from readdir import file_txt_name
+from logicunit import logicdispatch, set_complete_process_dict, clear_process_dict
+from mergefile import intercept_file_name, merge_log, SortedFile, checkFileSize
+from readdir import check_excel_file, create, check_file_exist
 from readdir import match
-from readconfig import get_all_sheet_name, find_tag, filter_valid_sheet, get_sheet_list_value, get_complete_process_dict
+from readconfig import get_all_sheet_name, filter_valid_sheet, get_sheet_list_value, get_complete_process_dict
 
 from datetime import datetime
 
@@ -86,19 +84,6 @@ def decode_Logic_config(fliepath, sheet_name_dict):
                 log(Tag, sheet_name_temp)
                 # print(sheet_name_temp)
                 # threadLock.acquire()
-                """
-                for mlist in sheet_white_list: #根据Parse-P或者Parse-Q来决定
-                    if mlist in sheet_name_temp:
-                        flag = True
-                        break
-                    else:
-                        continue
-
-                if flag is False:
-                    continue
-                flag = Flase
-
-                """
                 config = sheet_name_dict[sheet_name_temp][0]  # 取TAG 值
                 # print(config)
                 tag_temp = sheet_name_dict[sheet_name_temp][1]  # KEYWORD 值
@@ -190,87 +175,11 @@ def decode_val(line, value):  # str 暂时只能用逗号分开，加其他的�
         return None
         pass
 
-
-# 在这个判断中，config中必须包含MANDATORY这个key，如果value_flag字段在config中没有，说明没有val值和逻辑单元
-"""
-def decode_Logic_config(str_line, config, key, tag_temp, sheet_name_temp):
-    list_temp = tag_temp[sheet_name_temp]
-    value_str = []
-    mandatory_index = find_tag(list_temp, "MANDATORY")
-    if mandatory_index == -1:
-        print("in config file, it has no MANDATORY")
-        return -1
-
-    value_flag_index = find_tag(list_temp, "VALUE_FLAG")
-    if value_flag_index == -1:
-        return 1  # 这个表明在这个列表中不需要val和逻辑单元的判断
-
-    logic_unit_index = find_tag(list_temp, 'LOGIC UNIT')
-    if logic_unit_index == -1:
-        print("logic unit is non-exist in config")
-
-    val_dic: Dict[Any, Any] = {}
-    for j in list_temp:  # 这个是为了把Val值取出来
-        if "VALUE_FLAG" == j:
-            continue
-        if "VAL" in j:
-            if config[key][value_flag_index] == 0:
-                print("the value flag set to 0,don't need to read value")
-                return 1
-            val_index = find_tag(list_temp, j)
-            if val_index == -1:
-                print("in this config, it has no VAL1")
-                return 1
-            value_str.append(val_index)
-            val_dic[key + "_" + j] = config[key][val_index]  # 以Key+val 作为字典的关键字保存值
-
-    # 分割("enable=“,  )，处理完之后是这样的：[' enable=']
-    key_value = {}
-    for key_temp in val_dic:
-        val_str = val_dic[key_temp]
-        val_str_list = list(filter(not_empty, re.split("\(|\)|,", val_str)))
-        # print(val_str_list)
-        # print(key_temp)
-        # print(val_str_list)
-        # print(str_line)
-        try:
-            if len(val_str_list) == 1:
-                # try:
-                # print(key_temp)
-                # print(val_str_list[0])
-                # print(str_line.index(val_str_list[0]))
-                key_value[key_temp] = str_line[
-                                      int(str_line.index(val_str_list[0])) + int(len(val_str_list[0])):].strip()
-                # print(key_value[key_temp])
-            # except ValueError:
-            #    continue
-            elif len(val_str_list) == 2:
-                # try:
-                print("--*********")
-                # print(key_temp)
-                # print(val_str_list[0]+"-"+val_str_list[1])
-                # print(str_line)
-                # print(str_line.index(val_str_list[0]))
-                # print(val_str_list[1])
-                key_value[key_temp] = str_line[
-                                      int(str_line.index(val_str_list[0])) + int(len(val_str_list[0])): int(
-                                          str_line.index(val_str_list[1]))].strip()
-                # print(key_value[key_temp])
-            else:
-                # print("val is none:" + str(len(val_str_list)))
-                pass
-        except ValueError:
-            continue
-
-        pass
-"""
-
-
 def not_empty(s):
     return s and s.strip()
 
-
-def fileread(dirlist, txtlist, file_config):  # 对比从config中读到的文件名和实际从log目录下搜到的文件之间的对比，只解析match上的文件
+# 对比从config中读到的文件名和实际从log目录下搜到的文件之间的对比，只解析match上的文件
+def fileread(dirlist, txtlist, file_config):
     samelist = match(dirlist, txtlist)
     log(Tag, samelist)
     log(Tag, dirlist)
@@ -435,38 +344,13 @@ class Reader(threading.Thread):
                     log(Tag, sheet_name_temp)
                     # print(sheet_name_temp)
                     # threadLock.acquire()
-                    """
-                    for mlist in sheet_white_list: #根据Parse-P或者Parse-Q来决定
-                        if mlist in sheet_name_temp:
-                            flag = True
-                            break
-                        else:
-                            continue
-
-                    if flag is False:
-                        continue
-                    flag = Flase
-
-                    """
                     config = self.sheet_name_dict[sheet_name_temp][0]  # 取TAG 值
                     # print(config)
                     keyword_index = self.sheet_name_dict[sheet_name_temp][1]  # KEYWORD 值
                     # print(keyword_index)
                     level_index = self.sheet_name_dict[sheet_name_temp][2]  # 取LEVEL
                     if keyword_index < 0:
-                        # print(keyword_index)
-                        # print(config)
-                        # print("keyword_index is wrong")
-                        # print(sheet_name_temp)
                         continue
-                    # print("--------11-------")
-                    # print(config)
-                    # print(keyword_index)
-                    # print(level_index)
-                    # print("--------222-------")
-                    # threadLock.release()
-                    # print(keyword_index)
-                    # log(Tag, "read key")
                     for key in config:
                         if keyword_index > len(config[key]):
                             print("err")
