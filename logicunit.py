@@ -265,7 +265,7 @@ def output_the_next_output2(key, the_last_process):
             if key == next_key:
                 next_output2 = subprocess[key]
                 if next_output2:
-                    #write_to_parse_result_file(output2) # write to the files
+                    write_to_parse_result_file(output2) # write to the files
                     break
                 else:
                     index = index + 1

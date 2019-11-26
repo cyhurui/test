@@ -1,224 +1,224 @@
-10-24 14:17:07.859  1975  2670 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-24 14:17:07.958  1975  8442 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.0.181, mask /255.255.255.0, DNS servers: /192.168.0.1 , gateways [/192.168.0.1] lease time 604728, domain null -->2019-11-26-17-56aplogcat-main
-10-24 14:17:07.965  1975  2670 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.0.181 serverid=192.168.0.1 -->2019-11-26-17-56aplogcat-main
-10-24 14:17:08.012  1975  8442 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.0.181, netmask /255.255.255.0, gateways [/192.168.0.1] DNS servers: /192.168.0.1 , lease time 604800 -->2019-11-26-17-56aplogcat-main
-10-24 14:17:08.013  1975  2670 D DhcpClient: Confirmed lease: IP address 192.168.0.181/24 Gateway 192.168.0.1  DNS servers: [ 192.168.0.1 ] Domains  DHCP server /192.168.0.1 Vendor info null lease 604800 seconds -->2019-11-26-17-56aplogcat-main
-10-24 14:17:08.076  1975  2450 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-17-56aplogcat-main
-10-25 21:19:15.041  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=30:23:03:3b:65:23 reason=0 locally_generated=1 disconnect_rssi=0 -->2019-11-26-17-56aplogcat-main
-10-30 17:42:52.603  1955  3486 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=true -->2019-11-26-17-56aplogcat-main
-10-25 18:04:42.214  1962  1962 I WifiService: setWifiEnabled package=android uid=1000 enable=true -->2019-11-26-17-56aplogcat-main
-10-30 17:42:52.909  1955  2478 D WifiStateMachinePrime: client mode active -->2019-11-26-17-56aplogcat-main
-10-25 21:19:15.901  1962  2487 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-26-17-56aplogcat-main
-10-25 18:04:43.748  1962  2487 D WifiStateMachinePrime: client mode active -->2019-11-26-17-56aplogcat-main
-10-30 17:42:54.928  1955  2478 I WifiStateMachine: Connecting with 8c:f1:12:d5:6c:e4 as the mac address -->2019-11-26-17-56aplogcat-main
-10-30 17:42:54.929  1955  2478 D SupplicantStaIfaceHal: connectToNetwork "mesh1"WPA_PSK -->2019-11-26-17-56aplogcat-main
-10-30 17:42:54.941  4953  4953 I wpa_supplicant: wlan0: Trying to associate with SSID 'mesh1' -->2019-11-26-17-56aplogcat-main
-10-30 17:42:54.943  4953  4953 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-17-56aplogcat-main
-10-30 17:42:55.008  4953  4953 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-30 17:42:55.010  4953  4953 D wpa_supplicant: wlan0: State: ASSOCIATED -> 4WAY_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-24 14:19:08.413  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-30 17:42:55.027  4953  4953 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> 4WAY_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-30 17:42:55.033  4953  4953 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> GROUP_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-30 17:42:55.041  4953  4953 D wpa_supplicant: wlan0: State: GROUP_HANDSHAKE -> COMPLETED -->2019-11-26-17-56aplogcat-main
-10-30 17:42:55.041  4953  4953 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 30:23:03:3b:65:23 completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22mesh1%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-17-56aplogcat-main
-10-24 14:19:08.986  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=17 -->2019-11-26-17-56aplogcat-main
-10-24 14:19:09.011  2585  2585 I wpa_supplicant: wlan0: Trying to associate with SSID 'D-Link_DIR-890L' -->2019-11-26-17-56aplogcat-main
-10-24 14:19:09.012  2585  2585 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-17-56aplogcat-main
-10-30 17:42:55.188  1955  4979 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-30 17:42:55.193  1955  5105 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.1.77, mask /255.255.255.0, DNS servers: /192.168.1.1 , gateways [/192.168.1.1] lease time 86400, domain null -->2019-11-26-17-56aplogcat-main
-10-30 17:42:55.194  1955  4979 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.1.77 serverid=192.168.1.1 -->2019-11-26-17-56aplogcat-main
-10-30 17:42:55.201  1955  5105 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.1.77, netmask /255.255.255.0, gateways [/192.168.1.1] DNS servers: /192.168.1.1 , lease time 86400 -->2019-11-26-17-56aplogcat-main
-10-30 17:42:55.201  1955  4979 D DhcpClient: Confirmed lease: IP address 192.168.1.77/24 Gateway 192.168.1.1  DNS servers: [ 192.168.1.1 ] Domains  DHCP server /192.168.1.1 Vendor info null lease 86400 seconds -->2019-11-26-17-56aplogcat-main
-10-24 14:19:09.155  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-30 17:42:55.234  1955  2478 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-17-56aplogcat-main
-10-24 14:19:09.163  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 90:8d:78:4e:c2:0e completed [id=0 id_str=] -->2019-11-26-17-56aplogcat-main
-10-24 14:17:23.341  1975  2450 D WifiStateMachine:  ConnectedState !FORGET_NETWORK uid=1000 rt=239134/369264 3 0 -->2019-11-26-17-56aplogcat-main
-10-24 14:17:23.341  1975  2450 D WifiStateMachine:  L2ConnectedState !FORGET_NETWORK uid=1000 rt=239134/369264 3 0 -->2019-11-26-17-56aplogcat-main
-10-24 14:17:23.341  1975  2450 D WifiStateMachine:  ConnectModeState !FORGET_NETWORK uid=1000 rt=239134/369264 3 0 -->2019-11-26-17-56aplogcat-main
-10-24 14:17:23.384  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=13 -->2019-11-26-17-56aplogcat-main
-10-24 14:19:09.471  1975  2670 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-24 14:19:09.551  1975  9093 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.0.181, mask /255.255.255.0, DNS servers: /192.168.0.1 , gateways [/192.168.0.1] lease time 604775, domain null -->2019-11-26-17-56aplogcat-main
-10-24 14:19:09.559  1975  2670 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.0.181 serverid=192.168.0.1 -->2019-11-26-17-56aplogcat-main
-10-24 14:19:09.600  1975  9093 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.0.181, netmask /255.255.255.0, gateways [/192.168.0.1] DNS servers: /192.168.0.1 , lease time 604800 -->2019-11-26-17-56aplogcat-main
-10-24 14:19:09.601  1975  2670 D DhcpClient: Confirmed lease: IP address 192.168.0.181/24 Gateway 192.168.0.1  DNS servers: [ 192.168.0.1 ] Domains  DHCP server /192.168.0.1 Vendor info null lease 604800 seconds -->2019-11-26-17-56aplogcat-main
-10-24 14:15:52.891  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-24 14:19:09.656  1975  2450 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-17-56aplogcat-main
-10-24 14:15:54.488  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=16 -->2019-11-26-17-56aplogcat-main
-10-24 14:15:54.511  2585  2585 I wpa_supplicant: wlan0: Trying to associate with SSID 'D-Link_DIR-890L' -->2019-11-26-17-56aplogcat-main
-10-24 14:15:54.512  2585  2585 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-17-56aplogcat-main
-10-24 14:15:54.582  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-24 14:15:54.584  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 90:8d:78:4e:c2:0e completed [id=0 id_str=] -->2019-11-26-17-56aplogcat-main
-10-24 14:15:54.861  1975  2670 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-24 14:15:54.955  1975  7741 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.0.181, mask /255.255.255.0, DNS servers: /192.168.0.1 , gateways [/192.168.0.1] lease time 354473, domain null -->2019-11-26-17-56aplogcat-main
-10-24 14:15:54.961  1975  2670 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.0.181 serverid=192.168.0.1 -->2019-11-26-17-56aplogcat-main
-10-24 14:15:55.028  1975  7741 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.0.181, netmask /255.255.255.0, gateways [/192.168.0.1] DNS servers: /192.168.0.1 , lease time 604800 -->2019-11-26-17-56aplogcat-main
-10-24 14:15:55.031  1975  2670 D DhcpClient: Confirmed lease: IP address 192.168.0.181/24 Gateway 192.168.0.1  DNS servers: [ 192.168.0.1 ] Domains  DHCP server /192.168.0.1 Vendor info null lease 604800 seconds -->2019-11-26-17-56aplogcat-main
-10-24 14:15:55.080  1975  2450 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-17-56aplogcat-main
-10-24 14:11:38.529  1975  1975 I WifiService: setWifiEnabled package=android uid=1000 enable=true -->2019-11-26-17-56aplogcat-main
-10-25 18:04:52.440  1962  2487 I WifiStateMachine: Connecting with 8c:f1:12:d5:6c:e4 as the mac address -->2019-11-26-17-56aplogcat-main
-10-25 18:04:52.441  1962  2487 D SupplicantStaIfaceHal: connectToNetwork "D-Link_DIR-890L"NONE -->2019-11-26-17-56aplogcat-main
-10-30 17:43:10.206  1955  2478 D WifiStateMachine: connectToUserSelectNetwork netId 2, uid 1000, forceReconnect = false -->2019-11-26-17-56aplogcat-main
-10-30 17:43:10.222  1955  2478 I WifiStateMachine: Connecting with 8c:f1:12:d5:6c:e4 as the mac address -->2019-11-26-17-56aplogcat-main
-10-30 17:43:10.224  1955  2478 D SupplicantStaIfaceHal: connectToNetwork "WCG24"WPA_PSK -->2019-11-26-17-56aplogcat-main
-10-30 17:43:10.307  4953  4953 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=30:23:03:3b:65:23 reason=3 locally_generated=1 disconnect_rssi=36 -->2019-11-26-17-56aplogcat-main
-10-24 14:11:39.987  1975  2450 D WifiStateMachinePrime: client mode active -->2019-11-26-17-56aplogcat-main
-10-25 18:04:52.474  2578  2578 I wpa_supplicant: wlan0: Trying to associate with SSID 'D-Link_DIR-890L' -->2019-11-26-17-56aplogcat-main
-10-25 18:04:52.475  2578  2578 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-17-56aplogcat-main
-10-25 18:04:52.536  2578  2578 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-25 18:04:52.538  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 90:8d:78:4e:c2:0e completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22D-Link_DIR-890L%5C%22NONE%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-17-56aplogcat-main
-10-25 18:04:52.713  1962  2664 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-25 18:04:52.806  1962  3829 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.0.181, mask /255.255.255.0, DNS servers: /192.168.0.1 , gateways [/192.168.0.1] lease time 504849, domain null -->2019-11-26-17-56aplogcat-main
-10-25 18:04:52.811  1962  2664 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.0.181 serverid=192.168.0.1 -->2019-11-26-17-56aplogcat-main
-10-25 18:04:52.854  1962  3829 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.0.181, netmask /255.255.255.0, gateways [/192.168.0.1] DNS servers: /192.168.0.1 , lease time 604800 -->2019-11-26-17-56aplogcat-main
-10-25 18:04:52.854  1962  2664 D DhcpClient: Confirmed lease: IP address 192.168.0.181/24 Gateway 192.168.0.1  DNS servers: [ 192.168.0.1 ] Domains  DHCP server /192.168.0.1 Vendor info null lease 604800 seconds -->2019-11-26-17-56aplogcat-main
-10-25 18:04:52.883  1962  2487 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-17-56aplogcat-main
-10-30 17:43:12.200  4953  4953 I wpa_supplicant: wlan0: Trying to associate with SSID 'WCG24' -->2019-11-26-17-56aplogcat-main
-10-30 17:42:24.925  1955  1955 I WifiService: setWifiEnabled package=android uid=1000 enable=true -->2019-11-26-17-56aplogcat-main
-10-25 18:08:34.086  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 30:23:03:3b:5e:1b completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22mesh1%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-17-56aplogcat-main
-10-30 17:43:12.370  4953  4953 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-30 17:43:12.371  4953  4953 D wpa_supplicant: wlan0: State: ASSOCIATED -> 4WAY_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-30 17:43:12.482  4953  4953 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> 4WAY_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-30 17:43:12.487  4953  4953 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> GROUP_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-30 17:43:12.497  4953  4953 D wpa_supplicant: wlan0: State: GROUP_HANDSHAKE -> COMPLETED -->2019-11-26-17-56aplogcat-main
-10-30 17:43:12.497  4953  4953 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 18:31:bf:a8:ef:60 completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22WCG24%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-17-56aplogcat-main
-10-30 17:43:12.655  1955  4979 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-24 14:17:45.681  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-25 18:11:47.689  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 30:23:03:3b:65:23 completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22mesh1%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-17-56aplogcat-main
-10-30 17:42:26.336  1955  2478 D WifiStateMachinePrime: client mode active -->2019-11-26-17-56aplogcat-main
-10-24 14:17:47.333  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=16 -->2019-11-26-17-56aplogcat-main
-10-24 14:17:47.354  2585  2585 I wpa_supplicant: wlan0: Trying to associate with SSID 'D-Link_DIR-890L' -->2019-11-26-17-56aplogcat-main
-10-24 14:17:47.355  2585  2585 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-17-56aplogcat-main
-10-30 17:43:14.830  1955  4979 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-30 17:43:15.524  1955  6571 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.50.78, mask /255.255.255.0, DNS servers: /192.168.50.1 , gateways [/192.168.50.1] lease time 86400, domain null -->2019-11-26-17-56aplogcat-main
-10-30 17:43:15.525  1955  4979 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.50.78 serverid=192.168.50.1 -->2019-11-26-17-56aplogcat-main
-10-30 17:43:15.545  1955  6571 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.50.78, mask /255.255.255.0, DNS servers: /192.168.50.1 , gateways [/192.168.50.1] lease time 86400, domain null -->2019-11-26-17-56aplogcat-main
-10-30 17:43:15.561  1955  6571 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.50.78, netmask /255.255.255.0, gateways [/192.168.50.1] DNS servers: /192.168.50.1 , lease time 86400 -->2019-11-26-17-56aplogcat-main
-10-30 17:43:15.561  1955  4979 D DhcpClient: Confirmed lease: IP address 192.168.50.78/24 Gateway 192.168.50.1  DNS servers: [ 192.168.50.1 ] Domains  DHCP server /192.168.50.1 Vendor info null lease 86400 seconds -->2019-11-26-17-56aplogcat-main
-10-24 14:17:47.455  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-24 14:17:47.458  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 90:8d:78:4e:c2:0e completed [id=0 id_str=] -->2019-11-26-17-56aplogcat-main
-10-30 17:43:15.582  1955  2478 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-17-56aplogcat-main
-10-24 14:17:47.756  1975  2670 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-24 14:17:47.845  1975  8729 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.0.181, mask /255.255.255.0, DNS servers: /192.168.0.1 , gateways [/192.168.0.1] lease time 604761, domain null -->2019-11-26-17-56aplogcat-main
-10-24 14:17:47.850  1975  2670 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.0.181 serverid=192.168.0.1 -->2019-11-26-17-56aplogcat-main
-10-24 14:17:47.900  1975  8729 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.0.181, netmask /255.255.255.0, gateways [/192.168.0.1] DNS servers: /192.168.0.1 , lease time 604800 -->2019-11-26-17-56aplogcat-main
-10-24 14:17:47.901  1975  2670 D DhcpClient: Confirmed lease: IP address 192.168.0.181/24 Gateway 192.168.0.1  DNS servers: [ 192.168.0.1 ] Domains  DHCP server /192.168.0.1 Vendor info null lease 604800 seconds -->2019-11-26-17-56aplogcat-main
-10-24 14:17:47.955  1975  2450 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-17-56aplogcat-main
-10-25 18:14:23.208  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=30:23:03:3b:65:23 reason=0 locally_generated=0 disconnect_rssi=37 -->2019-11-26-17-56aplogcat-main
-10-25 18:17:26.229  1962  2487 I WifiStateMachine: Connecting with 8c:f1:12:d5:6c:e4 as the mac address -->2019-11-26-17-56aplogcat-main
-10-25 18:17:26.233  1962  2487 D SupplicantStaIfaceHal: connectToNetwork "mesh1"WPA_PSK -->2019-11-26-17-56aplogcat-main
-10-25 18:17:26.241  2578  2578 I wpa_supplicant: wlan0: Trying to associate with SSID 'mesh1' -->2019-11-26-17-56aplogcat-main
-10-25 18:17:26.244  2578  2578 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-17-56aplogcat-main
-10-30 17:43:17.903  1955  3651 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=false -->2019-11-26-17-56aplogcat-main
-10-30 17:43:17.973  4953  4953 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=18:31:bf:a8:ef:60 reason=3 locally_generated=1 disconnect_rssi=50 -->2019-11-26-17-56aplogcat-main
-10-25 18:17:26.320  2578  2578 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-25 18:17:26.325  2578  2578 D wpa_supplicant: wlan0: State: ASSOCIATED -> 4WAY_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-25 18:17:26.351  2578  2578 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> 4WAY_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-25 18:17:26.360  2578  2578 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> GROUP_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-25 18:17:26.371  2578  2578 D wpa_supplicant: wlan0: State: GROUP_HANDSHAKE -> COMPLETED -->2019-11-26-17-56aplogcat-main
-10-25 18:17:26.372  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 30:23:03:3b:65:23 completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22mesh1%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-17-56aplogcat-main
-10-30 17:43:18.286  1955  2478 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-26-17-56aplogcat-main
-10-25 18:17:26.509  1962  2664 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-25 18:17:28.349  1962  2664 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-25 18:17:29.759  1962  8916 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.1.77, mask /255.255.255.0, DNS servers: /192.168.1.1 , gateways [/192.168.1.1] lease time 86400, domain null -->2019-11-26-17-56aplogcat-main
-10-25 18:17:29.767  1962  2664 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.1.77 serverid=192.168.1.1 -->2019-11-26-17-56aplogcat-main
-10-25 18:17:31.656  1962  2664 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.1.77 serverid=192.168.1.1 -->2019-11-26-17-56aplogcat-main
-10-25 18:17:33.424  1962  8916 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.1.77, mask /255.255.255.0, DNS servers: /192.168.1.1 , gateways [/192.168.1.1] lease time 86400, domain null -->2019-11-26-17-56aplogcat-main
-10-25 18:17:33.425  1962  8916 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.1.77, netmask /255.255.255.0, gateways [/192.168.1.1] DNS servers: /192.168.1.1 , lease time 86400 -->2019-11-26-17-56aplogcat-main
-10-25 18:05:14.221  1962  2487 D WifiStateMachine: connectToUserSelectNetwork netId 1, uid 1000, forceReconnect = false -->2019-11-26-17-56aplogcat-main
-10-25 18:17:33.428  1962  2664 D DhcpClient: Confirmed lease: IP address 192.168.1.77/24 Gateway 192.168.1.1  DNS servers: [ 192.168.1.1 ] Domains  DHCP server /192.168.1.1 Vendor info null lease 86400 seconds -->2019-11-26-17-56aplogcat-main
-10-25 18:05:14.240  1962  2487 I WifiStateMachine: Connecting with 8c:f1:12:d5:6c:e4 as the mac address -->2019-11-26-17-56aplogcat-main
-10-25 18:05:14.241  1962  2487 D SupplicantStaIfaceHal: connectToNetwork "mesh1"WPA_PSK -->2019-11-26-17-56aplogcat-main
-10-25 18:05:14.273  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=21 -->2019-11-26-17-56aplogcat-main
-10-30 17:43:19.452  1955  2634 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=true -->2019-11-26-17-56aplogcat-main
-10-25 18:17:33.498  1962  2487 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-17-56aplogcat-main
-10-25 18:17:36.696  1962  8916 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.1.77, netmask /255.255.255.0, gateways [/192.168.1.1] DNS servers: /192.168.1.1 , lease time 86400 -->2019-11-26-17-56aplogcat-main
-10-25 18:05:14.311  2578  2578 I wpa_supplicant: wlan0: Trying to associate with SSID 'mesh1' -->2019-11-26-17-56aplogcat-main
-10-25 18:05:14.312  2578  2578 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-17-56aplogcat-main
-10-24 14:16:44.513  1975  2450 D WifiStateMachine:  ConnectedState !FORGET_NETWORK uid=1000 rt=200306/330436 2 1 -->2019-11-26-17-56aplogcat-main
-10-24 14:16:44.513  1975  2450 D WifiStateMachine:  L2ConnectedState !FORGET_NETWORK uid=1000 rt=200306/330436 2 1 -->2019-11-26-17-56aplogcat-main
-10-24 14:16:44.513  1975  2450 D WifiStateMachine:  ConnectModeState !FORGET_NETWORK uid=1000 rt=200306/330437 2 1 -->2019-11-26-17-56aplogcat-main
-10-24 14:16:44.554  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=14 -->2019-11-26-17-56aplogcat-main
-10-30 17:43:19.772  1955  2478 D WifiStateMachinePrime: client mode active -->2019-11-26-17-56aplogcat-main
-10-25 18:05:14.396  2578  2578 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-25 18:05:14.404  2578  2578 D wpa_supplicant: wlan0: State: ASSOCIATED -> 4WAY_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-25 18:05:14.426  2578  2578 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> 4WAY_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-25 18:05:14.427  2578  2578 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> GROUP_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-25 18:05:14.441  2578  2578 D wpa_supplicant: wlan0: State: GROUP_HANDSHAKE -> COMPLETED -->2019-11-26-17-56aplogcat-main
-10-25 18:05:14.441  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 30:23:03:3b:60:c3 completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22mesh1%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-17-56aplogcat-main
-10-24 14:16:46.505  1975  2450 D WifiStateMachine:  DisconnectedState !FORGET_NETWORK uid=1000 rt=202298/332429 1 2 -->2019-11-26-17-56aplogcat-main
-10-24 14:16:46.505  1975  2450 D WifiStateMachine:  ConnectModeState !FORGET_NETWORK uid=1000 rt=202298/332429 1 2 -->2019-11-26-17-56aplogcat-main
-10-25 18:05:14.641  1962  2664 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-24 20:10:33.228  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=0 locally_generated=1 disconnect_rssi=0 -->2019-11-26-17-56aplogcat-main
-10-30 17:43:21.833  1955  2478 I WifiStateMachine: Connecting with 8c:f1:12:d5:6c:e4 as the mac address -->2019-11-26-17-56aplogcat-main
-10-30 17:43:21.835  1955  2478 D SupplicantStaIfaceHal: connectToNetwork "WCG24"WPA_PSK -->2019-11-26-17-56aplogcat-main
-10-24 14:16:47.641  1975  2450 D WifiStateMachine:  DisconnectedState !FORGET_NETWORK uid=1000 rt=203434/333564 0 3 -->2019-11-26-17-56aplogcat-main
-10-24 14:16:47.641  1975  2450 D WifiStateMachine:  ConnectModeState !FORGET_NETWORK uid=1000 rt=203434/333564 0 3 -->2019-11-26-17-56aplogcat-main
-10-30 17:43:21.854  6917  6917 I wpa_supplicant: wlan0: Trying to associate with SSID 'WCG24' -->2019-11-26-17-56aplogcat-main
-10-30 17:43:21.855  6917  6917 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-17-56aplogcat-main
-10-30 17:43:21.948  6917  6917 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-25 18:05:16.573  1962  2664 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-30 17:42:35.861  1955  2478 I WifiStateMachine: Connecting with 8c:f1:12:d5:6c:e4 as the mac address -->2019-11-26-17-56aplogcat-main
-10-30 17:42:35.863  1955  2478 D SupplicantStaIfaceHal: connectToNetwork "mesh1"WPA_PSK -->2019-11-26-17-56aplogcat-main
-10-30 17:42:35.905  2625  2625 I wpa_supplicant: wlan0: Trying to associate with SSID 'mesh1' -->2019-11-26-17-56aplogcat-main
-10-30 17:42:35.907  2625  2625 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-17-56aplogcat-main
-10-30 17:43:21.953  6917  6917 D wpa_supplicant: wlan0: State: ASSOCIATED -> 4WAY_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-25 18:05:17.903  1962  4961 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.1.77, mask /255.255.255.0, DNS servers: /192.168.1.1 , gateways [/192.168.1.1] lease time 86400, domain null -->2019-11-26-17-56aplogcat-main
-10-25 18:05:17.905  1962  2664 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.1.77 serverid=192.168.1.1 -->2019-11-26-17-56aplogcat-main
-10-25 18:05:17.907  1962  4961 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.1.77, mask /255.255.255.0, DNS servers: /192.168.1.1 , gateways [/192.168.1.1] lease time 86400, domain null -->2019-11-26-17-56aplogcat-main
-10-25 18:05:17.913  1962  4961 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.1.77, netmask /255.255.255.0, gateways [/192.168.1.1] DNS servers: /192.168.1.1 , lease time 86400 -->2019-11-26-17-56aplogcat-main
-10-25 18:05:17.914  1962  2664 D DhcpClient: Confirmed lease: IP address 192.168.1.77/24 Gateway 192.168.1.1  DNS servers: [ 192.168.1.1 ] Domains  DHCP server /192.168.1.1 Vendor info null lease 86400 seconds -->2019-11-26-17-56aplogcat-main
-10-30 17:43:22.076  6917  6917 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> 4WAY_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-30 17:43:22.079  6917  6917 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> GROUP_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-30 17:43:22.081  6917  6917 D wpa_supplicant: wlan0: State: GROUP_HANDSHAKE -> COMPLETED -->2019-11-26-17-56aplogcat-main
-10-30 17:43:22.081  6917  6917 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 18:31:bf:a8:ef:60 completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22WCG24%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-17-56aplogcat-main
-10-30 17:42:35.965  2625  2625 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-25 18:05:17.945  1962  2487 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-17-56aplogcat-main
-10-30 17:43:22.276  1955  6950 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-30 17:43:22.292  1955  7003 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.50.78, mask /255.255.255.0, DNS servers: /192.168.50.1 , gateways [/192.168.50.1] lease time 86400, domain null -->2019-11-26-17-56aplogcat-main
-10-30 17:43:22.295  1955  6950 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.50.78 serverid=192.168.50.1 -->2019-11-26-17-56aplogcat-main
-10-30 17:43:22.314  1955  7003 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.50.78, netmask /255.255.255.0, gateways [/192.168.50.1] DNS servers: /192.168.50.1 , lease time 86400 -->2019-11-26-17-56aplogcat-main
-10-30 17:43:22.314  1955  6950 D DhcpClient: Confirmed lease: IP address 192.168.50.78/24 Gateway 192.168.50.1  DNS servers: [ 192.168.50.1 ] Domains  DHCP server /192.168.50.1 Vendor info null lease 86400 seconds -->2019-11-26-17-56aplogcat-main
-10-30 17:43:22.362  1955  2478 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-17-56aplogcat-main
-10-30 17:42:35.975  2625  2625 D wpa_supplicant: wlan0: State: ASSOCIATED -> 4WAY_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-30 17:42:35.993  2625  2625 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> 4WAY_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-30 17:42:36.000  2625  2625 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> GROUP_HANDSHAKE -->2019-11-26-17-56aplogcat-main
-10-30 17:42:36.014  2625  2625 D wpa_supplicant: wlan0: State: GROUP_HANDSHAKE -> COMPLETED -->2019-11-26-17-56aplogcat-main
-10-30 17:42:36.014  2625  2625 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 30:23:03:3b:65:23 completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22mesh1%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-17-56aplogcat-main
-10-24 20:10:34.030  1975  2450 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-26-17-56aplogcat-main
-10-30 17:42:36.171  1955  2688 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-30 17:42:38.158  1955  2688 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-30 17:42:39.428  1955  3949 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.1.77, mask /255.255.255.0, DNS servers: /192.168.1.1 , gateways [/192.168.1.1] lease time 86400, domain null -->2019-11-26-17-56aplogcat-main
-10-30 17:42:39.428  1955  3949 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.1.77, mask /255.255.255.0, DNS servers: /192.168.1.1 , gateways [/192.168.1.1] lease time 86400, domain null -->2019-11-26-17-56aplogcat-main
-10-30 17:42:39.431  1955  2688 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.1.77 serverid=192.168.1.1 -->2019-11-26-17-56aplogcat-main
-10-30 17:42:39.435  1955  3949 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.1.77, netmask /255.255.255.0, gateways [/192.168.1.1] DNS servers: /192.168.1.1 , lease time 86400 -->2019-11-26-17-56aplogcat-main
-10-30 17:42:39.440  1955  2688 D DhcpClient: Confirmed lease: IP address 192.168.1.77/24 Gateway 192.168.1.1  DNS servers: [ 192.168.1.1 ] Domains  DHCP server /192.168.1.1 Vendor info null lease 86400 seconds -->2019-11-26-17-56aplogcat-main
-10-30 17:42:39.458  1955  2478 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-17-56aplogcat-main
-10-24 14:17:05.828  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-24 14:18:27.303  1975  2450 D WifiStateMachine:  ConnectedState !FORGET_NETWORK uid=1000 rt=303095/433226 4 1 -->2019-11-26-17-56aplogcat-main
-10-24 14:18:27.303  1975  2450 D WifiStateMachine:  L2ConnectedState !FORGET_NETWORK uid=1000 rt=303095/433226 4 1 -->2019-11-26-17-56aplogcat-main
-10-24 14:18:27.303  1975  2450 D WifiStateMachine:  ConnectModeState !FORGET_NETWORK uid=1000 rt=303095/433226 4 1 -->2019-11-26-17-56aplogcat-main
-10-24 14:18:27.340  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=12 -->2019-11-26-17-56aplogcat-main
-10-24 14:17:07.441  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=16 -->2019-11-26-17-56aplogcat-main
-10-24 14:17:07.469  2585  2585 I wpa_supplicant: wlan0: Trying to associate with SSID 'D-Link_DIR-890L' -->2019-11-26-17-56aplogcat-main
-10-24 14:17:07.469  2585  2585 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-17-56aplogcat-main
-10-24 14:17:07.574  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-24 14:17:07.581  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 90:8d:78:4e:c2:0e completed [id=0 id_str=] -->2019-11-26-17-56aplogcat-main
-10-30 17:42:51.373  1955  3486 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=false -->2019-11-26-17-56aplogcat-main
-10-30 17:42:51.469  2625  2625 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=30:23:03:3b:65:23 reason=3 locally_generated=1 disconnect_rssi=38 -->2019-11-26-17-56aplogcat-main
-10-30 17:42:51.887  1955  2478 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-26-17-56aplogcat-main
-10-24 14:18:42.415  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-24 14:18:44.016  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=15 -->2019-11-26-17-56aplogcat-main
-10-24 14:18:44.041  2585  2585 I wpa_supplicant: wlan0: Trying to associate with SSID 'D-Link_DIR-890L' -->2019-11-26-17-56aplogcat-main
-10-24 14:18:44.042  2585  2585 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-17-56aplogcat-main
-10-24 14:18:44.188  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-17-56aplogcat-main
-10-24 14:18:44.193  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 90:8d:78:4e:c2:0e completed [id=0 id_str=] -->2019-11-26-17-56aplogcat-main
-10-24 14:18:44.474  1975  2670 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-17-56aplogcat-main
-10-24 14:18:44.612  1975  8963 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.0.181, mask /255.255.255.0, DNS servers: /192.168.0.1 , gateways [/192.168.0.1] lease time 604744, domain null -->2019-11-26-17-56aplogcat-main
-10-24 14:18:44.618  1975  2670 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.0.181 serverid=192.168.0.1 -->2019-11-26-17-56aplogcat-main
-10-24 14:18:44.700  1975  8963 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.0.181, netmask /255.255.255.0, gateways [/192.168.0.1] DNS servers: /192.168.0.1 , lease time 604800 -->2019-11-26-17-56aplogcat-main
-10-24 14:18:44.701  1975  2670 D DhcpClient: Confirmed lease: IP address 192.168.0.181/24 Gateway 192.168.0.1  DNS servers: [ 192.168.0.1 ] Domains  DHCP server /192.168.0.1 Vendor info null lease 604800 seconds -->2019-11-26-17-56aplogcat-main
-10-24 14:18:44.756  1975  2450 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-17-56aplogcat-main
-10-24 14:18:51.829  1975  2450 D WifiStateMachine:  ConnectedState !FORGET_NETWORK uid=1000 rt=327621/457752 5 0 -->2019-11-26-17-56aplogcat-main
-10-24 14:18:51.829  1975  2450 D WifiStateMachine:  L2ConnectedState !FORGET_NETWORK uid=1000 rt=327622/457752 5 0 -->2019-11-26-17-56aplogcat-main
-10-24 14:18:51.829  1975  2450 D WifiStateMachine:  ConnectModeState !FORGET_NETWORK uid=1000 rt=327622/457752 5 0 -->2019-11-26-17-56aplogcat-main
-10-24 14:18:51.876  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=15 -->2019-11-26-17-56aplogcat-main
+10-24 14:11:38.529  1975  1975 I WifiService: setWifiEnabled package=android uid=1000 enable=true -->2019-11-26-18-19aplogcat-main
+10-24 14:11:39.987  1975  2450 D WifiStateMachinePrime: client mode active -->2019-11-26-18-19aplogcat-main
+10-24 14:15:52.891  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-24 14:15:54.488  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=16 -->2019-11-26-18-19aplogcat-main
+10-24 14:15:54.511  2585  2585 I wpa_supplicant: wlan0: Trying to associate with SSID 'D-Link_DIR-890L' -->2019-11-26-18-19aplogcat-main
+10-24 14:15:54.512  2585  2585 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-18-19aplogcat-main
+10-24 14:15:54.582  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-24 14:15:54.584  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 90:8d:78:4e:c2:0e completed [id=0 id_str=] -->2019-11-26-18-19aplogcat-main
+10-24 14:15:54.861  1975  2670 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-24 14:15:54.955  1975  7741 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.0.181, mask /255.255.255.0, DNS servers: /192.168.0.1 , gateways [/192.168.0.1] lease time 354473, domain null -->2019-11-26-18-19aplogcat-main
+10-24 14:15:54.961  1975  2670 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.0.181 serverid=192.168.0.1 -->2019-11-26-18-19aplogcat-main
+10-24 14:15:55.028  1975  7741 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.0.181, netmask /255.255.255.0, gateways [/192.168.0.1] DNS servers: /192.168.0.1 , lease time 604800 -->2019-11-26-18-19aplogcat-main
+10-24 14:15:55.031  1975  2670 D DhcpClient: Confirmed lease: IP address 192.168.0.181/24 Gateway 192.168.0.1  DNS servers: [ 192.168.0.1 ] Domains  DHCP server /192.168.0.1 Vendor info null lease 604800 seconds -->2019-11-26-18-19aplogcat-main
+10-24 14:15:55.080  1975  2450 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-18-19aplogcat-main
+10-24 14:16:44.513  1975  2450 D WifiStateMachine:  ConnectModeState !FORGET_NETWORK uid=1000 rt=200306/330437 2 1 -->2019-11-26-18-19aplogcat-main
+10-24 14:16:44.513  1975  2450 D WifiStateMachine:  ConnectedState !FORGET_NETWORK uid=1000 rt=200306/330436 2 1 -->2019-11-26-18-19aplogcat-main
+10-24 14:16:44.513  1975  2450 D WifiStateMachine:  L2ConnectedState !FORGET_NETWORK uid=1000 rt=200306/330436 2 1 -->2019-11-26-18-19aplogcat-main
+10-24 14:16:44.554  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=14 -->2019-11-26-18-19aplogcat-main
+10-24 14:16:46.505  1975  2450 D WifiStateMachine:  ConnectModeState !FORGET_NETWORK uid=1000 rt=202298/332429 1 2 -->2019-11-26-18-19aplogcat-main
+10-24 14:16:46.505  1975  2450 D WifiStateMachine:  DisconnectedState !FORGET_NETWORK uid=1000 rt=202298/332429 1 2 -->2019-11-26-18-19aplogcat-main
+10-24 14:16:47.641  1975  2450 D WifiStateMachine:  ConnectModeState !FORGET_NETWORK uid=1000 rt=203434/333564 0 3 -->2019-11-26-18-19aplogcat-main
+10-24 14:16:47.641  1975  2450 D WifiStateMachine:  DisconnectedState !FORGET_NETWORK uid=1000 rt=203434/333564 0 3 -->2019-11-26-18-19aplogcat-main
+10-24 14:17:05.828  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-24 14:17:07.441  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=16 -->2019-11-26-18-19aplogcat-main
+10-24 14:17:07.469  2585  2585 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-18-19aplogcat-main
+10-24 14:17:07.469  2585  2585 I wpa_supplicant: wlan0: Trying to associate with SSID 'D-Link_DIR-890L' -->2019-11-26-18-19aplogcat-main
+10-24 14:17:07.574  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-24 14:17:07.581  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 90:8d:78:4e:c2:0e completed [id=0 id_str=] -->2019-11-26-18-19aplogcat-main
+10-24 14:17:07.859  1975  2670 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-24 14:17:07.958  1975  8442 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.0.181, mask /255.255.255.0, DNS servers: /192.168.0.1 , gateways [/192.168.0.1] lease time 604728, domain null -->2019-11-26-18-19aplogcat-main
+10-24 14:17:07.965  1975  2670 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.0.181 serverid=192.168.0.1 -->2019-11-26-18-19aplogcat-main
+10-24 14:17:08.012  1975  8442 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.0.181, netmask /255.255.255.0, gateways [/192.168.0.1] DNS servers: /192.168.0.1 , lease time 604800 -->2019-11-26-18-19aplogcat-main
+10-24 14:17:08.013  1975  2670 D DhcpClient: Confirmed lease: IP address 192.168.0.181/24 Gateway 192.168.0.1  DNS servers: [ 192.168.0.1 ] Domains  DHCP server /192.168.0.1 Vendor info null lease 604800 seconds -->2019-11-26-18-19aplogcat-main
+10-24 14:17:08.076  1975  2450 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-18-19aplogcat-main
+10-24 14:17:23.341  1975  2450 D WifiStateMachine:  ConnectModeState !FORGET_NETWORK uid=1000 rt=239134/369264 3 0 -->2019-11-26-18-19aplogcat-main
+10-24 14:17:23.341  1975  2450 D WifiStateMachine:  ConnectedState !FORGET_NETWORK uid=1000 rt=239134/369264 3 0 -->2019-11-26-18-19aplogcat-main
+10-24 14:17:23.341  1975  2450 D WifiStateMachine:  L2ConnectedState !FORGET_NETWORK uid=1000 rt=239134/369264 3 0 -->2019-11-26-18-19aplogcat-main
+10-24 14:17:23.384  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=13 -->2019-11-26-18-19aplogcat-main
+10-24 14:17:45.681  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-24 14:17:47.333  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=16 -->2019-11-26-18-19aplogcat-main
+10-24 14:17:47.354  2585  2585 I wpa_supplicant: wlan0: Trying to associate with SSID 'D-Link_DIR-890L' -->2019-11-26-18-19aplogcat-main
+10-24 14:17:47.355  2585  2585 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-18-19aplogcat-main
+10-24 14:17:47.455  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-24 14:17:47.458  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 90:8d:78:4e:c2:0e completed [id=0 id_str=] -->2019-11-26-18-19aplogcat-main
+10-24 14:17:47.756  1975  2670 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-24 14:17:47.845  1975  8729 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.0.181, mask /255.255.255.0, DNS servers: /192.168.0.1 , gateways [/192.168.0.1] lease time 604761, domain null -->2019-11-26-18-19aplogcat-main
+10-24 14:17:47.850  1975  2670 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.0.181 serverid=192.168.0.1 -->2019-11-26-18-19aplogcat-main
+10-24 14:17:47.900  1975  8729 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.0.181, netmask /255.255.255.0, gateways [/192.168.0.1] DNS servers: /192.168.0.1 , lease time 604800 -->2019-11-26-18-19aplogcat-main
+10-24 14:17:47.901  1975  2670 D DhcpClient: Confirmed lease: IP address 192.168.0.181/24 Gateway 192.168.0.1  DNS servers: [ 192.168.0.1 ] Domains  DHCP server /192.168.0.1 Vendor info null lease 604800 seconds -->2019-11-26-18-19aplogcat-main
+10-24 14:17:47.955  1975  2450 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-18-19aplogcat-main
+10-24 14:18:27.303  1975  2450 D WifiStateMachine:  ConnectModeState !FORGET_NETWORK uid=1000 rt=303095/433226 4 1 -->2019-11-26-18-19aplogcat-main
+10-24 14:18:27.303  1975  2450 D WifiStateMachine:  ConnectedState !FORGET_NETWORK uid=1000 rt=303095/433226 4 1 -->2019-11-26-18-19aplogcat-main
+10-24 14:18:27.303  1975  2450 D WifiStateMachine:  L2ConnectedState !FORGET_NETWORK uid=1000 rt=303095/433226 4 1 -->2019-11-26-18-19aplogcat-main
+10-24 14:18:27.340  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=12 -->2019-11-26-18-19aplogcat-main
+10-24 14:18:42.415  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-24 14:18:44.016  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=15 -->2019-11-26-18-19aplogcat-main
+10-24 14:18:44.041  2585  2585 I wpa_supplicant: wlan0: Trying to associate with SSID 'D-Link_DIR-890L' -->2019-11-26-18-19aplogcat-main
+10-24 14:18:44.042  2585  2585 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-18-19aplogcat-main
+10-24 14:18:44.188  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-24 14:18:44.193  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 90:8d:78:4e:c2:0e completed [id=0 id_str=] -->2019-11-26-18-19aplogcat-main
+10-24 14:18:44.474  1975  2670 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-24 14:18:44.612  1975  8963 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.0.181, mask /255.255.255.0, DNS servers: /192.168.0.1 , gateways [/192.168.0.1] lease time 604744, domain null -->2019-11-26-18-19aplogcat-main
+10-24 14:18:44.618  1975  2670 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.0.181 serverid=192.168.0.1 -->2019-11-26-18-19aplogcat-main
+10-24 14:18:44.700  1975  8963 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.0.181, netmask /255.255.255.0, gateways [/192.168.0.1] DNS servers: /192.168.0.1 , lease time 604800 -->2019-11-26-18-19aplogcat-main
+10-24 14:18:44.701  1975  2670 D DhcpClient: Confirmed lease: IP address 192.168.0.181/24 Gateway 192.168.0.1  DNS servers: [ 192.168.0.1 ] Domains  DHCP server /192.168.0.1 Vendor info null lease 604800 seconds -->2019-11-26-18-19aplogcat-main
+10-24 14:18:44.756  1975  2450 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-18-19aplogcat-main
+10-24 14:18:51.829  1975  2450 D WifiStateMachine:  ConnectModeState !FORGET_NETWORK uid=1000 rt=327622/457752 5 0 -->2019-11-26-18-19aplogcat-main
+10-24 14:18:51.829  1975  2450 D WifiStateMachine:  ConnectedState !FORGET_NETWORK uid=1000 rt=327621/457752 5 0 -->2019-11-26-18-19aplogcat-main
+10-24 14:18:51.829  1975  2450 D WifiStateMachine:  L2ConnectedState !FORGET_NETWORK uid=1000 rt=327622/457752 5 0 -->2019-11-26-18-19aplogcat-main
+10-24 14:18:51.876  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=15 -->2019-11-26-18-19aplogcat-main
+10-24 14:19:08.413  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-24 14:19:08.986  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=17 -->2019-11-26-18-19aplogcat-main
+10-24 14:19:09.011  2585  2585 I wpa_supplicant: wlan0: Trying to associate with SSID 'D-Link_DIR-890L' -->2019-11-26-18-19aplogcat-main
+10-24 14:19:09.012  2585  2585 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-18-19aplogcat-main
+10-24 14:19:09.155  2585  2585 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-24 14:19:09.163  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 90:8d:78:4e:c2:0e completed [id=0 id_str=] -->2019-11-26-18-19aplogcat-main
+10-24 14:19:09.471  1975  2670 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-24 14:19:09.551  1975  9093 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.0.181, mask /255.255.255.0, DNS servers: /192.168.0.1 , gateways [/192.168.0.1] lease time 604775, domain null -->2019-11-26-18-19aplogcat-main
+10-24 14:19:09.559  1975  2670 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.0.181 serverid=192.168.0.1 -->2019-11-26-18-19aplogcat-main
+10-24 14:19:09.600  1975  9093 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.0.181, netmask /255.255.255.0, gateways [/192.168.0.1] DNS servers: /192.168.0.1 , lease time 604800 -->2019-11-26-18-19aplogcat-main
+10-24 14:19:09.601  1975  2670 D DhcpClient: Confirmed lease: IP address 192.168.0.181/24 Gateway 192.168.0.1  DNS servers: [ 192.168.0.1 ] Domains  DHCP server /192.168.0.1 Vendor info null lease 604800 seconds -->2019-11-26-18-19aplogcat-main
+10-24 14:19:09.656  1975  2450 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-18-19aplogcat-main
+10-24 20:10:33.228  2585  2585 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=0 locally_generated=1 disconnect_rssi=0 -->2019-11-26-18-19aplogcat-main
+10-24 20:10:34.030  1975  2450 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-26-18-19aplogcat-main
+10-25 18:04:42.214  1962  1962 I WifiService: setWifiEnabled package=android uid=1000 enable=true -->2019-11-26-18-19aplogcat-main
+10-25 18:04:43.748  1962  2487 D WifiStateMachinePrime: client mode active -->2019-11-26-18-19aplogcat-main
+10-25 18:04:52.440  1962  2487 I WifiStateMachine: Connecting with 8c:f1:12:d5:6c:e4 as the mac address -->2019-11-26-18-19aplogcat-main
+10-25 18:04:52.441  1962  2487 D SupplicantStaIfaceHal: connectToNetwork "D-Link_DIR-890L"NONE -->2019-11-26-18-19aplogcat-main
+10-25 18:04:52.474  2578  2578 I wpa_supplicant: wlan0: Trying to associate with SSID 'D-Link_DIR-890L' -->2019-11-26-18-19aplogcat-main
+10-25 18:04:52.475  2578  2578 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-18-19aplogcat-main
+10-25 18:04:52.536  2578  2578 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-25 18:04:52.538  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 90:8d:78:4e:c2:0e completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22D-Link_DIR-890L%5C%22NONE%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-18-19aplogcat-main
+10-25 18:04:52.713  1962  2664 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-25 18:04:52.806  1962  3829 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.0.181, mask /255.255.255.0, DNS servers: /192.168.0.1 , gateways [/192.168.0.1] lease time 504849, domain null -->2019-11-26-18-19aplogcat-main
+10-25 18:04:52.811  1962  2664 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.0.181 serverid=192.168.0.1 -->2019-11-26-18-19aplogcat-main
+10-25 18:04:52.854  1962  2664 D DhcpClient: Confirmed lease: IP address 192.168.0.181/24 Gateway 192.168.0.1  DNS servers: [ 192.168.0.1 ] Domains  DHCP server /192.168.0.1 Vendor info null lease 604800 seconds -->2019-11-26-18-19aplogcat-main
+10-25 18:04:52.854  1962  3829 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.0.181, netmask /255.255.255.0, gateways [/192.168.0.1] DNS servers: /192.168.0.1 , lease time 604800 -->2019-11-26-18-19aplogcat-main
+10-25 18:04:52.883  1962  2487 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-18-19aplogcat-main
+10-25 18:05:14.221  1962  2487 D WifiStateMachine: connectToUserSelectNetwork netId 1, uid 1000, forceReconnect = false -->2019-11-26-18-19aplogcat-main
+10-25 18:05:14.240  1962  2487 I WifiStateMachine: Connecting with 8c:f1:12:d5:6c:e4 as the mac address -->2019-11-26-18-19aplogcat-main
+10-25 18:05:14.241  1962  2487 D SupplicantStaIfaceHal: connectToNetwork "mesh1"WPA_PSK -->2019-11-26-18-19aplogcat-main
+10-25 18:05:14.273  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=90:8d:78:4e:c2:0e reason=3 locally_generated=1 disconnect_rssi=21 -->2019-11-26-18-19aplogcat-main
+10-25 18:05:14.311  2578  2578 I wpa_supplicant: wlan0: Trying to associate with SSID 'mesh1' -->2019-11-26-18-19aplogcat-main
+10-25 18:05:14.312  2578  2578 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-18-19aplogcat-main
+10-25 18:05:14.396  2578  2578 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-25 18:05:14.404  2578  2578 D wpa_supplicant: wlan0: State: ASSOCIATED -> 4WAY_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-25 18:05:14.426  2578  2578 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> 4WAY_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-25 18:05:14.427  2578  2578 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> GROUP_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-25 18:05:14.441  2578  2578 D wpa_supplicant: wlan0: State: GROUP_HANDSHAKE -> COMPLETED -->2019-11-26-18-19aplogcat-main
+10-25 18:05:14.441  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 30:23:03:3b:60:c3 completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22mesh1%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-18-19aplogcat-main
+10-25 18:05:14.641  1962  2664 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-25 18:05:16.573  1962  2664 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-25 18:05:17.903  1962  4961 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.1.77, mask /255.255.255.0, DNS servers: /192.168.1.1 , gateways [/192.168.1.1] lease time 86400, domain null -->2019-11-26-18-19aplogcat-main
+10-25 18:05:17.905  1962  2664 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.1.77 serverid=192.168.1.1 -->2019-11-26-18-19aplogcat-main
+10-25 18:05:17.907  1962  4961 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.1.77, mask /255.255.255.0, DNS servers: /192.168.1.1 , gateways [/192.168.1.1] lease time 86400, domain null -->2019-11-26-18-19aplogcat-main
+10-25 18:05:17.913  1962  4961 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.1.77, netmask /255.255.255.0, gateways [/192.168.1.1] DNS servers: /192.168.1.1 , lease time 86400 -->2019-11-26-18-19aplogcat-main
+10-25 18:05:17.914  1962  2664 D DhcpClient: Confirmed lease: IP address 192.168.1.77/24 Gateway 192.168.1.1  DNS servers: [ 192.168.1.1 ] Domains  DHCP server /192.168.1.1 Vendor info null lease 86400 seconds -->2019-11-26-18-19aplogcat-main
+10-25 18:05:17.945  1962  2487 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-18-19aplogcat-main
+10-25 18:08:34.086  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 30:23:03:3b:5e:1b completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22mesh1%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-18-19aplogcat-main
+10-25 18:11:47.689  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 30:23:03:3b:65:23 completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22mesh1%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-18-19aplogcat-main
+10-25 18:14:23.208  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=30:23:03:3b:65:23 reason=0 locally_generated=0 disconnect_rssi=37 -->2019-11-26-18-19aplogcat-main
+10-25 18:17:26.229  1962  2487 I WifiStateMachine: Connecting with 8c:f1:12:d5:6c:e4 as the mac address -->2019-11-26-18-19aplogcat-main
+10-25 18:17:26.233  1962  2487 D SupplicantStaIfaceHal: connectToNetwork "mesh1"WPA_PSK -->2019-11-26-18-19aplogcat-main
+10-25 18:17:26.241  2578  2578 I wpa_supplicant: wlan0: Trying to associate with SSID 'mesh1' -->2019-11-26-18-19aplogcat-main
+10-25 18:17:26.244  2578  2578 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-18-19aplogcat-main
+10-25 18:17:26.320  2578  2578 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-25 18:17:26.325  2578  2578 D wpa_supplicant: wlan0: State: ASSOCIATED -> 4WAY_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-25 18:17:26.351  2578  2578 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> 4WAY_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-25 18:17:26.360  2578  2578 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> GROUP_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-25 18:17:26.371  2578  2578 D wpa_supplicant: wlan0: State: GROUP_HANDSHAKE -> COMPLETED -->2019-11-26-18-19aplogcat-main
+10-25 18:17:26.372  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 30:23:03:3b:65:23 completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22mesh1%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-18-19aplogcat-main
+10-25 18:17:26.509  1962  2664 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-25 18:17:28.349  1962  2664 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-25 18:17:29.759  1962  8916 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.1.77, mask /255.255.255.0, DNS servers: /192.168.1.1 , gateways [/192.168.1.1] lease time 86400, domain null -->2019-11-26-18-19aplogcat-main
+10-25 18:17:29.767  1962  2664 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.1.77 serverid=192.168.1.1 -->2019-11-26-18-19aplogcat-main
+10-25 18:17:31.656  1962  2664 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.1.77 serverid=192.168.1.1 -->2019-11-26-18-19aplogcat-main
+10-25 18:17:33.424  1962  8916 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.1.77, mask /255.255.255.0, DNS servers: /192.168.1.1 , gateways [/192.168.1.1] lease time 86400, domain null -->2019-11-26-18-19aplogcat-main
+10-25 18:17:33.425  1962  8916 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.1.77, netmask /255.255.255.0, gateways [/192.168.1.1] DNS servers: /192.168.1.1 , lease time 86400 -->2019-11-26-18-19aplogcat-main
+10-25 18:17:33.428  1962  2664 D DhcpClient: Confirmed lease: IP address 192.168.1.77/24 Gateway 192.168.1.1  DNS servers: [ 192.168.1.1 ] Domains  DHCP server /192.168.1.1 Vendor info null lease 86400 seconds -->2019-11-26-18-19aplogcat-main
+10-25 18:17:33.498  1962  2487 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-18-19aplogcat-main
+10-25 18:17:36.696  1962  8916 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.1.77, netmask /255.255.255.0, gateways [/192.168.1.1] DNS servers: /192.168.1.1 , lease time 86400 -->2019-11-26-18-19aplogcat-main
+10-25 21:19:15.041  2578  2578 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=30:23:03:3b:65:23 reason=0 locally_generated=1 disconnect_rssi=0 -->2019-11-26-18-19aplogcat-main
+10-25 21:19:15.901  1962  2487 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-26-18-19aplogcat-main
+10-30 17:42:24.925  1955  1955 I WifiService: setWifiEnabled package=android uid=1000 enable=true -->2019-11-26-18-19aplogcat-main
+10-30 17:42:26.336  1955  2478 D WifiStateMachinePrime: client mode active -->2019-11-26-18-19aplogcat-main
+10-30 17:42:35.861  1955  2478 I WifiStateMachine: Connecting with 8c:f1:12:d5:6c:e4 as the mac address -->2019-11-26-18-19aplogcat-main
+10-30 17:42:35.863  1955  2478 D SupplicantStaIfaceHal: connectToNetwork "mesh1"WPA_PSK -->2019-11-26-18-19aplogcat-main
+10-30 17:42:35.905  2625  2625 I wpa_supplicant: wlan0: Trying to associate with SSID 'mesh1' -->2019-11-26-18-19aplogcat-main
+10-30 17:42:35.907  2625  2625 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-18-19aplogcat-main
+10-30 17:42:35.965  2625  2625 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-30 17:42:35.975  2625  2625 D wpa_supplicant: wlan0: State: ASSOCIATED -> 4WAY_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-30 17:42:35.993  2625  2625 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> 4WAY_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-30 17:42:36.000  2625  2625 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> GROUP_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-30 17:42:36.014  2625  2625 D wpa_supplicant: wlan0: State: GROUP_HANDSHAKE -> COMPLETED -->2019-11-26-18-19aplogcat-main
+10-30 17:42:36.014  2625  2625 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 30:23:03:3b:65:23 completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22mesh1%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-18-19aplogcat-main
+10-30 17:42:36.171  1955  2688 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-30 17:42:38.158  1955  2688 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-30 17:42:39.428  1955  3949 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.1.77, mask /255.255.255.0, DNS servers: /192.168.1.1 , gateways [/192.168.1.1] lease time 86400, domain null -->2019-11-26-18-19aplogcat-main
+10-30 17:42:39.428  1955  3949 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.1.77, mask /255.255.255.0, DNS servers: /192.168.1.1 , gateways [/192.168.1.1] lease time 86400, domain null -->2019-11-26-18-19aplogcat-main
+10-30 17:42:39.431  1955  2688 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.1.77 serverid=192.168.1.1 -->2019-11-26-18-19aplogcat-main
+10-30 17:42:39.435  1955  3949 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.1.77, netmask /255.255.255.0, gateways [/192.168.1.1] DNS servers: /192.168.1.1 , lease time 86400 -->2019-11-26-18-19aplogcat-main
+10-30 17:42:39.440  1955  2688 D DhcpClient: Confirmed lease: IP address 192.168.1.77/24 Gateway 192.168.1.1  DNS servers: [ 192.168.1.1 ] Domains  DHCP server /192.168.1.1 Vendor info null lease 86400 seconds -->2019-11-26-18-19aplogcat-main
+10-30 17:42:39.458  1955  2478 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-18-19aplogcat-main
+10-30 17:42:51.373  1955  3486 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=false -->2019-11-26-18-19aplogcat-main
+10-30 17:42:51.469  2625  2625 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=30:23:03:3b:65:23 reason=3 locally_generated=1 disconnect_rssi=38 -->2019-11-26-18-19aplogcat-main
+10-30 17:42:51.887  1955  2478 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-26-18-19aplogcat-main
+10-30 17:42:52.603  1955  3486 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=true -->2019-11-26-18-19aplogcat-main
+10-30 17:42:52.909  1955  2478 D WifiStateMachinePrime: client mode active -->2019-11-26-18-19aplogcat-main
+10-30 17:42:54.928  1955  2478 I WifiStateMachine: Connecting with 8c:f1:12:d5:6c:e4 as the mac address -->2019-11-26-18-19aplogcat-main
+10-30 17:42:54.929  1955  2478 D SupplicantStaIfaceHal: connectToNetwork "mesh1"WPA_PSK -->2019-11-26-18-19aplogcat-main
+10-30 17:42:54.941  4953  4953 I wpa_supplicant: wlan0: Trying to associate with SSID 'mesh1' -->2019-11-26-18-19aplogcat-main
+10-30 17:42:54.943  4953  4953 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-18-19aplogcat-main
+10-30 17:42:55.008  4953  4953 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-30 17:42:55.010  4953  4953 D wpa_supplicant: wlan0: State: ASSOCIATED -> 4WAY_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-30 17:42:55.027  4953  4953 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> 4WAY_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-30 17:42:55.033  4953  4953 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> GROUP_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-30 17:42:55.041  4953  4953 D wpa_supplicant: wlan0: State: GROUP_HANDSHAKE -> COMPLETED -->2019-11-26-18-19aplogcat-main
+10-30 17:42:55.041  4953  4953 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 30:23:03:3b:65:23 completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22mesh1%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-18-19aplogcat-main
+10-30 17:42:55.188  1955  4979 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-30 17:42:55.193  1955  5105 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.1.77, mask /255.255.255.0, DNS servers: /192.168.1.1 , gateways [/192.168.1.1] lease time 86400, domain null -->2019-11-26-18-19aplogcat-main
+10-30 17:42:55.194  1955  4979 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.1.77 serverid=192.168.1.1 -->2019-11-26-18-19aplogcat-main
+10-30 17:42:55.201  1955  4979 D DhcpClient: Confirmed lease: IP address 192.168.1.77/24 Gateway 192.168.1.1  DNS servers: [ 192.168.1.1 ] Domains  DHCP server /192.168.1.1 Vendor info null lease 86400 seconds -->2019-11-26-18-19aplogcat-main
+10-30 17:42:55.201  1955  5105 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.1.77, netmask /255.255.255.0, gateways [/192.168.1.1] DNS servers: /192.168.1.1 , lease time 86400 -->2019-11-26-18-19aplogcat-main
+10-30 17:42:55.234  1955  2478 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-18-19aplogcat-main
+10-30 17:43:10.206  1955  2478 D WifiStateMachine: connectToUserSelectNetwork netId 2, uid 1000, forceReconnect = false -->2019-11-26-18-19aplogcat-main
+10-30 17:43:10.222  1955  2478 I WifiStateMachine: Connecting with 8c:f1:12:d5:6c:e4 as the mac address -->2019-11-26-18-19aplogcat-main
+10-30 17:43:10.224  1955  2478 D SupplicantStaIfaceHal: connectToNetwork "WCG24"WPA_PSK -->2019-11-26-18-19aplogcat-main
+10-30 17:43:10.307  4953  4953 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=30:23:03:3b:65:23 reason=3 locally_generated=1 disconnect_rssi=36 -->2019-11-26-18-19aplogcat-main
+10-30 17:43:12.200  4953  4953 I wpa_supplicant: wlan0: Trying to associate with SSID 'WCG24' -->2019-11-26-18-19aplogcat-main
+10-30 17:43:12.370  4953  4953 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-30 17:43:12.371  4953  4953 D wpa_supplicant: wlan0: State: ASSOCIATED -> 4WAY_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-30 17:43:12.482  4953  4953 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> 4WAY_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-30 17:43:12.487  4953  4953 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> GROUP_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-30 17:43:12.497  4953  4953 D wpa_supplicant: wlan0: State: GROUP_HANDSHAKE -> COMPLETED -->2019-11-26-18-19aplogcat-main
+10-30 17:43:12.497  4953  4953 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 18:31:bf:a8:ef:60 completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22WCG24%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-18-19aplogcat-main
+10-30 17:43:12.655  1955  4979 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-30 17:43:14.830  1955  4979 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-30 17:43:15.524  1955  6571 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.50.78, mask /255.255.255.0, DNS servers: /192.168.50.1 , gateways [/192.168.50.1] lease time 86400, domain null -->2019-11-26-18-19aplogcat-main
+10-30 17:43:15.525  1955  4979 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.50.78 serverid=192.168.50.1 -->2019-11-26-18-19aplogcat-main
+10-30 17:43:15.545  1955  6571 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.50.78, mask /255.255.255.0, DNS servers: /192.168.50.1 , gateways [/192.168.50.1] lease time 86400, domain null -->2019-11-26-18-19aplogcat-main
+10-30 17:43:15.561  1955  4979 D DhcpClient: Confirmed lease: IP address 192.168.50.78/24 Gateway 192.168.50.1  DNS servers: [ 192.168.50.1 ] Domains  DHCP server /192.168.50.1 Vendor info null lease 86400 seconds -->2019-11-26-18-19aplogcat-main
+10-30 17:43:15.561  1955  6571 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.50.78, netmask /255.255.255.0, gateways [/192.168.50.1] DNS servers: /192.168.50.1 , lease time 86400 -->2019-11-26-18-19aplogcat-main
+10-30 17:43:15.582  1955  2478 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-18-19aplogcat-main
+10-30 17:43:17.903  1955  3651 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=false -->2019-11-26-18-19aplogcat-main
+10-30 17:43:17.973  4953  4953 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=18:31:bf:a8:ef:60 reason=3 locally_generated=1 disconnect_rssi=50 -->2019-11-26-18-19aplogcat-main
+10-30 17:43:18.286  1955  2478 D WifiClientModeManager: STA iface wlan0 was destroyed, stopping client mode -->2019-11-26-18-19aplogcat-main
+10-30 17:43:19.452  1955  2634 I WifiService: setWifiEnabled package=com.android.settings uid=1000 enable=true -->2019-11-26-18-19aplogcat-main
+10-30 17:43:19.772  1955  2478 D WifiStateMachinePrime: client mode active -->2019-11-26-18-19aplogcat-main
+10-30 17:43:21.833  1955  2478 I WifiStateMachine: Connecting with 8c:f1:12:d5:6c:e4 as the mac address -->2019-11-26-18-19aplogcat-main
+10-30 17:43:21.835  1955  2478 D SupplicantStaIfaceHal: connectToNetwork "WCG24"WPA_PSK -->2019-11-26-18-19aplogcat-main
+10-30 17:43:21.854  6917  6917 I wpa_supplicant: wlan0: Trying to associate with SSID 'WCG24' -->2019-11-26-18-19aplogcat-main
+10-30 17:43:21.855  6917  6917 D wpa_supplicant: wlan0: State: DISCONNECTED -> ASSOCIATING -->2019-11-26-18-19aplogcat-main
+10-30 17:43:21.948  6917  6917 D wpa_supplicant: wlan0: State: ASSOCIATING -> ASSOCIATED -->2019-11-26-18-19aplogcat-main
+10-30 17:43:21.953  6917  6917 D wpa_supplicant: wlan0: State: ASSOCIATED -> 4WAY_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-30 17:43:22.076  6917  6917 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> 4WAY_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-30 17:43:22.079  6917  6917 D wpa_supplicant: wlan0: State: 4WAY_HANDSHAKE -> GROUP_HANDSHAKE -->2019-11-26-18-19aplogcat-main
+10-30 17:43:22.081  6917  6917 D wpa_supplicant: wlan0: State: GROUP_HANDSHAKE -> COMPLETED -->2019-11-26-18-19aplogcat-main
+10-30 17:43:22.081  6917  6917 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 18:31:bf:a8:ef:60 completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22WCG24%5C%22WPA_PSK%22%2C%22creatorUid%22%3A%221000%22%7D] -->2019-11-26-18-19aplogcat-main
+10-30 17:43:22.276  1955  6950 D DhcpClient: Broadcasting DHCPDISCOVER -->2019-11-26-18-19aplogcat-main
+10-30 17:43:22.292  1955  7003 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 OFFER, ip /192.168.50.78, mask /255.255.255.0, DNS servers: /192.168.50.1 , gateways [/192.168.50.1] lease time 86400, domain null -->2019-11-26-18-19aplogcat-main
+10-30 17:43:22.295  1955  6950 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.50.78 serverid=192.168.50.1 -->2019-11-26-18-19aplogcat-main
+10-30 17:43:22.314  1955  6950 D DhcpClient: Confirmed lease: IP address 192.168.50.78/24 Gateway 192.168.50.1  DNS servers: [ 192.168.50.1 ] Domains  DHCP server /192.168.50.1 Vendor info null lease 86400 seconds -->2019-11-26-18-19aplogcat-main
+10-30 17:43:22.314  1955  7003 D DhcpClient: Received packet: 8c:f1:12:d5:6c:e4 ACK: your new IP /192.168.50.78, netmask /255.255.255.0, gateways [/192.168.50.1] DNS servers: /192.168.50.1 , lease time 86400 -->2019-11-26-18-19aplogcat-main
+10-30 17:43:22.362  1955  2478 D WifiStateMachine: setDetailed state, old =OBTAINING_IPADDR and new state=CONNECTED hidden=false isLFRDHCPRenewRequired=false -->2019-11-26-18-19aplogcat-main
