@@ -28,6 +28,8 @@ def log_debug(logstr):
 
 def merge_log(__file_read_1, __file_read_2, __file_out, mdelete):  # 按照时间顺序合并成最终的log文件,log 文件名为最后一个文件名，并且可以删除合并的原始文件
     log_debug("merge log: file1:" + __file_read_1 + "--file2:" + __file_read_2 + "---outfile:" + __file_out)
+    #re-create out file
+    delete_file(__file_out)
     if check_file_exist(__file_out) is not True:
         file_out = open(__file_out, 'w')
         file_out.close()
@@ -71,6 +73,7 @@ def merge_log(__file_read_1, __file_read_2, __file_out, mdelete):  # 按照时�
                     lines_list_2 = -1
                     lines_2 = -1
                     file_read_2.close()
+
             if (lines_list_2 == -1 and lines_list_1 == -1):
                 break
             elif (lines_list_2 == -1):
@@ -79,9 +82,9 @@ def merge_log(__file_read_1, __file_read_2, __file_out, mdelete):  # 按照时�
                     file_out.write(lines_1)
                 else:
                     file_out.write(str_addition(lines_1, "-->" + intercept_file_name(__file_read_1)))
-                #file_out.write(lines_1)
                 #lines_list_1 = -1
                 lines_list_1 = None
+                continue
             elif lines_list_1 == -1:
                 #print(str_addition(lines_2,'-->'+intercept_file_name(__file_read_2)))
                 if "test_temp" in intercept_file_name(__file_read_2):
@@ -91,7 +94,10 @@ def merge_log(__file_read_1, __file_read_2, __file_out, mdelete):  # 按照时�
                 #file_out.write(lines_2)
                 #lines_list_2 = -1
                 lines_list_2 = None
-
+                continue
+            """
+            compare lines1 and lines 2 date and Rearrange
+            """
             lines_1_date = outputdate(lines_list_1)
             lines_2_date = outputdate(lines_list_2)
 
@@ -128,6 +134,7 @@ def merge_log(__file_read_1, __file_read_2, __file_out, mdelete):  # 按照时�
                     file_out.write(str_addition(lines_1, "-->" + intercept_file_name(__file_read_1)))
                 #file_out.write(lines_1)
                 lines_list_1 = None
+                continue
             else:
                 #print(str_addition(lines_2,'-->'+intercept_file_name(__file_read_2)))
                 if "test_temp" in intercept_file_name(__file_read_2):
@@ -136,6 +143,7 @@ def merge_log(__file_read_1, __file_read_2, __file_out, mdelete):  # 按照时�
                     file_out.write(str_addition(lines_2, '-->' + intercept_file_name(__file_read_2)))
                 #file_out.write(lines_2)
                 lines_list_2 = None
+                continue
     file_read_1.close()
     file_read_2.close()
     file_out.close()

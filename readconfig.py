@@ -11,7 +11,7 @@ from logicunit import get_process_dict_key
 sheet_version = ["Parse-P"]
 sheet_white_list = []
 #debug_DBG =False
-debug_DBG =True
+debug_DBG =False
 
 
 # test API
@@ -88,9 +88,9 @@ def get_sheet_name_key(file_config, msheet_list, mdecode):
     sheet_name = get_all_sheet_name(file_config)
     sheet_name_list = []
     sheet_name_dict = {}
-    print(sheet_name)
-    flag = False
+    #print(sheet_name)
     for sheet_name_temp in sheet_name:
+        flag = False
         sheet_name_list.clear()
         if len(msheet_list) < 1:
             msheet_list = ["WiFi on-off_P", "WiFi connect-disconnect_P"]
@@ -114,7 +114,7 @@ def get_sheet_name_key(file_config, msheet_list, mdecode):
         if "Sheet" in sheet_name_temp:  # 逻辑单元不参与
             continue
         config = get_all_config(file_config, sheet_name_temp)
-        # print(config)
+        #print(config)
         tag_temp = get_tag(file_config, sheet_name_temp)
         keyword_index = 0
         level_index = 0
@@ -131,8 +131,9 @@ def get_sheet_name_key(file_config, msheet_list, mdecode):
             sheet_name_list.append(config)
             sheet_name_list.append(tag_temp)
             sheet_name_dict[sheet_name_temp] = deepcopy(sheet_name_list)
-        log_debug("sheet_name_dict : " + str(sheet_name_dict))
-        return sheet_name_dict
+    log_debug("sheet_name_dict : " + str(sheet_name_dict))
+    log_debug(sheet_name_dict.keys())
+    return sheet_name_dict
 
 
 def get_sheet_version(file_config):
@@ -257,23 +258,41 @@ def get_complete_process_dict(sheet_name_dict):
         config = sheet_name_dict[sheet_name_temp][0]  # 取TAG 值
         tag_temp = sheet_name_dict[sheet_name_temp][1]
         index = get_sheet_list_value(sheet_name_temp, tag_temp)
-        process_index = index[sheet_name_temp]["PROCESS"]
-        output2_index = index[sheet_name_temp]["OUTPUT2"]
+        print(sheet_name_temp)
+        print(tag_temp)
+        print(index)
+        if ("PROCESS" and "OUTPUT2")  in index[sheet_name_temp]:
+            process_index = index[sheet_name_temp]["PROCESS"]
+            output2_index = index[sheet_name_temp]["OUTPUT2"]
+        else:
+            print("index[sheet_name_temp] not find the tag of PROCESS and OUTPUT2")
+            return None
         for key in config:
-            process_value = config[key][process_index]
-            key_list = get_process_dict_key(process_value)
-            output2_value = config[key][output2_index]
-            temp_dict = {}
-            if key_list[0] not in complete_process_dict:
-                temp_dict[key_list[1]] = output2_value
-                complete_process_dict[key_list[0]] = deepcopy(temp_dict)
-                temp_dict.clear()
+            if (process_index and output2_index) not in config[key]:
+                process_value = config[key][process_index]
+                output2_value = config[key][output2_index]
             else:
-                temp_dict = deepcopy(complete_process_dict[key_list[0]])
-                temp_dict[key_list[1]] = output2_value
-                temp_dict = sorted(temp_dict.items(), key=lambda d: d[0])
-                complete_process_dict[key_list[0]] = deepcopy(temp_dict)
-                temp_dict.clear()
+                return None
+            key_list = get_process_dict_key(process_value)
+
+            if key_list[0] not in complete_process_dict:
+                complete_process_dict[key_list[0]] ={}
+                if key_list[1] not in complete_process_dict[key_list[0]]:
+                    complete_process_dict[key_list[0]][key_list[1]] = output2_value
+            else:
+                if key_list[1] not in complete_process_dict[key_list[0]]:
+                    temp_dict = deepcopy(dict(complete_process_dict[key_list[0]]))
+                    log_debug(key_list[1])
+                    log_debug(config[key])
+                    temp_dict[key_list[1]] = output2_value
+                    #complete_process_dict[key_list[0]][key_list[1]] = output2_value
+                    temp_dict = sorted(temp_dict.items(), key=lambda d: d[0])
+                    complete_process_dict[key_list[0]] = deepcopy(temp_dict)
+                    temp_dict.clear()
+                else:
+                    log_debug(key_list[1])
+                    log_debug("key_list[1] is in complete_process_dict[key_list[0]]")
+    log_debug(complete_process_dict)
     return complete_process_dict
 
     # list_temp = re.split(r'\breason=\b.\blocally_generated\b',line)

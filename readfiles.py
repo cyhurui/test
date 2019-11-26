@@ -2,7 +2,7 @@ import os
 import re
 import threading
 
-from logicunit import logicdispatch, set_complete_process_dict, clear_process_dict
+from logicunit import logicdispatch, clear_process_dict, get_complete_dict, set_complete_dict
 from mergefile import intercept_file_name, merge_log, SortedFile, checkFileSize
 from readdir import check_excel_file, create, check_file_exist
 from readdir import match
@@ -64,7 +64,7 @@ def decode_Logic_config(fliepath, sheet_name_dict):
         while (1):
             lines = file_to_read.readline()
             line = lines.decode('utf-8').strip()
-            print(line)
+            #print(line)
             if not line:
                 clear_process_dict()
                 log(Tag, "finish")
@@ -446,16 +446,18 @@ sheet_name_dict = filter_valid_sheet(__file__config, True)  # dict{list{dict{lis
 #set_complete_process_dict(get_complete_process_dict(sheet_name_dict))
 #print(get_process_dict())
 
-# dict = {}
-# dict1={1:"1",2:"2"}
-# dict[0] = dict1
-# print(dict)
-
-decode_Logic_config(file_out_final,sheet_name_dict)
+#print(dict)
+#decode_Logic_config(file_out_final,sheet_name_dict)
+"""
+dict = {}
+dict1={1:"1",2:"2"}
+dict[0] = dict1
+dict[0][3] = 5
+#decode_Logic_config(file_out_final,sheet_name_dict)
 # temp_dict = {"10010": 12, "10002": 32, "10000": 45}
 # temp_dict = sorted(temp_dict.items(), key=lambda d: d[0])
 # print(temp_dict)
-
 str = "uid=1000 enable=true -->2019-11-25-18-11aplogcat-main"
 val = "enable=,#"
 print(decode_val(str,val))
+"""

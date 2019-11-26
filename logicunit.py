@@ -92,11 +92,11 @@ def unit_check(logic_all,logic_dict):
     logic_unit = logic_all[0]
     if logic_unit == "L1":
         # logic1(VAL1, true/false)
-        print(logic_dict)
+        #print(logic_dict)
         val = logic_dict[logic_all[1]]
         # print("val1", val1, "para1: ", para1)
-        print(val)
-        print(logic_all)
+        #print(val)
+        #print(logic_all)
         return logic1(val, logic_all[2])
     elif logic_unit == "L2":
         log_v(tag,"start L2")
@@ -180,7 +180,7 @@ def logic4(keyword, n):
     i = 0
     if keyword:
         i = i + 1
-        if i >= n:
+        if i >= int(n):
             log_e("output1",output1)
             i = 0
             return
@@ -214,12 +214,12 @@ def delete_dict(key):
 #    print(add_process_dict(i))
 #print(get_process_dict())
 
-def set_complete_process_dict(process_dict):
+def set_complete_dict(process_dict):
     global complete_dict
     complete_dict = deepcopy(process_dict)
     pass
 
-def get_complete_process_dict():
+def get_complete_dict():
     return complete_dict
     pass
 
@@ -246,7 +246,7 @@ def clear_process_dict():
             # complete_dict format:
             # {'110': {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4', ... '99': 'output99'},
             #  '111': {'01': 'output11', '02': 'output21', '03': 'output31', '04': 'output41', ..., '99': 'output99'}}
-            complete_dict = get_complete_process_dict()
+            complete_dict = get_complete_dict()
 
             # e.g: key = '110', subprocess = {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4'
             # subprocess = {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4'}
