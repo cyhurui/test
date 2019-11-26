@@ -240,7 +240,7 @@ def clear_process_dict():
         log_v("The key is: ", key)
 
         if the_last_process == 99:
-            log_e(tag,"The process is completed, skip")
+            log_e(tag, "The process is completed, skip")
             continue
         else:
             # complete_dict format:
