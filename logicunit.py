@@ -5,6 +5,7 @@ from copy import deepcopy
 
 from debugoutput import log_v, log_e
 from mergefile import outputdate
+from parseresultoutput import write_to_parse_result_file
 
 output1 = ""
 output2 = ""
@@ -36,7 +37,7 @@ def logicdispatch(logic_dict, line):
     lu = logic_dict['LOGIC UNIT']  # like 'L1 (VAL1,true)'
     logic_all = decode_val_logic(lu)  # ["L1","Val1",true]
     process_val = logic_dict["PROCESS"]
-    if unit_check(logic_all, logic_dict):
+    if unit_check(logic_all, logic_dict,outputdate(line)):
         add_process_dict(process_val)
         pass
     else:
@@ -79,7 +80,7 @@ def get_process_dict_key(process_val):
     return key_list
 
 
-def unit_check(logic_all, logic_dict):
+def unit_check(logic_all, logic_dict,outputdate):
     # module, submodule, process, subprocess
     # For example: 11201
     # module: wifi(1) (1: wifi; 2: BT; 3: LBS; 4: NFC)
@@ -90,6 +91,7 @@ def unit_check(logic_all, logic_dict):
     # switch logic unit
     # todo: parameters valid check
     logic_unit = logic_all[0]
+    checkresult = False
     if logic_unit == "L1":
         # logic1(VAL1, true/false)
         #print(logic_dict)
@@ -97,25 +99,30 @@ def unit_check(logic_all, logic_dict):
         # print("val1", val1, "para1: ", para1)
         #print(val)
         #print(logic_all)
-        return logic1(val, logic_all[2])
+        checkresult = logic1(val, logic_all[2])
     elif logic_unit == "L2":
         log_v(tag, "start L2")
         keyword = logic_dict['KEYWORD']
         log_v(tag, keyword)
-        return logic2(keyword)
+        checkresult = logic2(keyword)
     elif logic_unit == "L3":
         # print("start L3")
         keyword = logic_dict['KEYWORD']
-        return logic3(keyword, "debug")
+        checkresult = logic3(keyword, "debug")
     elif logic_unit == "L4":
         print("start L4")
         keyword = logic_dict['KEYWORD']
         # todo: how to define para1?
-        return logic4(keyword, 1)
+        checkresult = logic4(keyword, 1)
     else:
         # print("logic unit is wrong: ", L)
         return -1
     # todo: clear the args list?
+    file_time = time.strftime("%m-%d_%H_%M_%S", outputdate)
+    if checkresult is True:
+        write_to_parse_result_file(str(file_time)+" :"+output1)
+    else:
+        write_to_parse_result_file(str(file_time)+" :"+output2)
     pass
 
 
@@ -138,10 +145,8 @@ def decode_val_logic(lu):  # ['L1(VAL1', 'true)'] or
 def logic1(val, para):
     print("running L1")
     if val == para:
-        log_e("output1", output1)  # output to the file
         return True
     else:
-        log_e("output2", output2)  # output to the file
         return False
     pass
 
@@ -149,25 +154,18 @@ def logic1(val, para):
 def logic2(keyword):
     # print("running L2")
     if keyword:
-        log_e("output1", output1)  # output to the files
+        return True
     else:
-        log_e("output2", output2)  # output to the file
-    return True
+        return False
     # pass
 
 
 def logic3(keyword, line):
     # print("running L3")
     if keyword:
-        line_date = outputdate(line)
-        log_e("output1", output1)  # error log, output to the files
-        print(line_date)  # and print the line
-        # print (line)
-        # todo: stop the current logic flow
-        return False  # need stop the current logic flow
+        return True  # need stop the current logic flow
     else:
-        log_e("output2", output2)
-        return True
+        return False
     pass
 
 
@@ -182,14 +180,13 @@ def logic4(keyword, n):
     if keyword:
         i = i + 1
         if i >= n:
-            log_e("output1",output1)
             i = 0
-            return
+            return True
         # else:
         #   continue
         # todo: check whether this logic is reasnonalbe
     else:
-        log_e("output2", output2)
+       return False
 
     pass
 
@@ -268,7 +265,7 @@ def output_the_next_output2(key, the_last_process):
             if key == next_key:
                 next_output2 = subprocess[key]
                 if next_output2:
-                    log_e("next_output2: ", next_output2)  # write to the files
+                    #write_to_parse_result_file(output2) # write to the files
                     break
                 else:
                     index = index + 1

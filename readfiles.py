@@ -4,6 +4,7 @@ import threading
 
 from logicunit import logicdispatch, clear_process_dict, get_complete_dict, set_complete_dict
 from mergefile import intercept_file_name, merge_log, SortedFile, checkFileSize
+from parseresultoutput import open_parse_result_file, close_parse_result_file
 from readdir import check_excel_file, create, check_file_exist
 from readdir import match
 from readconfig import get_all_sheet_name, filter_valid_sheet, get_sheet_list_value, get_complete_process_dict
@@ -203,7 +204,7 @@ def fileread(dirlist, txtlist, file_config):
         file_to_out = open(__file__out, "a+", encoding="UTF-8")
         log(Tag, "---------------")
         # readlogdebug(readfile, __file__out, file_config)
-        thread_num = 1
+        thread_num = 10
         # 起始时间
         # start_time = time.clock()
         p = Partition(readfile, thread_num)
@@ -264,7 +265,9 @@ def fileread(dirlist, txtlist, file_config):
     sheet_name_dict = filter_valid_sheet(file_config, True)  # dict{list{dict{list},}}
     set_complete_dict(get_complete_process_dict(sheet_name_dict))
     #decode_Logic_config(merge_file_list[0], sheet_name_dict)
+    open_parse_result_file()
     decode_Logic_config(file_out_final, sheet_name_dict)
+    close_parse_result_file()
 
 
 
