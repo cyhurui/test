@@ -230,7 +230,7 @@ def output_the_next_output2(key, the_last_process):
     # complete_dict format:
     # {'110': {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4', ... '99': 'output99'},
     #  '111': {'01': 'output11', '02': 'output21', '03': 'output31', '04': 'output41', ..., '99': 'output99'}}
-    complete_dict = get_complete_process_dict()
+    complete_dict = get_complete_dict()
     log_v("complete_dict", complete_dict)
 
     # subprocess format: {'01': 'output1', '02': 'output2', '03': 'output3', '04': 'output4'...}
