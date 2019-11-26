@@ -230,10 +230,13 @@ def clear_process_dict():
 
     for key in process_sub_dict:
         val_list = process_sub_dict[key]
-        log_v("val_list: ", val_list)
+        if val_list:
+            the_last_process = val_list[-1]
+            log_v("The last process is: ", the_last_process)
+        else:
+            log_e(tag, "The val_list is null, return")
+            return
 
-        the_last_process = val_list[-1]
-        log_v("The last process is: ", the_last_process)
         log_v("The key is: ", key)
 
         if the_last_process == 99:
