@@ -111,7 +111,7 @@ def unit_check(logic_all, logic_dict):
         print("start L4")
         keyword = logic_dict['KEYWORD']
         # todo: how to define para1?
-        return logic4(keyword, "debug")
+        return logic4(keyword, 1)
     else:
         # print("logic unit is wrong: ", L)
         return -1

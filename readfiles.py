@@ -262,7 +262,7 @@ def fileread(dirlist, txtlist, file_config):
     pass
     print(merge_file_list)
     sheet_name_dict = filter_valid_sheet(file_config, True)  # dict{list{dict{list},}}
-    set_complete_process_dict(get_complete_process_dict(sheet_name_dict))
+    set_complete_dict(get_complete_process_dict(sheet_name_dict))
     #decode_Logic_config(merge_file_list[0], sheet_name_dict)
     decode_Logic_config(file_out_final, sheet_name_dict)
 
