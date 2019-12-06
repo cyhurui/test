@@ -16,7 +16,7 @@ file_out_final = os.path.join(__file_out_base, "final_file.txt")
 if __name__ == "__main__":
     unzip_Tree(__file_in_base)
     """
-    all_file_dict的格式字典，其中key是bug2go解压之后的文件，对应的值是一个全路径的文件名
+    all_file_dict鐨勬牸寮忓瓧鍏革紝鍏朵腑key鏄痓ug2go瑙ｅ帇涔嬪悗鐨勬枃浠讹紝瀵瑰簲鐨勫�兼槸涓�涓叏璺緞鐨勬枃浠跺悕
     {'log': ['D:\\program files (x86)\\python\\project\\test\\log\\aplogcat-crash.txt'], 
     'NDFL2D0041_308011361_USER@2019-11-15_21_47_51_-0300_IKUT-1366581': ['D:\\program files (x86)\\python\\project\\test\\log\\NDFL2D0041_308011361_USER@2019-11-15_21_47_51_-0300_IKUT-1366581\\aplogcat-crash.txt'],
     'NDFL2G0016_307712978_USER@2019-10-16_23_36_40_-0300_IKUT-1357018': ['D:\\program files (x86)\\python\\project\\test\\log\\NDFL2G0016_307712978_USER@2019-10-16_23_36_40_-0300_IKUT-1357018\\aplogcat-crash.txt']
