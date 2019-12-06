@@ -8,7 +8,7 @@ import xlrd
 #sheet_list = ["WiFi on-off_P","WiFi connect-disconnect_P"]  # 定义哪些模块config需要被扫描
 from logicunit import get_process_dict_key
 
-sheet_version = ["Parse-P"]
+sheet_version = ["Parse-Q"]
 sheet_white_list = []
 #debug_DBG =False
 debug_DBG =False
