@@ -5,7 +5,7 @@ import threading
 from logicunit import logicdispatch, clear_process_dict, get_complete_dict, set_complete_dict
 from mergefile import intercept_file_name, merge_log, SortedFile, checkFileSize
 from parseresultoutput import open_parse_result_file, close_parse_result_file
-from readdir import check_excel_file, create, check_file_exist
+from readdir import check_excel_file, create, check_file_exist, check_include
 from readdir import match
 from readconfig import get_all_sheet_name, filter_valid_sheet, get_sheet_list_value, get_complete_process_dict
 
@@ -180,8 +180,11 @@ def not_empty(s):
     return s and s.strip()
 
 # 对比从config中读到的文件名和实际从log目录下搜到的文件之间的对比，只解析match上的文件
-def fileread(dirlist, txtlist, file_config):
-    samelist = match(dirlist, txtlist)
+def fileread(dirlist, txtlist, file_config,file_in_base,file_out_base,sheet_name,sheet_name_dict):
+    if not os.path.exists(file_out_base):
+        os.makedirs(file_out_base)
+    #samelist = match(dirlist, txtlist)
+    samelist = check_include(dirlist, txtlist)
     log(Tag, samelist)
     log(Tag, dirlist)
     log(Tag, txtlist)
@@ -189,17 +192,33 @@ def fileread(dirlist, txtlist, file_config):
     if not check_excel_file(file_config):
         log(Tag, "config file is not exists")
         return
-    sheet_name = get_all_sheet_name(file_config)
-    sheet_name_dict = filter_valid_sheet(file_config, False)
+    #sheet_name = get_all_sheet_name(file_config)
+    #sheet_name_dict = filter_valid_sheet(file_config, False)
     # print("hurui1")
     # print(sheet_name_dict)
+    file_out_temp = os.path.join(file_out_base, "test_temp.txt")
+    file_out_final = os.path.join(file_out_base, "final_file.txt")
+    if check_file_exist(file_out_temp) is False:
+        file_out = open(file_out_temp, 'w')
+        file_out.close()
+        pass
+
+    if check_file_exist(file_out_final) is False:
+        file_out = open(file_out_final, 'w')
+        file_out.close()
+        pass
+
     merge_file_list.append(file_out_temp)
+    if len(samelist) < 1:
+        print("samelist is null")
+        return
     for listtemp in samelist:
         # readfile = os.path.basename(listtemp)
-        readfile = os.path.join(__file_in_base, os.path.basename(listtemp))
+        #readfile = os.path.join(file_in_base, os.path.basename(listtemp))
+        readfile = listtemp
         log(Tag, "readfile:" + os.path.basename(readfile))
         log(Tag, "samelist:" + listtemp)
-        __file__out = create(__file_out_base, intercept_file_name(listtemp))
+        __file__out = create(file_out_base, intercept_file_name(os.path.basename(listtemp)))
         merge_file_list.append(__file__out)
         file_to_out = open(__file__out, "a+", encoding="UTF-8")
         log(Tag, "---------------")
@@ -237,9 +256,13 @@ def fileread(dirlist, txtlist, file_config):
     for sfile in merge_file_list:
         if sfile == file_out_temp:
             continue
+        if "test_temp.txt" in sfile:
+            continue
         if checkFileSize(sfile) is False:
             merge_file_list.remove(sfile)
             continue
+        print("start sorted -----")
+        print(sfile)
         SortedFile(sfile, sfile)
         pass
     """
@@ -266,6 +289,7 @@ def fileread(dirlist, txtlist, file_config):
     set_complete_dict(get_complete_process_dict(sheet_name_dict))
     #decode_Logic_config(merge_file_list[0], sheet_name_dict)
     open_parse_result_file()
+    SortedFile(file_out_final, file_out_final)
     decode_Logic_config(file_out_final, sheet_name_dict)
     close_parse_result_file()
 
@@ -433,19 +457,18 @@ class Partition(object):
         return pos_list
 
 
-__file_in_base = os.path.join(os.getcwd(), "log")
-__file_out_base = os.path.join(os.getcwd(), "result")
-# __file__read = os.path.join(__file_in_base,"main.txt")
 
-__file_in_base_1 = os.path.join(os.getcwd(), "config")
-__file__config = os.path.join(__file_in_base_1, "Config.xlsx")
-file_out_temp = os.path.join(__file_out_base, "test_temp.txt")
-file_out_final = os.path.join(__file_out_base, "final_file.txt")
+#__file_in_base = os.path.join(os.getcwd(), "log")
+__file_out_base = os.path.join(os.getcwd(), "result")
+#__file_in_base_1 = os.path.join(os.getcwd(), "config")
+#__file__config = os.path.join(__file_in_base_1, "Config.xlsx")
+#file_out_temp = os.path.join(__file_out_base, "test_temp.txt")
+#file_out_final = os.path.join(__file_out_base, "final_file.txt")
 mutex = threading.Lock()
 # filename = __file__read
 # filename_output = __file__out
 # read_excel(__file__config)
-sheet_name_dict = filter_valid_sheet(__file__config, True)  # dict{list{dict{list},}}
+#sheet_name_dict = filter_valid_sheet(__file__config, True)  # dict{list{dict{list},}}
 #set_complete_process_dict(get_complete_process_dict(sheet_name_dict))
 #print(get_process_dict())
 
@@ -464,3 +487,11 @@ str = "uid=1000 enable=true -->2019-11-25-18-11aplogcat-main"
 val = "enable=,#"
 print(decode_val(str,val))
 """
+"""
+list =[10,2,3,2,1,43,6,3,2,5,6,3,2,5,6]
+list.sort()
+print(list)
+"""
+#sfile= os.path.join(__file_out_base, "final_file.txt")
+#print(sfile)
+#SortedFile(sfile, sfile)

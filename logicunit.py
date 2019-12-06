@@ -37,7 +37,7 @@ def logicdispatch(logic_dict, line):
     lu = logic_dict['LOGIC UNIT']  # like 'L1 (VAL1,true)'
     logic_all = decode_val_logic(lu)  # ["L1","Val1",true]
     process_val = logic_dict["PROCESS"]
-    if unit_check(logic_all, logic_dict,outputdate(line)):
+    if unit_check(logic_all, logic_dict,line):
         add_process_dict(process_val)
         pass
     else:
@@ -80,7 +80,7 @@ def get_process_dict_key(process_val):
     return key_list
 
 
-def unit_check(logic_all, logic_dict,outputdate):
+def unit_check(logic_all, logic_dict,line):
     # module, submodule, process, subprocess
     # For example: 11201
     # module: wifi(1) (1: wifi; 2: BT; 3: LBS; 4: NFC)
@@ -92,6 +92,7 @@ def unit_check(logic_all, logic_dict,outputdate):
     # todo: parameters valid check
     logic_unit = logic_all[0]
     checkresult = False
+    outdate= outputdate(line)
     if logic_unit == "L1":
         # logic1(VAL1, true/false)
         #print(logic_dict)
@@ -114,11 +115,16 @@ def unit_check(logic_all, logic_dict,outputdate):
         keyword = logic_dict['KEYWORD']
         # todo: how to define para1?
         checkresult = logic4(keyword, 1)
+
+    elif logic_unit == "L5":
+        checkresult = False
+        global output2
+        output2 = line
     else:
         # print("logic unit is wrong: ", L)
         return -1
     # todo: clear the args list?
-    file_time = time.strftime("%m-%d_%H_%M_%S", outputdate)
+    file_time = time.strftime("%m-%d_%H_%M_%S", outdate)
     if checkresult is True:
         write_to_parse_result_file(str(file_time)+" :"+output1)
     else:

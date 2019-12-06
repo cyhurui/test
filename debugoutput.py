@@ -3,7 +3,7 @@ from datetime import datetime
 debug_v = False
 debug_i = True
 debug_d = True
-debug_e = True
+debug_e = False
 
 
 def logi(tag, logstr):
