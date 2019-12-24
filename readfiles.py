@@ -408,6 +408,24 @@ class Reader(threading.Thread):
                             jump_flag = True
                             mutex.release()
                             break
+                        else:
+                            if "*" in keyword:
+                                keyword_div = keyword.split("*")
+                                check_break = False
+                                for keyword_div_index in keyword_div:
+                                    if keyword_div_index not in line:
+                                        check_break = True
+                                        break
+                                if check_break:
+                                    break
+                            log_debug("self.fileout:")
+                            # if "result" in self.fileout:  # 输出只是临时性文件，所以只负责存储有关键字信息
+                            mutex.acquire()
+                            write_file(line, self.fileout, file_to_read)
+                            jump_flag = True
+                            mutex.release()
+                            break
+                            pass
                             # decode_Logic_config(line, config, key, tag_temp, sheet_name_temp)
                         # else:
                         # 开始根据关键字来检查和提取关键性信息，并输出到output文件中#
