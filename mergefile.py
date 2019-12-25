@@ -207,7 +207,8 @@ def is_valid_date(str):
             time.strptime(str, "%m-%d %H:%M:%S.%f")
             return True
         else:
-            print("not find date in this line")
+            log(tag,"not find date in this line:")
+            log(tag,str)
             return False
     except:
         print("it has exception")
@@ -234,7 +235,8 @@ def outputdate(str_temp):
             return s_time
         else:
             if ">" not in strlist:
-                print("it don't need compare")
+                log(tag,"it don't need compare")
+                log(tag,strlist)
                 return -1
             strlist = str_temp.split("-->")
             print("-------1111--------")

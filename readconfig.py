@@ -214,14 +214,11 @@ def decode_val(line, str):  # str 暂时只能用逗号分开，加其他的符�
         print("please use ',#' to split string in excel(value col)")
         return None
     config_value = str.split(",#")
-    print(len(config_value[0]))
-    print(len(config_value[1]))
     if len(config_value[0]) <= 0 and len(config_value[1]) <= 0:
         return None
         pass
     elif len(config_value[0]) > 0 and len(config_value[1]) <= 0:
         start_index = re.search(config_value[0].strip(), line).span()
-        print(start_index)
         return line[start_index[1] + 1:].strip()
         pass
     elif len(config_value[0]) > 0 and len(config_value[1]) > 0:

@@ -195,14 +195,14 @@ def split_path(path,file_in_base):
 # file_txt_name()
 # match([1, 2, 3],[3, 0, 2])
 # print(os.path.abspath('host.txt'))
-file = "aplogcat-kernel.txt"
+#file = "aplogcat-kernel.txt"
 #unzip_Tree(file_dir)
 #file_txt_name()
 #search("aplogcat-kernel.txt")
 #print(list_all_files(file_dir))
 #__file_in_base = os.path.join(os.getcwd(), "log")
-path = " 'D:\\program files (x86)\\python\\project\\test\\log\\NDFL2D0041_308011361_USER@2019-11-15_21_47_51_-0300_IKUT-1366581\\wlan_logs\\host_driver_logs_current.txt"
-print(os.path.basename(path))
+#path = " 'D:\\program files (x86)\\python\\project\\test\\log\\NDFL2D0041_308011361_USER@2019-11-15_21_47_51_-0300_IKUT-1366581\\wlan_logs\\host_driver_logs_current.txt"
+#print(os.path.basename(path))
 #print(path)
 #split_path(path,__file_in_base)
 

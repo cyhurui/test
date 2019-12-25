@@ -31,8 +31,10 @@ def logicdispatch(logic_dict, line):
     # obtain the output string firstly
     global output1
     output1 = logic_dict['OUTPUT1']
+    output1 = decodecomment(output1,logic_dict)
     global output2
     output2 = logic_dict['OUTPUT2']
+    output2 = decodecomment(output2, logic_dict)
     # parse the logic unit, e.g: 'L1 (VAL1,true)', 'L2(KEYWORD)'
     lu = logic_dict['LOGIC UNIT']  # like 'L1 (VAL1,true)'
     logic_all = decode_val_logic(lu)  # ["L1","Val1",true]
@@ -43,6 +45,65 @@ def logicdispatch(logic_dict, line):
     else:
         log_e(tag, "")
         pass
+    pass
+
+"""
+这一块逻辑先简单的按照VAL1、VAL2、VAL3、VAL4区分，后续如果有需要，再重构
+test case:
+str1 = "<VAL3> CTRL-EVENT-CONNECTED - Connection to <VAL1> completed <VAL2> "
+dir = {'TAG': 'wifi_on_2', 'LEVEL': 'D', 'KEYWORD': 'client mode active', 'MANDATORY': 11099, 'VALUE_FLAG': 0.0,'VAL1': 'nihao', 'VAL2': ' bu', 'VAL3': 'ni', 'LOGIC UNIT': 'L2 (KEYWORD)', 'OUTPUT1': 'Turned on WiFi', 'OUTPUT2': 'Turn on WiFi failed'}
+decodecomment(str1,dir)
+"""
+def decodecomment(output,logic_dict):
+    if len(output) < 1:
+        return ""
+    if "<VAL1>" in output:
+        comment_val1 = output.split("<VAL1>")
+        val1 = logic_dict['VAL1']
+        output = splicing_sentences(val1,comment_val1)
+
+    if "<VAL2>" in output:
+        comment_val2 = output.split("<VAL2>")
+        val2 = logic_dict['VAL2']
+        output = splicing_sentences(val2, comment_val2)
+
+    if  "<VAL3>" in output:
+        comment_val3 = output.split("<VAL3>")
+        val3 = logic_dict['VAL3']
+        output = splicing_sentences(val3, comment_val3)
+
+    if "<VAL4>" in output:
+        comment_val4 = output.split("<VAL4>")
+        val4 = logic_dict['VAL4']
+        output = splicing_sentences(val4, comment_val4)
+
+    #print(output)
+    return output
+    pass
+
+def splicing_sentences(val,comment_list):
+    if len(comment_list)<1:
+        return  comment_list
+    new_comment =""
+    #print(comment_list)
+    comment_len = len(comment_list)
+    i = 0
+    for comment_index in comment_list:
+        i =i+1
+        if comment_index == None:
+            comment_index = ""
+
+        if val == None:
+            val = ""
+
+        if i < comment_len:
+            if len(comment_index.strip()) < 1:
+                new_comment =new_comment+ val + str(comment_index)
+            else:
+                new_comment =new_comment+ str(comment_index) + val
+        elif i==comment_len:
+            new_comment = new_comment + str(comment_index)
+    return new_comment
     pass
 
 
@@ -115,7 +176,6 @@ def unit_check(logic_all, logic_dict,line):
         keyword = logic_dict['KEYWORD']
         # todo: how to define para1?
         checkresult = logic4(keyword, 1)
-
     elif logic_unit == "L5":
         checkresult = False
         global output2

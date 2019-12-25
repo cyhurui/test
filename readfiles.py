@@ -141,32 +141,51 @@ def decode_Logic_config(fliepath, sheet_name_dict):
                     # pass
     pass
 
-
+"""
+Test case:
+str1 = "11-04 09:31:50.970  3059  3059 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 58:97:bd:0c:9a:9e completed [id=0 id_str=%7B%22configKey%22%3A%22%5C%22lenovo-internet%5C%22NONE%22%2C%22creatorUid%22%3A%221000%22%7D]"
+str2 = "Connection to,#completed"
+print(decode_val(str1,str2))
+"""
 def decode_val(line, value):  # str 暂时只能用逗号分开，加其他的符号容易引起误会
     if value.isspace():
-        print("continue")
         return None
     if ",#" not in value:
         if len(value) > 1:
             print("please use ',#' to split string in excel(value col)")
         return None
     config_value = value.split(",#")
-    end_index = re.search("-->", line).span()
+    if "-->" in line:
+        end_index = re.search("-->", line).span()
+    else:
+        line = line +"-->"
+        end_index = re.search("-->", line).span()
+    """ 
+    config: A,#B, 
+    1.A is null, B is null
+    2.A is null, B is not null
+    3.A is not null, B is not null
+    4.A is not null, B is null
+    """
     if len(config_value[0]) <= 0 and len(config_value[1]) <= 0:
+        print("config is invalid")
         return None
         pass
     elif len(config_value[0]) > 0 and len(config_value[1]) <= 0:
         start_index = re.search(config_value[0].strip(), line).span()
         print(start_index)
+        print("decode_val 1")
         return line[start_index[1]:end_index[0]].strip()
         pass
     elif len(config_value[0]) > 0 and len(config_value[1]) > 0:
         start_index = re.search(config_value[0].strip(), line).span()
         end_index = re.search(config_value[1].strip(), line).span()
-        if start_index > end_index:
+        print(start_index)
+        print(end_index)
+        if start_index[1] < end_index[0]:
             return line[start_index[1]:end_index[0]].strip()
         else:
-            print("")
+            print("start_index > end_index")
         pass
     elif len(config_value[0]) <= 0 and len(config_value[1]) > 0:
         end_index = re.search(config_value[1].strip(), line).span()
@@ -181,6 +200,7 @@ def not_empty(s):
 
 # 对比从config中读到的文件名和实际从log目录下搜到的文件之间的对比，只解析match上的文件
 def fileread(dirlist, txtlist, file_config,file_in_base,file_out_base,sheet_name,sheet_name_dict):
+    log(Tag, "fileread: start check log")
     if not os.path.exists(file_out_base):
         os.makedirs(file_out_base)
     #samelist = match(dirlist, txtlist)
@@ -303,6 +323,27 @@ def read(mthreadID, dirlist):
     pass
 
 
+"""
+带*号的调试结果:
+def Test(keyword,line):
+    if "*" in keyword:
+        keyword_div = keyword.split("*")
+        print(keyword_div)
+        check_break = False
+        for keyword_div_index in keyword_div:
+            if keyword_div_index not in line:
+                check_break = True
+                break
+        if check_break:
+            log_debug("self.fileout:")
+    pass
+
+str1 = "06-02 18:41:09.156   855   855 I ServiceManagement: Removing namespace from process name vendor.qti.hardware.cryptfshw@1.0-service-qti to cryptfshw@1.0-service-qti."
+str3 ="ServiceManagement: Registered vendor.qti.hardware.cryptfshw@1.0::ICryptfsHw/default (start delay of 50ms)"
+str2 = "ServiceManagement:*namespace"
+Test(str2,str1)
+Test(str2,str3)
+"""
 class Reader(threading.Thread):
     def __init__(self, file__read, file_out, sheet_name, sheet_name_dict, start_pos, end_pos, thread_num):
         super(Reader, self).__init__()
@@ -313,7 +354,6 @@ class Reader(threading.Thread):
         self.start_pos = start_pos
         self.end_pos = end_pos
         self.thread_num = thread_num
-
     def run(self):
         # sheet_name = get_all_sheet_name(self.fileconfig)
         # sheet_name_dict = get_sheet_name_key(self.fileconfig)
@@ -513,3 +553,8 @@ print(list)
 #sfile= os.path.join(__file_out_base, "final_file.txt")
 #print(sfile)
 #SortedFile(sfile, sfile)
+
+
+
+
+
