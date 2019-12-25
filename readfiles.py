@@ -173,15 +173,11 @@ def decode_val(line, value):  # str 暂时只能用逗号分开，加其他的�
         pass
     elif len(config_value[0]) > 0 and len(config_value[1]) <= 0:
         start_index = re.search(config_value[0].strip(), line).span()
-        print(start_index)
-        print("decode_val 1")
         return line[start_index[1]:end_index[0]].strip()
         pass
     elif len(config_value[0]) > 0 and len(config_value[1]) > 0:
         start_index = re.search(config_value[0].strip(), line).span()
         end_index = re.search(config_value[1].strip(), line).span()
-        print(start_index)
-        print(end_index)
         if start_index[1] < end_index[0]:
             return line[start_index[1]:end_index[0]].strip()
         else:
