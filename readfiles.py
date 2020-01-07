@@ -95,6 +95,7 @@ def decode_Logic_config(fliepath, sheet_name_dict):
                 # print(index)
                 keyword_index = index[sheet_name_temp]["KEYWORD"]
                 level_index = index[sheet_name_temp]["LEVEL"]
+                process_id_index = index[sheet_name_temp]["PROCESS"]
                 if keyword_index < 0:
                     continue
                 for key in config:
@@ -103,6 +104,9 @@ def decode_Logic_config(fliepath, sheet_name_dict):
                         continue
                     keyword = config[key][keyword_index]
                     level = config[key][level_index]
+                    process_id = config[key][process_id_index]
+                    if process_id is None or process_id < 1:#如果process没有填写，不处理逻辑关系，只负责整合log
+                        continue
                     lines_level = line.split()
                     if len(lines_level) < 5:  # 保证格式是时间+进程号+log等级，格式不同的，直接不处理
                         continue
