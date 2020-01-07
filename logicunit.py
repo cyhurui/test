@@ -140,7 +140,6 @@ def get_process_dict_key(process_val):
     key_list.append(int(int(process_val) % 100))
     return key_list
 
-
 def unit_check(logic_all, logic_dict,line):
     # module, submodule, process, subprocess
     # For example: 11201
@@ -153,6 +152,8 @@ def unit_check(logic_all, logic_dict,line):
     # todo: parameters valid check
     logic_unit = logic_all[0]
     checkresult = False
+    if logic_unit == "": #缺省为L2
+        logic_unit = "L2"
     outdate= outputdate(line)
     if logic_unit == "L1":
         # logic1(VAL1, true/false)

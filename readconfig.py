@@ -270,6 +270,9 @@ def get_complete_process_dict(sheet_name_dict):
                 output2_value = config[key][output2_index]
             else:
                 return None
+
+            if process_value == "":
+                continue
             key_list = get_process_dict_key(process_value)
 
             if key_list[0] not in complete_process_dict:

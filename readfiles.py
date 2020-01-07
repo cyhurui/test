@@ -2,6 +2,8 @@ import os
 import re
 import threading
 
+from pip._vendor import chardet
+
 from logicunit import logicdispatch, clear_process_dict, get_complete_dict, set_complete_dict
 from mergefile import intercept_file_name, merge_log, SortedFile, checkFileSize
 from parseresultoutput import open_parse_result_file, close_parse_result_file
@@ -16,7 +18,7 @@ arg = ''
 readinlist = []
 merge_file_list = []
 DBG = False
-debug_DBG = False
+debug_DBG =False
 
 Tag = "readfile"
 
@@ -95,7 +97,7 @@ def decode_Logic_config(fliepath, sheet_name_dict):
                 # print(index)
                 keyword_index = index[sheet_name_temp]["KEYWORD"]
                 level_index = index[sheet_name_temp]["LEVEL"]
-                process_id_index = index[sheet_name_temp]["PROCESS"]
+                process_value_index = index[sheet_name_temp]["PROCESS"]
                 if keyword_index < 0:
                     continue
                 for key in config:
@@ -104,8 +106,9 @@ def decode_Logic_config(fliepath, sheet_name_dict):
                         continue
                     keyword = config[key][keyword_index]
                     level = config[key][level_index]
-                    process_id = config[key][process_id_index]
-                    if process_id is None or process_id < 1:#如果process没有填写，不处理逻辑关系，只负责整合log
+                    process_value = config[key][process_value_index]
+                    if process_value=="":#如果process没有填写，不处理逻辑关系，只负责整合log
+                        log_debug("process_value is Null")
                         continue
                     lines_level = line.split()
                     if len(lines_level) < 5:  # 保证格式是时间+进程号+log等级，格式不同的，直接不处理
@@ -171,24 +174,34 @@ def decode_val(line, value):  # str 暂时只能用逗号分开，加其他的�
     3.A is not null, B is not null
     4.A is not null, B is null
     """
+    end = re.search(config_value[1].strip(), line)
+    start = re.search(config_value[0].strip(), line)
     if len(config_value[0]) <= 0 and len(config_value[1]) <= 0:
         print("config is invalid")
         return None
         pass
     elif len(config_value[0]) > 0 and len(config_value[1]) <= 0:
-        start_index = re.search(config_value[0].strip(), line).span()
+        #start = re.search(config_value[0].strip(), line)
+        if start is None:
+            return None
+        start_index = start.span()
         return line[start_index[1]:end_index[0]].strip()
         pass
     elif len(config_value[0]) > 0 and len(config_value[1]) > 0:
-        start_index = re.search(config_value[0].strip(), line).span()
-        end_index = re.search(config_value[1].strip(), line).span()
+        if start is None or start is None :
+            return None
+        start_index = start.span()
+        end_index = end.span()
         if start_index[1] < end_index[0]:
             return line[start_index[1]:end_index[0]].strip()
         else:
             print("start_index > end_index")
         pass
     elif len(config_value[0]) <= 0 and len(config_value[1]) > 0:
-        end_index = re.search(config_value[1].strip(), line).span()
+        #end = re.search(config_value[1].strip(), line)
+        if end is None:
+            return None
+        end_index = end.span()
         return line[0:end_index[0]].strip()
     else:
         print("this config is error, please check excel")
@@ -359,6 +372,8 @@ class Reader(threading.Thread):
         # sheet_name_dict = get_sheet_name_key(self.fileconfig)
         # file_to_read = open(file__read, "r", encoding="UTF-8")
         # file_to_out = open(self.fileout, "a", encoding="UTF-8")
+        #data = open(self.file_name, "rb").read()
+        #print(chardet.detect(data))
         with open(self.file_name, 'rb') as file_to_read:
             '''
                     该if块主要判断分块后的文件块的首位置是不是行首，
