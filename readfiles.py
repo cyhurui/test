@@ -18,7 +18,7 @@ arg = ''
 readinlist = []
 merge_file_list = []
 DBG = False
-debug_DBG =False
+debug_DBG = False
 
 Tag = "readfile"
 
@@ -141,6 +141,31 @@ def decode_Logic_config(fliepath, sheet_name_dict):
                         jump_flag = True
                         break
                         # decode_Logic_config(line, config, key, tag_temp, sheet_name_temp)
+                    elif "*" in keyword:
+                            keyword_div = keyword.split("*")
+                            check_break = False
+                            for keyword_div_index in keyword_div:
+                                if keyword_div_index not in line:
+                                    check_break = True
+                                    break
+                            if check_break is False:
+                                log_debug("self.fileout:")
+                                # if "result" in self.fileout:  # 输出只是临时性文件，所以只负责存储有关键字信息
+                                logic_dict = {}
+                                for value_temp in index[sheet_name_temp]:
+                                    # print(value_temp)
+                                    if "VALUE_FLAG" in value_temp:
+                                        logic_dict[value_temp] = config[key][index[sheet_name_temp][value_temp]]
+                                        continue
+                                    elif "VAL" in value_temp:
+                                        logic_dict[value_temp] = decode_val(line, config[key][
+                                            index[sheet_name_temp][value_temp]])
+                                    else:
+                                        logic_dict[value_temp] = config[key][index[sheet_name_temp][value_temp]]
+                                # write_file(line, fileout, file_to_read)
+                                logicdispatch(logic_dict, line)
+                                jump_flag = True
+                                break
                     else:
                         continue
                     # 开始根据关键字来检查和提取关键性信息，并输出到output文件中#
