@@ -39,7 +39,10 @@ def open_parse_result_file():
 
 # output the parse result to file
 def write_to_parse_result_file(str):
-    return parse_result_file.write(str+"\n")
+    if len(str) < 1:
+        pass
+    else:
+        return parse_result_file.write(str+"\n")
 
 
 # close file

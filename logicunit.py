@@ -187,9 +187,11 @@ def unit_check(logic_all, logic_dict,line):
     # todo: clear the args list?
     file_time = time.strftime("%m-%d_%H_%M_%S", outdate)
     if checkresult is True:
-        write_to_parse_result_file(str(file_time)+" :"+output1)
+        if len(output1) >= 1:
+            write_to_parse_result_file(str(file_time)+" :"+output1)
     else:
-        write_to_parse_result_file(str(file_time)+" :"+output2)
+        if len(output1) >= 1:
+            write_to_parse_result_file(str(file_time)+" :"+output2)
     pass
 
 
@@ -332,7 +334,8 @@ def output_the_next_output2(key, the_last_process):
             if key == next_key:
                 next_output2 = subprocess[key]
                 if next_output2:
-                    write_to_parse_result_file(output2) # write to the files
+                    if len(output2) >= 1:
+                        write_to_parse_result_file(output2) # write to the files
                     break
                 else:
                     index = index + 1
